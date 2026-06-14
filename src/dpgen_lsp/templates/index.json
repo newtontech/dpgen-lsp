@@ -1,0 +1,125 @@
+{
+    "$schema": "dpgen-lsp-template-index/v1",
+    "upstream": "https://github.com/deepmodeling/dpgen",
+    "fetched": "2026-06-14",
+    "templates": [
+        {
+            "key": "lammps-vasp",
+            "kind": "param",
+            "resource": "param/lammps-vasp.json",
+            "fp_style": "vasp",
+            "md_engine": "lammps",
+            "description": "LAMMPS + VASP (most common workflow)",
+            "upstream_path": "examples/run/dp2.x-lammps-vasp/CH4/param_CH4_deepmd-kit-2.x.json",
+            "default": true
+        },
+        {
+            "key": "lammps-pwscf",
+            "kind": "param",
+            "resource": "param/lammps-pwscf.json",
+            "fp_style": "pwscf",
+            "md_engine": "lammps",
+            "description": "LAMMPS + Quantum ESPRESSO (PWSCF)",
+            "upstream_path": "examples/run/dp2.x-lammps-pwscf/CH4/param_CH4_deepmd-kit-2.x.json"
+        },
+        {
+            "key": "lammps-cp2k",
+            "kind": "param",
+            "resource": "param/lammps-cp2k.json",
+            "fp_style": "cp2k",
+            "md_engine": "lammps",
+            "description": "LAMMPS + CP2K",
+            "upstream_path": "examples/run/dp2.x-lammps-cp2k/methane/param-ch4.json"
+        },
+        {
+            "key": "lammps-gaussian",
+            "kind": "param",
+            "resource": "param/lammps-gaussian.json",
+            "fp_style": "gaussian",
+            "md_engine": "lammps",
+            "description": "LAMMPS + Gaussian (with cluster extraction)",
+            "upstream_path": "examples/run/dp2.x-lammps-gaussian/param_C4H16N4_deepmd-kit-2.0.1.json"
+        },
+        {
+            "key": "lammps-abacus-pw",
+            "kind": "param",
+            "resource": "param/lammps-abacus-pw.json",
+            "fp_style": "abacus",
+            "md_engine": "lammps",
+            "description": "LAMMPS + ABACUS plane-wave basis",
+            "upstream_path": "examples/run/dp2.x-lammps-ABACUS-pw/methane/param.json"
+        },
+        {
+            "key": "lammps-abacus-lcao",
+            "kind": "param",
+            "resource": "param/lammps-abacus-lcao.json",
+            "fp_style": "abacus",
+            "md_engine": "lammps",
+            "description": "LAMMPS + ABACUS LCAO basis",
+            "upstream_path": "examples/run/dp2.x-lammps-ABACUS-lcao/fcc-al/run_param.json"
+        },
+        {
+            "key": "lammps-abacus-lcao-dpks",
+            "kind": "param",
+            "resource": "param/lammps-abacus-lcao-dpks.json",
+            "fp_style": "abacus",
+            "md_engine": "lammps",
+            "description": "LAMMPS + ABACUS LCAO with DeePKS",
+            "upstream_path": "examples/run/dp2.x-lammps-ABACUS-lcao-dpks/methane/param.json"
+        },
+        {
+            "key": "gromacs-gaussian",
+            "kind": "param",
+            "resource": "param/gromacs-gaussian.json",
+            "fp_style": "gaussian",
+            "md_engine": "gromacs",
+            "description": "GROMACS + Gaussian (organic / biomolecular)",
+            "upstream_path": "examples/run/dp2.x-gromacs-gaussian/param.json"
+        },
+        {
+            "key": "calypso-vasp",
+            "kind": "param",
+            "resource": "param/calypso-vasp.json",
+            "fp_style": "vasp",
+            "md_engine": "calypso",
+            "description": "CALYPSO structure search + VASP",
+            "upstream_path": "examples/run/dp-calypso-vasp/param.json"
+        },
+        {
+            "key": "amber-dprc",
+            "kind": "param",
+            "resource": "param/amber-dprc.json",
+            "fp_style": "amber/diff",
+            "md_engine": "amber",
+            "description": "Amber DPRC reactive (QM/MM)",
+            "upstream_path": "examples/run/dprc/generator.json"
+        },
+        {
+            "key": "lammps-vasp-plumed",
+            "kind": "param",
+            "resource": "param/lammps-vasp-plumed.json",
+            "fp_style": "vasp",
+            "md_engine": "lammps",
+            "feature": "enhanced-sampling",
+            "description": "LAMMPS + VASP with PLUMED enhanced sampling",
+            "upstream_path": "examples/run/dp-lammps-enhance_sampling/param.json"
+        },
+        {
+            "key": "lammps-vasp-electron-temp",
+            "kind": "param",
+            "resource": "param/lammps-vasp-electron-temp.json",
+            "fp_style": "vasp",
+            "md_engine": "lammps",
+            "feature": "electron-temperature",
+            "description": "LAMMPS + VASP with electron temperature",
+            "upstream_path": "examples/run/dp2.x-lammps-vasp-et/param_elet.json"
+        },
+        {
+            "key": "lebesgue-v2",
+            "kind": "machine",
+            "resource": "machine/lebesgue-v2.json",
+            "description": "Lebesgue cloud platform (DpCloudServer) for DeePMD-kit 2.x",
+            "upstream_path": "examples/machine/DeePMD-kit-2.x/lebesgue_v2_machine.json"
+        }
+    ]
+}

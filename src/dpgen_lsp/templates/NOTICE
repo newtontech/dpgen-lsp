@@ -1,0 +1,10 @@
+Templates in this directory are derived from the official DP-GEN examples:
+
+  https://github.com/deepmodeling/dpgen/tree/master/examples/run
+  https://github.com/deepmodeling/dpgen/tree/master/examples/machine/DeePMD-kit-2.x
+
+DP-GEN is licensed under LGPL-3.0.  These templates are redistributed here
+for convenience with attribution.  See the upstream repository for the
+authoritative versions and full license text.
+
+Source commit: master (fetched 2026-06-14)

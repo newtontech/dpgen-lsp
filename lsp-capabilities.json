@@ -15,6 +15,7 @@
   "agentCli": {
     "operations": [
       "capabilities",
+      "init",
       "check",
       "context",
       "complete",
