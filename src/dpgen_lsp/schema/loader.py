@@ -24,6 +24,12 @@ DPGEN_IMPORT_MAP = {
     },
 }
 
+MACHINE_IMPORT_MAP = {
+    "module": "dpdispatcher.machine",
+    "class": "Machine",
+    "method": "arginfo",
+}
+
 
 @dataclass
 class SchemaNode:
@@ -151,176 +157,73 @@ class SchemaTree:
             doc=getattr(var, "doc", ""),
         )
 
-    def _index_node(self, node: SchemaNode, parent_path: str):
-        key = node.path if node.path else parent_path
-        if key:
-            self.nodes[key] = node
-        for child in node.sub_fields.values():
-            self._index_node(child, child.path)
-        for var in node.sub_variants:
-            for tag, child in var.tags.items():
-                self._index_node(child, child.path)
-
-    @staticmethod
-    def _infer_json_type(arg: Any) -> str:
-        type_info = getattr(arg, "dtype", None)
-        if type_info is None:
-            return "any"
-        type_str = str(type_info)
-        mapping = {
-            "str": "string",
-            "int": "integer",
-            "float": "number",
-            "bool": "boolean",
-            "dict": "object",
-            "list": "array",
-            "NoneType": "null",
-        }
-        for py_type, json_type in mapping.items():
-            if py_type in type_str:
-                return json_type
-        return "any"
-
-    @staticmethod
-    def _is_list_type(arg: Any) -> bool:
-        type_info = getattr(arg, "dtype", None)
-        if type_info is None:
-            return False
-        type_str = str(type_info)
-        return "list" in type_str
-
-    @staticmethod
-    def _list_item_type_str(arg: Any) -> str:
-        type_info = getattr(arg, "dtype", None)
-        if type_info is None:
-            return "any"
-        type_str = str(type_info)
-        if "str" in type_str:
-            return "string"
-        if "int" in type_str:
-            return "integer"
-        if "float" in type_str:
-            return "number"
-        if "bool" in type_str:
-            return "boolean"
-        if "dict" in type_str:
-            return "object"
-        if "list[list" in type_str:
-            return "array"
-        return "any"
-
-    def find_node(self, json_path: str) -> SchemaNode | None:
-        # Search by exact path
-        node = self.nodes.get(json_path)
-        if node is not None:
-            return node
-        # Search by name (for short key lookups)
-        for n in self.nodes.values():
-            if n.name == json_path:
-                return n
-        return None
-
-    def find_best_node(self, json_path: str) -> SchemaNode | None:
-        node = self.nodes.get(json_path)
-        if node is not None:
-            return node
-        parts = json_path.split(".")
-        for i in range(len(parts) - 1, 0, -1):
-            parent = ".".join(parts[:i])
-            node = self.nodes.get(parent)
-            if node is not None and node.sub_fields:
-                return node
-        return self.root
-
-    def get_completions(self, json_path: str) -> list[dict[str, str]]:
-        node = self.nodes.get(json_path)
-        if node is None:
-            node = self.root
-
-        items: list[dict[str, str]] = []
-
-        if node and node.sub_fields:
-            for name, child in node.sub_fields.items():
-                items.append({
-                    "label": name,
-                    "detail": child.doc[:80] if child.doc else child.json_type,
-                    "kind": "property",
-                })
-
-        if node and node.sub_variants:
-            for var in node.sub_variants:
-                items.append({
-                    "label": var.name,
-                    "detail": f"variant: {', '.join(var.tags.keys())}",
-                    "kind": "enum",
-                })
-
-        return items
-
-    def get_hover(self, json_path: str) -> str:
-        node = self.nodes.get(json_path)
-        if node is None:
-            return ""
-        parts = []
-        parts.append(f"**{node.name}** ({node.json_type})")
-        if not node.optional:
-            parts.append("*required*")
-        else:
-            parts.append(f"*optional*, default: {node.default!r}")
-        if node.doc:
-            parts.append("")
-            parts.append(node.doc)
-        if node.alias:
-            parts.append("")
-            parts.append(f"Alias: {', '.join(node.alias)}")
-        return "\n".join(parts)
-
-    def to_dict(self) -> dict:
-        if self.root is None:
-            return {}
-
-        def _node_to_dict(node: SchemaNode) -> dict:
-            result: dict[str, Any] = {
-                "name": node.name,
-                "type": node.json_type,
-                "optional": node.optional,
-                "doc": node.doc,
+    def _infer_json_type(self, arg: Any) -> str:
+        dtype = getattr(arg, "dtype", None)
+        if dtype is not None:
+            name = getattr(dtype, "__name__", str(dtype))
+            mapping = {
+                "str": "string",
+                "int": "integer",
+                "float": "number",
+                "bool": "boolean",
+                "list": "array",
+                "dict": "object",
             }
-            if node.sub_fields:
-                result["properties"] = {
-                    k: _node_to_dict(v) for k, v in node.sub_fields.items()
-                }
-            if node.sub_variants:
-                result["variants"] = [
-                    {
-                        "name": v.name,
-                        "tags": list(v.tags.keys()),
-                        "default": v.default_tag,
-                    }
-                    for v in node.sub_variants
-                ]
-            if node.is_list:
-                result["items"] = {"type": node.list_item_type}
-            return result
+            return mapping.get(name, "string")
+        return "string"
 
-        return _node_to_dict(self.root)
+    def _is_list_type(self, arg: Any) -> bool:
+        dtype = getattr(arg, "dtype", None)
+        if dtype is not None:
+            name = getattr(dtype, "__name__", str(dtype))
+            return name == "list"
+        return False
+
+    def _list_item_type_str(self, arg: Any) -> str:
+        repeat = getattr(arg, "repeat", None)
+        if repeat and hasattr(repeat, "__name__"):
+            mapping = {
+                "str": "string",
+                "int": "integer",
+                "float": "number",
+                "bool": "boolean",
+            }
+            return mapping.get(repeat.__name__, "string")
+        return "string"
+
+    def _index_node(self, node: SchemaNode, parent_path: str):
+        self.nodes[node.path] = node
+        for child in node.sub_fields.values():
+            self._index_node(child, node.path)
+        if node.list_item_node:
+            self._index_node(node.list_item_node, node.path)
+
+    def lookup(self, json_path: str) -> SchemaNode | None:
+        return self.nodes.get(json_path)
+
+    def children_of(self, json_path: str) -> list[SchemaNode]:
+        node = self.lookup(json_path)
+        if node is None:
+            return []
+        return list(node.sub_fields.values())
 
     def to_json_schema(self) -> dict:
         if self.root is None:
-            return {}
+            return {"type": "object", "properties": {}}
 
         def _to_json_schema(node: SchemaNode) -> dict:
-            result: dict[str, Any] = {"description": node.doc or node.name}
-            if node.json_type == "object":
+            result: dict[str, Any] = {}
+            if node.sub_fields:
                 result["type"] = "object"
-                props = {}
-                required = []
-                for k, v in node.sub_fields.items():
-                    props[k] = _to_json_schema(v)
-                    if not v.optional:
-                        required.append(k)
-                if props:
-                    result["properties"] = props
+                props: dict[str, Any] = {}
+                for name, child in node.sub_fields.items():
+                    props[name] = _to_json_schema(child)
+                result["properties"] = props
+                required = [
+                    name
+                    for name, child in node.sub_fields.items()
+                    if not child.optional
+                ]
                 if required:
                     result["required"] = required
                 for var in node.sub_variants:
@@ -357,6 +260,28 @@ def _import_optional(module_name: str):
         return import_module(module_name)
     except Exception:
         return None
+
+
+def detect_file_type(text: str) -> str:
+    """Detect whether JSON text is a params.json or machine.json.
+
+    machine.json structure:
+    {
+      "api_version": "1.0",
+      "train": [ { "command": ..., "machine": {...}, "resources": {...} } ],
+      "model_devi": [ ... ],
+      "fp": [ ... ]
+    }
+    """
+    try:
+        data = json.loads(text)
+        if "api_version" in data:
+            return "machine"
+        if isinstance(data.get("train"), list) and "type_map" not in data:
+            return "machine"
+        return "params"
+    except json.JSONDecodeError:
+        return "params"
 
 
 def detect_workflow(text: str) -> str:

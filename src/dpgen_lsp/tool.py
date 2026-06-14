@@ -58,7 +58,8 @@ def _collect_diagnostics(path: Path) -> list[Any]:
     from .features.diagnostic import DiagnosticProvider
 
     text = path.read_text(encoding="utf-8")
-    return DiagnosticProvider().get_diagnostics(text, path.resolve().as_uri())
+    base_dir = path.parent.resolve()
+    return DiagnosticProvider().get_diagnostics(text, path.resolve().as_uri(), base_dir=base_dir)
 
 
 def check_path(path: Path) -> dict[str, Any]:
