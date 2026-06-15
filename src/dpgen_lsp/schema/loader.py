@@ -361,8 +361,8 @@ def _fallback_schema_root(workflow: str) -> SchemaNode:
         add("pert_box", "number", "Cell perturbation amplitude.", optional=False)
         add("pert_atom", "number", "Atomic coordinate perturbation amplitude.", optional=False)
         add("coll_ndata", "integer", "Maximum collected data frames.", optional=False)
-        add("type_map", "array", "Atom type names in DP-GEN order.")
         if workflow == "init_bulk":
+            add("type_map", "array", "Atom type names in DP-GEN order.")
             add("md_incar", "string", "AIMD INCAR/INPUT path.")
             add("md_nstep", "integer", "AIMD step count.", optional=False)
             add("init_fp_style", "string", "Initial-data FP backend: VASP or ABACUS.", variant_tags=["VASP", "ABACUS"])
@@ -373,6 +373,9 @@ def _fallback_schema_root(workflow: str) -> SchemaNode:
             add("vacuum_max", "number", "Maximum vacuum thickness.", optional=False)
             add("vacuum_min", "number", "Minimum vacuum thickness.")
             add("vacuum_resol", "array", "Vacuum thickness resolution.", optional=False)
+            add("vacuum_numb", "integer", "Total number of vacuum layers.")
+            add("mid_point", "number", "Mid point separating head and tail vacuum regions.")
+            add("head_ratio", "number", "Ratio of vacuum layers in the nearby head region.")
             add("millers", "array", "Miller indices to generate.", optional=False)
         return root
 
@@ -395,20 +398,31 @@ def _fallback_schema_root(workflow: str) -> SchemaNode:
     add("model_devi_jobs", "array", "Exploration job settings for each iteration.", optional=False)
     add("model_devi_f_trust_lo", "number", "Lower force model-deviation trust bound.")
     add("model_devi_f_trust_hi", "number", "Upper force model-deviation trust bound.")
-    fp_style_tags = [
-        "vasp",
-        "gaussian",
-        "siesta",
-        "cp2k",
-        "abacus",
-        "amber/diff",
-        "pwmat",
-        "pwscf",
-        "cpx",
-        "custom",
-    ]
     if workflow == "simplify":
-        fp_style_tags.insert(0, "none")
+        fp_style_tags = [
+            "none",
+            "vasp",
+            "gaussian",
+            "siesta",
+            "cp2k",
+            "abacus",
+            "pwmat",
+            "pwscf",
+            "custom",
+        ]
+    else:
+        fp_style_tags = [
+            "vasp",
+            "gaussian",
+            "siesta",
+            "cp2k",
+            "abacus",
+            "amber/diff",
+            "pwmat",
+            "pwscf",
+            "cpx",
+            "custom",
+        ]
     add("fp_style", "string", "First-principles engine.", optional=False, variant_tags=fp_style_tags)
     add("fp_task_max", "integer", "Maximum FP tasks selected per iteration.", optional=False)
     add("fp_task_min", "integer", "Minimum FP tasks required for next training iteration.", optional=False)

@@ -60,3 +60,48 @@ def test_detect_workflow():
 
     simplify_json = '{"pick_data": [], "iter_pick_number": 5}'
     assert detect_workflow(simplify_json) == "simplify"
+
+
+def test_fallback_init_surf_schema_matches_official_keys():
+    from dpgen_lsp.schema.loader import _fallback_schema_root
+
+    root = _fallback_schema_root("init_surf")
+    keys = set(root.sub_fields)
+
+    assert "type_map" not in keys
+    assert "md_incar" not in keys
+    assert "md_nstep" not in keys
+    assert "init_fp_style" not in keys
+    assert {"vacuum_numb", "mid_point", "head_ratio"} <= keys
+
+
+def test_fallback_init_bulk_schema_matches_official_keys():
+    from dpgen_lsp.schema.loader import _fallback_schema_root
+
+    root = _fallback_schema_root("init_bulk")
+    keys = set(root.sub_fields)
+
+    assert {"type_map", "md_incar", "md_nstep", "init_fp_style"} <= keys
+    assert "millers" not in keys
+    assert "vacuum_numb" not in keys
+
+
+def test_fallback_simplify_fp_style_variants_match_official():
+    from dpgen_lsp.schema.loader import _fallback_schema_root
+
+    root = _fallback_schema_root("simplify")
+    fp_style = root.sub_fields["fp_style"]
+
+    assert fp_style.variant_tags == [
+        "none",
+        "vasp",
+        "gaussian",
+        "siesta",
+        "cp2k",
+        "abacus",
+        "pwmat",
+        "pwscf",
+        "custom",
+    ]
+    assert "amber/diff" not in fp_style.variant_tags
+    assert "cpx" not in fp_style.variant_tags
