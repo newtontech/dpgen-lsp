@@ -9,3 +9,7 @@ consistency inside each file, and cross-artifact stage alignment between
 `param.json` and `machine.json` (train / model_devi / fp).
 relationships such as `mass_map` and `fp_pp_files` alignment with `type_map`,
 threshold ordering, and path/glob existence for generated-input preflight.
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

@@ -6,3 +6,7 @@
 The LSP validates the required stage sections, optional DPDispatcher-backed
 machine schema when available, and known Bohrium `scass_type` values as
 warnings.
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

@@ -3,6 +3,8 @@
 The editor servers already own the expensive parsing and validation logic. This
 module exposes the same information in a command-line friendly JSON shape for
 agents that need LSP-style context without starting an editor client.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
 """
 
 from __future__ import annotations

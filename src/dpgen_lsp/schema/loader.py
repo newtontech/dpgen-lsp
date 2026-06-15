@@ -1,4 +1,7 @@
-"""Schema tree loader from dpgen arginfo definitions."""
+"""Schema tree loader from dpgen arginfo definitions.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from __future__ import annotations
 
@@ -260,7 +263,9 @@ class SchemaTree:
         fields are indexed as their argument names, so exact lookup is the
         desired behavior for hover and references. Static rule indexes also
         support a final-component fallback for nested JSON paths.
-        """
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
         if not json_path:
             return self.root
         node = self.lookup(json_path)
@@ -274,7 +279,9 @@ class SchemaTree:
         Completion normally needs children of the current object. If an exact
         path is not indexed, walk upward through dotted path components and
         finally fall back to the root node.
-        """
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
         if not json_path:
             return self.root
         parts = json_path.split(".")
@@ -346,8 +353,10 @@ def _fallback_schema_root(workflow: str) -> SchemaNode:
     """Build a lightweight fallback schema when dpgen is unavailable.
 
     The authoritative schema still comes from DP-GEN's arginfo definitions when
-    installed.  This fallback preserves useful completions, hovers, and tests in
+    installed. This fallback preserves useful completions, hovers, and tests in
     minimal environments.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     root_name = {
         "run": "run_jdata",
@@ -512,6 +521,8 @@ def detect_file_type(text: str) -> str:
       "model_devi": [ ... ],
       "fp": [ ... ]
     }
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
     try:
         data = json.loads(text)

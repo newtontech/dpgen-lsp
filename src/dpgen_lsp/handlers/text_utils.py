@@ -1,4 +1,7 @@
-"""Small text helpers shared by LSP handlers."""
+"""Small text helpers shared by LSP handlers.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from __future__ import annotations
 

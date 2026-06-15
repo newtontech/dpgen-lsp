@@ -1,4 +1,7 @@
-"""LSP document symbol handler."""
+"""LSP document symbol handler.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from __future__ import annotations
 

@@ -1,4 +1,7 @@
-"""LSP go-to-definition handler."""
+"""LSP go-to-definition handler.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from __future__ import annotations
 

@@ -1,4 +1,7 @@
-"""Runtime/output log diagnostics for DP-GEN workflow artifacts."""
+"""Runtime/output log diagnostics for DP-GEN workflow artifacts.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from __future__ import annotations
 
@@ -47,7 +50,10 @@ def is_output_log_path(path: Path) -> bool:
 
 
 class LogDiagnosticProvider:
-    """Detect common DP-GEN, DPDispatcher, and workflow-output failures."""
+    """Detect common DP-GEN, DPDispatcher, and workflow-output failures.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
     def get_diagnostics(self, text: str, uri: str = "") -> list[dict]:
         if not text.strip():

@@ -1,4 +1,7 @@
-"""LSP rename handler."""
+"""LSP rename handler.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from __future__ import annotations
 
