@@ -1,4 +1,7 @@
-"""Schema-driven JSON hover provider."""
+"""Schema-driven JSON hover provider.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from ..schema.loader import load_schema_tree, detect_workflow
 from ..schema.json_path import JsonPathMapper

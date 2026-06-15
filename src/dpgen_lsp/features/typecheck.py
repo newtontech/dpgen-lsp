@@ -1,4 +1,7 @@
-"""Type/value checking for dpgen input parameters."""
+"""Type/value checking for dpgen input parameters.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 def typecheck(text: str) -> list[dict]:
     return []

@@ -1,4 +1,7 @@
-"""Runtime log diagnostics for DP-GEN and dpdispatcher output."""
+"""Runtime log diagnostics for DP-GEN and dpdispatcher output.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from __future__ import annotations
 
@@ -81,7 +84,10 @@ def _extract_config_path(line: str) -> str | None:
 
 
 def parse_log_content(content: str, file_path: str = "<log>") -> list[dict[str, Any]]:
-    """Parse DP-GEN or dpdispatcher log content into DiagnosticEnvelope items."""
+    """Parse DP-GEN or dpdispatcher log content into DiagnosticEnvelope items.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     diagnostics: list[LogDiagnostic] = []
     seen: set[tuple[str, int, str]] = set()
 

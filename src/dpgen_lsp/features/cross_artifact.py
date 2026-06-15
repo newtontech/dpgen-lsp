@@ -1,4 +1,7 @@
-"""Cross-artifact diagnostics between param.json and machine.json."""
+"""Cross-artifact diagnostics between param.json and machine.json.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from __future__ import annotations
 
@@ -68,7 +71,10 @@ def get_cross_artifact_diagnostics(
     param_data: dict[str, Any],
     machine_data: dict[str, Any],
 ) -> list[dict[str, Any]]:
-    """Validate that machine.json stages match param.json workflow needs."""
+    """Validate that machine.json stages match param.json workflow needs.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     diagnostics: list[dict[str, Any]] = []
 
     stage_checks = (

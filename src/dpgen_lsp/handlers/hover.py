@@ -1,4 +1,7 @@
-"""LSP hover handler."""
+"""LSP hover handler.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from typing import Any
 

@@ -1,4 +1,7 @@
-"""LSP completion handler."""
+"""LSP completion handler.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from typing import Any
 

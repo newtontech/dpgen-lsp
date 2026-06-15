@@ -1,4 +1,7 @@
-"""Offline DP-GEN rule/provenance index derived from official documentation."""
+"""Offline DP-GEN rule/provenance index derived from official documentation.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from __future__ import annotations
 

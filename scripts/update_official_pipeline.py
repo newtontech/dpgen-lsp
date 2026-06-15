@@ -4,6 +4,8 @@
 This script keeps the repo-local raw/provenance layer reproducible without
 making the LSP runtime depend on network access. Runtime code reads the checked
 in structured rule index under ``src/dpgen_lsp/schema/dpgen_rules.json``.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
 """
 
 from __future__ import annotations

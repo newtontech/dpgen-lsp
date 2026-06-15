@@ -5,3 +5,7 @@ The refresh script fetches official DP-GEN HTML pages, stores normalized raw tex
 and hashes under `raw/assets`, and keeps source IDs aligned with the structured
 rule index. The language server then uses the checked-in rule index for
 completion, hover, diagnostics, fix hints, and `manual_ref` fields.
+
+## Traceability Sources
+
+- Raw evidence: `raw/assets/source-provenance.json`

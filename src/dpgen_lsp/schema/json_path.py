@@ -1,4 +1,7 @@
-"""JSON cursor position to path mapping."""
+"""JSON cursor position to path mapping.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from __future__ import annotations
 

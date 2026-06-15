@@ -1,4 +1,7 @@
-"""Feature registry for pygls handlers."""
+"""Feature registry for pygls handlers.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from typing import Any, Callable, List, Tuple
 

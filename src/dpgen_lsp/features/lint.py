@@ -1,4 +1,7 @@
-"""Semantic lint provider for cross-field consistency checks."""
+"""Semantic lint provider for cross-field consistency checks.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from __future__ import annotations
 
@@ -42,7 +45,10 @@ def _diagnostic(
     fix_hints: list[str] | None = None,
     blocking: bool = True,
 ) -> dict:
-    """Create a diagnostic dict."""
+    """Create a diagnostic dict.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     return {
         "code": code,
         "severity": severity,
@@ -60,7 +66,10 @@ def _diagnostic(
 
 
 def _find_key_line(text: str, key: str) -> int:
-    """Find the line number of a key in JSON text."""
+    """Find the line number of a key in JSON text.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     lines = text.splitlines()
     for lno, raw in enumerate(lines):
         if f'"{key}"' in raw:
@@ -69,7 +78,10 @@ def _find_key_line(text: str, key: str) -> int:
 
 
 def _find_next_key_line(text: str, key: str, used_lines: set[int]) -> int:
-    """Find the next unused occurrence of a key in JSON text."""
+    """Find the next unused occurrence of a key in JSON text.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     lines = text.splitlines()
     for lno, raw in enumerate(lines):
         if f'"{key}"' in raw and lno not in used_lines:
@@ -85,7 +97,10 @@ def _lint_simple(
     severity: str = "error",
     blocking: bool = True,
 ) -> dict:
-    """Create a simple lint diagnostic for a key."""
+    """Create a simple lint diagnostic for a key.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     line = 0
     character = 0
     length = len(key)
@@ -104,7 +119,10 @@ def _lint_simple(
 
 
 def _lint_general_checks(data: dict, text: str) -> list[dict]:
-    """General cross-field consistency checks."""
+    """General cross-field consistency checks.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     diagnostics: list[dict] = []
 
     type_map_len = len(data.get("type_map", []))
@@ -191,7 +209,10 @@ def _lint_general_checks(data: dict, text: str) -> list[dict]:
 
 
 def _lint_run_workflow(data: dict, text: str) -> list[dict]:
-    """Checks specific to dpgen run parameter files."""
+    """Checks specific to dpgen run parameter files.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     diagnostics: list[dict] = []
 
     model_devi_jobs = data.get("model_devi_jobs")
@@ -234,7 +255,10 @@ def _lint_run_workflow(data: dict, text: str) -> list[dict]:
 
 
 def _lint_simplify_workflow(data: dict, text: str, base_dir: Path | None) -> list[dict]:
-    """Checks specific to dpgen simplify parameter files."""
+    """Checks specific to dpgen simplify parameter files.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     diagnostics: list[dict] = []
 
     for key in ("init_pick_number", "iter_pick_number"):
@@ -265,7 +289,10 @@ def _lint_simplify_workflow(data: dict, text: str, base_dir: Path | None) -> lis
 
 
 def _lint_init_workflow(workflow: str, data: dict, text: str) -> list[dict]:
-    """Checks specific to dpgen init_* parameter files."""
+    """Checks specific to dpgen init_* parameter files.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     diagnostics: list[dict] = []
 
     stages = data.get("stages")
@@ -319,7 +346,10 @@ def _lint_init_workflow(workflow: str, data: dict, text: str) -> list[dict]:
 
 
 def _lint_cp2k_fp(data: dict, text: str) -> list[dict]:
-    """CP2K-specific semantic checks for fp_params."""
+    """CP2K-specific semantic checks for fp_params.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     diagnostics: list[dict] = []
 
     fp_style = data.get("fp_style")
@@ -378,7 +408,10 @@ def _lint_cp2k_fp(data: dict, text: str) -> list[dict]:
 def _lint_path_existence(
     data: dict, text: str, base_dir: Path
 ) -> list[dict]:
-    """Check that referenced paths (init_data_sys, sys_configs) exist."""
+    """Check that referenced paths (init_data_sys, sys_configs) exist.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     diagnostics: list[dict] = []
 
     # init_data_sys — required for training
@@ -430,7 +463,10 @@ def _lint_path_existence(
 
 
 def _lint_machine_type_whitelist(data: dict, text: str) -> list[dict]:
-    """Warn if scass_type doesn't match known Bohrium machine types."""
+    """Warn if scass_type doesn't match known Bohrium machine types.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     diagnostics: list[dict] = []
 
     all_known = set()
@@ -488,7 +524,9 @@ def lint(text: str, uri: str = "", base_dir: Path | None = None) -> list[dict]:
     Run semantic lint checks on dpgen JSON input.
     
     Returns list of diagnostic dicts with category 'semantic' or 'suggestion'.
-    """
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     diagnostics: list[dict] = []
 
     if not text.strip():
@@ -526,8 +564,14 @@ def lint(text: str, uri: str = "", base_dir: Path | None = None) -> list[dict]:
 
 
 class LintProvider:
-    """Provider for semantic lint checks."""
+    """Provider for semantic lint checks.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
     def lint(self, text: str, uri: str = "", base_dir: Path | None = None) -> list[dict]:
-        """Run semantic lint checks on dpgen JSON input."""
+        """Run semantic lint checks on dpgen JSON input.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
         return lint(text, uri, base_dir)

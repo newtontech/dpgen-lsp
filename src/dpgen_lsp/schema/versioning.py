@@ -1,4 +1,7 @@
-"""DP-GEN version support helpers for diagnostics and agent capabilities."""
+"""DP-GEN version support helpers for diagnostics and agent capabilities.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from __future__ import annotations
 

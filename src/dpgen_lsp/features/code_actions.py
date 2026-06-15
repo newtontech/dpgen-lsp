@@ -1,4 +1,7 @@
-"""Code action provider for dpgen JSON input files."""
+"""Code action provider for dpgen JSON input files.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from __future__ import annotations
 
@@ -14,7 +17,10 @@ class CodeActionProvider:
         character: int,
         diagnostics: list[dict[str, Any]] | None = None,
     ) -> list[dict[str, Any]]:
-        """Return quick-fix suggestions for known dpgen diagnostics."""
+        """Return quick-fix suggestions for known dpgen diagnostics.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
         actions: list[dict[str, Any]] = []
 
         for diagnostic in diagnostics or []:
@@ -68,5 +74,8 @@ class CodeActionProvider:
         return actions
 
     def execute_command(self, command: str, arguments: list) -> Any:
-        """Placeholder command execution hook for editor clients."""
+        """Placeholder command execution hook for editor clients.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
         return {"command": command, "arguments": arguments}

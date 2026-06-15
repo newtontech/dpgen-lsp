@@ -1,0 +1,27 @@
+{
+  "manifest_version": "1.0.0",
+  "schema_version": "provenance-manifest-v1",
+  "created_at": "2026-06-15T13:24:30+00:00",
+  "repository": "dpgen-lsp",
+  "pipeline": "official-docs -> raw/assets -> wiki -> docstrings -> LSP runtime",
+  "entries": [
+    {
+      "path": "dpgen-official-docs.json",
+      "raw_path": "raw/assets/dpgen-official-docs.json",
+      "bytes": 507431,
+      "checksum_sha256": "39eb1bf83ed8daed7bd427bc659d123d5bcf29bf788c3d81984fe3b428a1c747"
+    },
+    {
+      "path": "dpgen-version-index.json",
+      "raw_path": "raw/assets/dpgen-version-index.json",
+      "bytes": 14443,
+      "checksum_sha256": "a33f8d3dbb54c6603a187427b6aec6f15cef851f5a1493af76ef9abd178b32da"
+    },
+    {
+      "path": "source-provenance.json",
+      "raw_path": "raw/assets/source-provenance.json",
+      "bytes": 14687,
+      "checksum_sha256": "1d0562ddca2c4cb1ae0a4f0f7b0597c2ebf03eff7375c668682abdcd88d7fd61"
+    }
+  ]
+}

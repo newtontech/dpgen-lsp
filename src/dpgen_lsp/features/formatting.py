@@ -1,4 +1,7 @@
-"""JSON formatting provider."""
+"""JSON formatting provider.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 import json
 from typing import Any

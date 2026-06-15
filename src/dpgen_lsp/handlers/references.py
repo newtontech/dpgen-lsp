@@ -1,4 +1,7 @@
-"""LSP references handler."""
+"""LSP references handler.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from __future__ import annotations
 

@@ -1,4 +1,7 @@
-"""Template management for dpgen input files."""
+"""Template management for dpgen input files.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from __future__ import annotations
 
@@ -11,7 +14,10 @@ _TEMPLATES_DIR = Path(__file__).parent
 
 
 def _load_index() -> dict[str, Any]:
-    """Load template index from index.json."""
+    """Load template index from index.json.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     index_path = _TEMPLATES_DIR / "index.json"
     with open(index_path, "r", encoding="utf-8") as f:
         return json.load(f)
@@ -26,7 +32,9 @@ def list_templates(kind: str | None = None) -> list[dict[str, Any]]:
     
     Returns:
         List of template metadata dictionaries.
-    """
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     index = _load_index()
     templates = index.get("templates", [])
     
@@ -46,7 +54,9 @@ def get_template(key: str, kind: str | None = None) -> dict[str, Any] | None:
     
     Returns:
         Template metadata dict or None if not found.
-    """
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     templates = list_templates(kind)
     
     for template in templates:
@@ -66,7 +76,9 @@ def read_template(key: str, kind: str | None = None) -> str | None:
     
     Returns:
         Template file content as string, or None if not found.
-    """
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     template = get_template(key, kind)
     if template is None:
         return None
@@ -96,7 +108,9 @@ def write_template(
     
     Returns:
         Result dictionary with 'success', 'path', and optional 'error' fields.
-    """
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     template = get_template(template_key, kind)
     
     if template is None:

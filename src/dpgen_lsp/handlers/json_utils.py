@@ -1,4 +1,7 @@
-"""JSON document utilities used by LSP handlers."""
+"""JSON document utilities used by LSP handlers.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from __future__ import annotations
 
@@ -9,7 +12,10 @@ from typing import Any
 
 @dataclass(frozen=True)
 class JsonKeyOccurrence:
-    """Location of a JSON object key in source text."""
+    """Location of a JSON object key in source text.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
     key: str
     line: int
@@ -23,7 +29,10 @@ _KEY_RE = re.compile(r'"([^"\\]*(?:\\.[^"\\]*)*)"\s*:')
 
 
 def get_document_text(ls: Any, uri: str) -> str:
-    """Return cached document text for a URI from the language server."""
+    """Return cached document text for a URI from the language server.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     docs = getattr(ls, "documents", {})
     return docs.get(uri, "")
 
@@ -33,7 +42,9 @@ def iter_json_key_occurrences(text: str) -> list[JsonKeyOccurrence]:
 
     The inference is indentation-based, which is sufficient for DP-GEN JSON
     config files and avoids mutating or reparsing partially invalid documents.
-    """
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     occurrences: list[JsonKeyOccurrence] = []
     stack: list[tuple[int, str]] = []
 
@@ -68,7 +79,10 @@ def iter_json_key_occurrences(text: str) -> list[JsonKeyOccurrence]:
 
 
 def key_at_position(text: str, line: int, character: int) -> JsonKeyOccurrence | None:
-    """Return the JSON key occurrence under a cursor position, if any."""
+    """Return the JSON key occurrence under a cursor position, if any.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
     for occ in iter_json_key_occurrences(text):
         if occ.line != line:
             continue

@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Download DP-GEN example templates from GitHub and save to local template dir."""
+"""Download DP-GEN example templates from GitHub and save to local template dir.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 import json
 import os
 import urllib.request

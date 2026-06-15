@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "docstring-wiki-raw-traceability-v1",
+  "generatedAt": "2026-06-15T13:25:07+00:00",
+  "repository": "dpgen-lsp",
+  "summary": {
+    "docstringsTotal": 75,
+    "docstringsLinked": 75,
+    "brokenWikiLinks": 0,
+    "wikiPagesTotal": 4,
+    "wikiPagesWithRaw": 4,
+    "wikiSourcesWithoutRaw": 0,
+    "rawManifestFailures": 0
+  },
+  "manifestErrors": [],
+  "docstringViolations": [],
+  "wikiViolations": []
+}

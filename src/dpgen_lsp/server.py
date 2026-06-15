@@ -1,4 +1,7 @@
-"""dpgen Language Server Protocol server wiring."""
+"""dpgen Language Server Protocol server wiring.
+
+LLM Wiki: wiki/synthesis/openqc-agent-context.md
+"""
 
 from importlib import import_module
 from pathlib import Path
