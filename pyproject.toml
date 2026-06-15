@@ -53,6 +53,10 @@ dpgen-lsp-tool = "dpgen_lsp.tool:main"
 [tool.hatch.build.targets.wheel]
 packages = ["src/dpgen_lsp"]
 
+[tool.hatch.build.targets.wheel.force-include]
+"lsp-capabilities.json" = "dpgen_lsp/lsp-capabilities.json"
+"diagnostics/diagnostic-engine-v1.schema.json" = "dpgen_lsp/diagnostic-engine-v1.schema.json"
+
 [tool.black]
 line-length = 100
 target-version = ['py39']

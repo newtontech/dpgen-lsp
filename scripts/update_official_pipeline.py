@@ -169,7 +169,9 @@ def write_structured_release_tags(tags: list[str], fetched_at: str) -> None:
         "documentedVersions",
         "knownReleaseTags",
         "docPages",
+        "dpgenVersionFields",
         "runtimeVersionFields",
+        "relatedRuntimeVersionFields",
         "compatibilityModes",
         "releaseTagsUpdatedAt",
     ):

@@ -103,6 +103,16 @@
       "deepmd_version",
       "train_backend"
     ],
+    "dpgenVersionFields": [
+      "dpgen_version",
+      "dpgenVersion"
+    ],
+    "relatedRuntimeVersionFields": [
+      "version",
+      "api_version",
+      "deepmd_version",
+      "train_backend"
+    ],
     "compatibilityModes": [
       "latest",
       "stable",

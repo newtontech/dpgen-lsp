@@ -4,7 +4,6 @@
 def test_load_schema_run():
     from dpgen_lsp.schema.loader import load_schema_tree
     import os
-    import sys
 
     if os.getenv("SKIP_DPGEN_IMPORT"):
         return

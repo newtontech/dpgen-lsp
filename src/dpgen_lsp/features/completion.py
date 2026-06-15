@@ -29,28 +29,32 @@ def completion_items(text: str, line: int, character: int) -> list[dict[str, Any
             if token and token not in name:
                 continue
             snippet = _completion_snippet(name, child)
-            items.append({
-                "label": name,
-                "detail": _short_doc(child),
-                "documentation": child.doc or f"Type: {child.json_type}",
-                "kind": 9,
-                "insertText": snippet,
-                "insertTextFormat": 2,
-            })
+            items.append(
+                {
+                    "label": name,
+                    "detail": _short_doc(child),
+                    "documentation": child.doc or f"Type: {child.json_type}",
+                    "kind": 9,
+                    "insertText": snippet,
+                    "insertTextFormat": 2,
+                }
+            )
 
     if parent_node.sub_variants:
         for var in parent_node.sub_variants:
             for tag_name, tag_node in var.tags.items():
                 if token and token not in tag_name:
                     continue
-                items.append({
-                    "label": tag_name,
-                    "detail": f"variant option",
-                    "documentation": tag_node.doc or var.doc,
-                    "kind": 13,
-                    "insertText": f'"{tag_name}"',
-                    "insertTextFormat": 1,
-                })
+                items.append(
+                    {
+                        "label": tag_name,
+                        "detail": "variant option",
+                        "documentation": tag_node.doc or var.doc,
+                        "kind": 13,
+                        "insertText": f'"{tag_name}"',
+                        "insertTextFormat": 1,
+                    }
+                )
 
     if not items:
         items = _generic_completions(text, token)
@@ -85,10 +89,22 @@ def _completion_snippet(name: str, node) -> str:
 
 def _generic_completions(text: str, token: str) -> list[dict[str, Any]]:
     items: list[dict[str, Any]] = []
-    for kw in ("type_map", "mass_map", "numb_models", "init_data_sys",
-                "sys_configs", "model_devi_jobs", "fp_style", "fp_task_max",
-                "fp_task_min", "default_training_param", "model_devi_dt",
-                "model_devi_skip", "model_devi_f_trust_lo", "model_devi_f_trust_hi"):
+    for kw in (
+        "type_map",
+        "mass_map",
+        "numb_models",
+        "init_data_sys",
+        "sys_configs",
+        "model_devi_jobs",
+        "fp_style",
+        "fp_task_max",
+        "fp_task_min",
+        "default_training_param",
+        "model_devi_dt",
+        "model_devi_skip",
+        "model_devi_f_trust_lo",
+        "model_devi_f_trust_hi",
+    ):
         if not token or token in kw:
             items.append({"label": kw, "kind": 9, "detail": "dpgen parameter"})
     return items

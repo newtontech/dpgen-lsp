@@ -4,8 +4,6 @@ import json
 import tempfile
 from pathlib import Path
 
-import pytest
-
 
 CORE_PARAM_TEMPLATES = {
     "lammps-vasp",
@@ -68,13 +66,13 @@ class TestInitCommand:
 
         captured = capsys.readouterr()
         output = json.loads(captured.out)
-        
+
         assert "templates" in output
         templates = output["templates"]
         keys = {t["key"] for t in templates}
         assert EXPANDED_PARAM_TEMPLATES <= keys
         assert EXPANDED_MACHINE_TEMPLATES <= keys
-        
+
         # Check template structure
         for template in templates:
             assert "key" in template
@@ -92,7 +90,7 @@ class TestInitCommand:
 
         captured = capsys.readouterr()
         output = json.loads(captured.out)
-        
+
         templates = output["templates"]
         keys = {t["key"] for t in templates}
         assert EXPANDED_PARAM_TEMPLATES <= keys
@@ -107,7 +105,7 @@ class TestInitCommand:
 
         captured = capsys.readouterr()
         output = json.loads(captured.out)
-        
+
         templates = output["templates"]
         keys = {t["key"] for t in templates}
         assert EXPANDED_MACHINE_TEMPLATES <= keys
@@ -122,7 +120,7 @@ class TestInitCommand:
             result = tool.main(["init", "--template", "lammps-vasp", str(out)])
             assert result == 0
             assert out.exists()
-            
+
             data = json.loads(out.read_text())
             assert "type_map" in data
             assert "mass_map" in data
@@ -137,7 +135,7 @@ class TestInitCommand:
             result = tool.main(["init", "--template", "lebesgue-v2", str(out)])
             assert result == 0
             assert out.exists()
-            
+
             data = json.loads(out.read_text())
             assert "api_version" in data
             assert "train" in data
@@ -162,10 +160,10 @@ class TestInitCommand:
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp) / "param.json"
             out.write_text('{"existing": "data"}')
-            
+
             result = tool.main(["init", "--template", "lammps-vasp", str(out)])
             assert result == 1
-            
+
             # Verify original content preserved
             data = json.loads(out.read_text())
             assert data == {"existing": "data"}
@@ -177,10 +175,10 @@ class TestInitCommand:
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp) / "param.json"
             out.write_text('{"existing": "data"}')
-            
+
             result = tool.main(["init", "--template", "lammps-vasp", "--force", str(out)])
             assert result == 0
-            
+
             # Verify new content
             data = json.loads(out.read_text())
             assert "type_map" in data
@@ -192,7 +190,7 @@ class TestInitCommand:
 
         result = tool.main(["init", "--template", "nonexistent", "param.json"])
         assert result == 1
-        
+
         captured = capsys.readouterr()
         output = json.loads(captured.out)
         assert output["success"] is False
@@ -204,14 +202,14 @@ class TestInitCommand:
         from dpgen_lsp import templates as template_library
 
         templates = [t["key"] for t in template_library.list_templates(kind="param")]
-        
+
         for template_name in templates:
             with tempfile.TemporaryDirectory() as tmp:
                 out = Path(tmp) / f"{template_name}.json"
                 result = tool.main(["init", "--template", template_name, str(out)])
                 assert result == 0, f"Failed to create {template_name}"
                 assert out.exists(), f"File not created for {template_name}"
-                
+
                 # Verify valid JSON
                 data = json.loads(out.read_text())
                 assert isinstance(data, dict), f"{template_name} is not a dict"
@@ -222,7 +220,7 @@ class TestInitCommand:
 
         result = tool.main(["init", "param.json"])
         assert result == 1
-        
+
         captured = capsys.readouterr()
         assert "template" in captured.err.lower()
 
@@ -232,7 +230,7 @@ class TestInitCommand:
 
         result = tool.main(["init", "--stdout"])
         assert result == 1
-        
+
         captured = capsys.readouterr()
         assert "template" in captured.err.lower()
 
@@ -242,7 +240,7 @@ class TestInitCommand:
 
         result = tool.main(["init", "--template", "lammps-vasp"])
         assert result == 1
-        
+
         captured = capsys.readouterr()
         assert "path" in captured.err.lower()
 
@@ -255,7 +253,7 @@ class TestInitCommand:
 
         captured = capsys.readouterr()
         output = json.loads(captured.out)
-        
+
         default_templates = [t for t in output["templates"] if t.get("default") is True]
         assert len(default_templates) == 1
         assert default_templates[0]["key"] == "lammps-vasp"
@@ -314,7 +312,7 @@ class TestTemplateLibrary:
 
         content = templates.read_template("lammps-vasp")
         assert content is not None
-        
+
         # Should be valid JSON
         data = json.loads(content)
         assert "type_map" in data
@@ -333,10 +331,10 @@ class TestTemplateLibrary:
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp) / "param.json"
             result = templates.write_template("lammps-vasp", out)
-            
+
             assert result["success"] is True
             assert out.exists()
-            
+
             data = json.loads(out.read_text())
             assert "type_map" in data
 
@@ -347,12 +345,12 @@ class TestTemplateLibrary:
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp) / "param.json"
             out.write_text('{"existing": "data"}')
-            
+
             result = templates.write_template("lammps-vasp", out)
-            
+
             assert result["success"] is False
             assert "already exists" in result["error"].lower()
-            
+
             # Verify original content preserved
             data = json.loads(out.read_text())
             assert data == {"existing": "data"}
@@ -364,11 +362,11 @@ class TestTemplateLibrary:
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp) / "param.json"
             out.write_text('{"existing": "data"}')
-            
+
             result = templates.write_template("lammps-vasp", out, overwrite=True)
-            
+
             assert result["success"] is True
-            
+
             data = json.loads(out.read_text())
             assert "type_map" in data
             assert "existing" not in data
@@ -380,7 +378,7 @@ class TestTemplateLibrary:
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp) / "param.json"
             result = templates.write_template("nonexistent", out)
-            
+
             assert result["success"] is False
             assert "not found" in result["error"].lower()
 
@@ -389,12 +387,12 @@ class TestTemplateLibrary:
         from dpgen_lsp import templates
 
         index = templates._load_index()
-        
+
         assert "$schema" in index
         assert "upstream" in index
         assert "fetched" in index
         assert "templates" in index
-        
+
         assert isinstance(index["templates"], list)
         assert len(index["templates"]) > 0
 
@@ -403,7 +401,7 @@ class TestTemplateLibrary:
         from dpgen_lsp import templates
 
         all_templates = templates.list_templates()
-        
+
         for template in all_templates:
             resource_path = templates._TEMPLATES_DIR / template["resource"]
             assert resource_path.exists(), f"Missing resource: {template['resource']}"

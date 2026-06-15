@@ -13,6 +13,7 @@ DIAGNOSTIC_CATEGORIES = (
     "type/value",
     "cross-file reference",
     "semantic consistency",
+    "version",
     "preflight/runtime-risk",
     "style/deprecation",
 )
@@ -58,6 +59,8 @@ def infer_category(code: Any = None, message: str = "", source: str = "") -> str
         return "cross-file reference"
     if any(token in text for token in ("deprecated", "style", "format", "indent")):
         return "style/deprecation"
+    if any(token in text for token in ("version", "release", "compatibility")):
+        return "version"
     if any(
         token in text for token in ("cutoff", "scf", "memory", "parallel", "runtime", "preflight")
     ):
