@@ -18,6 +18,7 @@ def dpgen_version_support_payload() -> dict[str, Any]:
         "docPages": list(support.get("docPages", [])),
         "runtimeVersionFields": list(support.get("runtimeVersionFields", [])),
         "compatibilityModes": list(support.get("compatibilityModes", [])),
+        "releaseTagsUpdatedAt": support.get("releaseTagsUpdatedAt", ""),
     }
 
 

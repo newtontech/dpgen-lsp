@@ -19,6 +19,7 @@ from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 RULE_INDEX = ROOT / "src" / "dpgen_lsp" / "schema" / "dpgen_rules.json"
+CAPABILITIES = ROOT / "lsp-capabilities.json"
 RAW_ASSETS = ROOT / "raw" / "assets"
 VERSION_INDEX = RAW_ASSETS / "dpgen-version-index.json"
 READTHEDOCS_VERSIONS_API = "https://readthedocs.org/api/v3/projects/dpgen/versions/"
@@ -150,6 +151,36 @@ def write_version_index(timeout: int, fetched_at: str) -> dict[str, Any]:
     return payload
 
 
+def write_structured_release_tags(tags: list[str], fetched_at: str) -> None:
+    if not tags:
+        return
+    rules = load_rule_index()
+    support = rules.setdefault("versionSupport", {})
+    support["knownReleaseTags"] = tags
+    support["releaseTagsUpdatedAt"] = fetched_at
+    RULE_INDEX.write_text(json.dumps(rules, indent=2, sort_keys=False) + "\n", encoding="utf-8")
+
+    capabilities = json.loads(CAPABILITIES.read_text(encoding="utf-8"))
+    capabilities_support = capabilities.setdefault("dpgenVersionSupport", {})
+    for key in (
+        "policy",
+        "readthedocsApi",
+        "githubTagsApi",
+        "documentedVersions",
+        "knownReleaseTags",
+        "docPages",
+        "runtimeVersionFields",
+        "compatibilityModes",
+        "releaseTagsUpdatedAt",
+    ):
+        if key in support:
+            capabilities_support[key] = support[key]
+    CAPABILITIES.write_text(
+        json.dumps(capabilities, indent=2, sort_keys=False) + "\n",
+        encoding="utf-8",
+    )
+
+
 def fetch_source(source: dict[str, str], timeout: int) -> dict[str, str | int]:
     url = source["url"]
     req = Request(url, headers={"User-Agent": "dpgen-lsp-provenance/0.1"})
@@ -182,17 +213,19 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--offline", action="store_true", help="Only validate checked-in files.")
     args = parser.parse_args(argv)
 
-    RAW_ASSETS.mkdir(parents=True, exist_ok=True)
-    sources = load_sources()
     if args.offline:
+        sources = load_sources()
         if not sources:
             raise SystemExit("no official sources in rule index")
         if not VERSION_INDEX.exists():
             raise SystemExit("missing version index")
         return 0
 
+    RAW_ASSETS.mkdir(parents=True, exist_ok=True)
     fetched_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     version_index = write_version_index(args.timeout, fetched_at)
+    write_structured_release_tags(version_index["releaseTags"], fetched_at)
+    sources = load_sources()
     fetched = [fetch_source(source, args.timeout) for source in sources]
     payload = {
         "schema": "DpgenOfficialDocsSnapshot/v1",

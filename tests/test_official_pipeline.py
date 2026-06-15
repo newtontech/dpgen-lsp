@@ -38,6 +38,7 @@ def test_capabilities_include_pipeline_and_provenance(capsys):
     assert "definition" in payload["standardLsp"]["textDocument"]
     assert "v0.13.3" in payload["dpgenVersionSupport"]["knownReleaseTags"]
     assert "run/mdata.html" in payload["dpgenVersionSupport"]["docPages"]
+    assert payload["dpgenVersionSupport"]["releaseTagsUpdatedAt"]
 
 
 def test_docs_backed_diagnostics_include_manual_ref(tmp_path: Path):
@@ -127,3 +128,18 @@ def test_version_index_covers_release_tags_and_docs_versions():
     assert version_index["summary"]["releaseTagCount"] >= 30
     assert "v0.13.3" in version_index["releaseTags"]
     assert any(item["slug"] == "v0.12.1" for item in version_index["readthedocsVersions"])
+
+
+def test_structured_rules_and_manifest_match_fetched_release_tags():
+    root = Path(__file__).resolve().parents[1]
+    version_index = json.loads((root / "raw" / "assets" / "dpgen-version-index.json").read_text())
+    rules = json.loads((root / "src" / "dpgen_lsp" / "schema" / "dpgen_rules.json").read_text())
+    capabilities = json.loads((root / "lsp-capabilities.json").read_text())
+
+    release_tags = set(version_index["releaseTags"])
+    rule_tags = set(rules["versionSupport"]["knownReleaseTags"])
+    manifest_tags = set(capabilities["dpgenVersionSupport"]["knownReleaseTags"])
+
+    assert release_tags <= rule_tags
+    assert release_tags <= manifest_tags
+    assert rules["versionSupport"]["releaseTagsUpdatedAt"] == version_index["fetched_at"]
