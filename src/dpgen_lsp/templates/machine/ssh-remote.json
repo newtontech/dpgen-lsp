@@ -1,0 +1,85 @@
+{
+  "api_version": "1.0",
+  "deepmd_version": "2",
+  "train": [
+    {
+      "command": "dp",
+      "machine": {
+        "batch_type": "Slurm",
+        "context_type": "SSHContext",
+        "local_root": "./",
+        "remote_root": "/scratch/$USER/dpgen-work/train",
+        "remote_profile": {
+          "hostname": "cluster.example.edu",
+          "username": "your_username",
+          "port": 22
+        }
+      },
+      "resources": {
+        "number_node": 1,
+        "cpu_per_node": 8,
+        "gpu_per_node": 1,
+        "queue_name": "gpu",
+        "group_size": 1,
+        "source_list": [
+          "source ~/.bashrc",
+          "conda activate deepmd"
+        ]
+      }
+    }
+  ],
+  "model_devi": [
+    {
+      "command": "lmp -i input.lammps -v restart 0",
+      "machine": {
+        "batch_type": "Slurm",
+        "context_type": "SSHContext",
+        "local_root": "./",
+        "remote_root": "/scratch/$USER/dpgen-work/model_devi",
+        "remote_profile": {
+          "hostname": "cluster.example.edu",
+          "username": "your_username",
+          "port": 22
+        }
+      },
+      "resources": {
+        "number_node": 1,
+        "cpu_per_node": 16,
+        "gpu_per_node": 0,
+        "queue_name": "cpu",
+        "group_size": 4,
+        "source_list": [
+          "source ~/.bashrc",
+          "conda activate lammps"
+        ]
+      }
+    }
+  ],
+  "fp": [
+    {
+      "command": "vasp_std",
+      "machine": {
+        "batch_type": "Slurm",
+        "context_type": "SSHContext",
+        "local_root": "./",
+        "remote_root": "/scratch/$USER/dpgen-work/fp",
+        "remote_profile": {
+          "hostname": "cluster.example.edu",
+          "username": "your_username",
+          "port": 22
+        }
+      },
+      "resources": {
+        "number_node": 1,
+        "cpu_per_node": 32,
+        "gpu_per_node": 0,
+        "queue_name": "cpu",
+        "group_size": 1,
+        "source_list": [
+          "source ~/.bashrc",
+          "conda activate vasp"
+        ]
+      }
+    }
+  ]
+}

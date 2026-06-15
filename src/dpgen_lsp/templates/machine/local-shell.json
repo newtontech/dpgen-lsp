@@ -1,0 +1,58 @@
+{
+  "api_version": "1.0",
+  "deepmd_version": "2",
+  "train": [
+    {
+      "command": "dp",
+      "machine": {
+        "batch_type": "Shell",
+        "context_type": "local",
+        "local_root": "./",
+        "remote_root": "./work_train"
+      },
+      "resources": {
+        "number_node": 1,
+        "cpu_per_node": 4,
+        "gpu_per_node": 1,
+        "group_size": 1,
+        "source_list": []
+      }
+    }
+  ],
+  "model_devi": [
+    {
+      "command": "lmp -i input.lammps -v restart 0",
+      "machine": {
+        "batch_type": "Shell",
+        "context_type": "local",
+        "local_root": "./",
+        "remote_root": "./work_model_devi"
+      },
+      "resources": {
+        "number_node": 1,
+        "cpu_per_node": 4,
+        "gpu_per_node": 0,
+        "group_size": 1,
+        "source_list": []
+      }
+    }
+  ],
+  "fp": [
+    {
+      "command": "vasp_std",
+      "machine": {
+        "batch_type": "Shell",
+        "context_type": "local",
+        "local_root": "./",
+        "remote_root": "./work_fp"
+      },
+      "resources": {
+        "number_node": 1,
+        "cpu_per_node": 16,
+        "gpu_per_node": 0,
+        "group_size": 1,
+        "source_list": []
+      }
+    }
+  ]
+}

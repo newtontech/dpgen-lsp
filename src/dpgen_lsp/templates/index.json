@@ -115,11 +115,140 @@
             "upstream_path": "examples/run/dp2.x-lammps-vasp-et/param_elet.json"
         },
         {
+            "key": "lammps-siesta",
+            "kind": "param",
+            "resource": "param/lammps-siesta.json",
+            "fp_style": "siesta",
+            "md_engine": "lammps",
+            "description": "LAMMPS + SIESTA localized-orbital DFT workflow",
+            "upstream_path": "doc/overview/supported-software.md#siesta"
+        },
+        {
+            "key": "lammps-pwmat",
+            "kind": "param",
+            "resource": "param/lammps-pwmat.json",
+            "fp_style": "pwmat",
+            "md_engine": "lammps",
+            "description": "LAMMPS + PWmat first-principles workflow",
+            "upstream_path": "tests/generator/context.py:param-pyridine-pwmat.json"
+        },
+        {
+            "key": "lammps-cpx",
+            "kind": "param",
+            "resource": "param/lammps-cpx.json",
+            "fp_style": "cpx",
+            "md_engine": "lammps",
+            "description": "LAMMPS + Quantum ESPRESSO cp.x / CP workflow",
+            "upstream_path": "dpgen/generator/arginfo.py:fp_style_cpx_args"
+        },
+        {
+            "key": "lammps-custom",
+            "kind": "param",
+            "resource": "param/lammps-custom.json",
+            "fp_style": "custom",
+            "md_engine": "lammps",
+            "description": "LAMMPS + custom first-principles backend",
+            "upstream_path": "dpgen/generator/arginfo.py:fp_style_custom_args"
+        },
+        {
+            "key": "simplify-none",
+            "kind": "param",
+            "resource": "param/simplify-none.json",
+            "workflow": "simplify",
+            "fp_style": "none",
+            "description": "DP-GEN simplify for already labeled datasets without FP relabeling",
+            "upstream_path": "doc/simplify/simplify.md"
+        },
+        {
+            "key": "simplify-vasp",
+            "kind": "param",
+            "resource": "param/simplify-vasp.json",
+            "workflow": "simplify",
+            "fp_style": "vasp",
+            "description": "DP-GEN simplify with VASP relabeling",
+            "upstream_path": "doc/simplify/simplify.md"
+        },
+        {
+            "key": "init-bulk-vasp",
+            "kind": "param",
+            "resource": "param/init-bulk-vasp.json",
+            "workflow": "init_bulk",
+            "init_fp_style": "VASP",
+            "description": "DP-GEN init_bulk for VASP initial data generation",
+            "upstream_path": "doc/init/init-bulk.md"
+        },
+        {
+            "key": "init-bulk-abacus",
+            "kind": "param",
+            "resource": "param/init-bulk-abacus.json",
+            "workflow": "init_bulk",
+            "init_fp_style": "ABACUS",
+            "description": "DP-GEN init_bulk for ABACUS initial data generation",
+            "upstream_path": "doc/init/init-bulk.md"
+        },
+        {
+            "key": "init-surf-vasp",
+            "kind": "param",
+            "resource": "param/init-surf-vasp.json",
+            "workflow": "init_surf",
+            "init_fp_style": "VASP",
+            "description": "DP-GEN init_surf for VASP surface configuration generation",
+            "upstream_path": "doc/init/init_surf.md"
+        },
+        {
+            "key": "init-reaction",
+            "kind": "param",
+            "resource": "param/init-reaction.json",
+            "workflow": "init_reaction",
+            "description": "DP-GEN init_reaction for ReaxFF-driven reactive initial data",
+            "upstream_path": "doc/init/init-reaction-jdata.rst"
+        },
+        {
             "key": "lebesgue-v2",
             "kind": "machine",
             "resource": "machine/lebesgue-v2.json",
             "description": "Lebesgue cloud platform (DpCloudServer) for DeePMD-kit 2.x",
             "upstream_path": "examples/machine/DeePMD-kit-2.x/lebesgue_v2_machine.json"
+        },
+        {
+            "key": "local-shell",
+            "kind": "machine",
+            "resource": "machine/local-shell.json",
+            "description": "Local Shell execution for train, model_devi, and fp stages",
+            "batch_type": "Shell",
+            "context_type": "local"
+        },
+        {
+            "key": "slurm",
+            "kind": "machine",
+            "resource": "machine/slurm.json",
+            "description": "Local Slurm scheduler template",
+            "batch_type": "Slurm",
+            "context_type": "local"
+        },
+        {
+            "key": "pbs",
+            "kind": "machine",
+            "resource": "machine/pbs.json",
+            "description": "Local PBS/Torque scheduler template",
+            "batch_type": "PBS",
+            "context_type": "local"
+        },
+        {
+            "key": "lsf",
+            "kind": "machine",
+            "resource": "machine/lsf.json",
+            "description": "Local LSF scheduler template",
+            "batch_type": "LSF",
+            "context_type": "local"
+        },
+        {
+            "key": "ssh-remote",
+            "kind": "machine",
+            "resource": "machine/ssh-remote.json",
+            "description": "Remote cluster execution over SSH with Slurm",
+            "batch_type": "Slurm",
+            "context_type": "SSHContext"
         }
     ]
 }

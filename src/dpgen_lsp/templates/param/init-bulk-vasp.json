@@ -1,0 +1,36 @@
+{
+  "stages": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "cell_type": "fcc",
+  "latt": 4.05,
+  "super_cell": [
+    2,
+    2,
+    2
+  ],
+  "elements": [
+    "Al"
+  ],
+  "potcars": [
+    "./POTCAR_Al"
+  ],
+  "relax_incar": "./INCAR_relax",
+  "md_incar": "./INCAR_md",
+  "scale": [
+    1.0
+  ],
+  "skip_relax": false,
+  "pert_numb": 2,
+  "md_nstep": 5,
+  "pert_box": 0.03,
+  "pert_atom": 0.01,
+  "coll_ndata": 5000,
+  "type_map": [
+    "Al"
+  ],
+  "init_fp_style": "VASP"
+}

@@ -7,6 +7,44 @@ from pathlib import Path
 import pytest
 
 
+CORE_PARAM_TEMPLATES = {
+    "lammps-vasp",
+    "lammps-pwscf",
+    "lammps-cp2k",
+    "lammps-gaussian",
+    "lammps-abacus-pw",
+    "lammps-abacus-lcao",
+    "lammps-abacus-lcao-dpks",
+    "gromacs-gaussian",
+    "calypso-vasp",
+    "amber-dprc",
+    "lammps-vasp-plumed",
+    "lammps-vasp-electron-temp",
+}
+
+EXPANDED_PARAM_TEMPLATES = CORE_PARAM_TEMPLATES | {
+    "lammps-siesta",
+    "lammps-pwmat",
+    "lammps-cpx",
+    "lammps-custom",
+    "simplify-none",
+    "simplify-vasp",
+    "init-bulk-vasp",
+    "init-bulk-abacus",
+    "init-surf-vasp",
+    "init-reaction",
+}
+
+EXPANDED_MACHINE_TEMPLATES = {
+    "lebesgue-v2",
+    "local-shell",
+    "slurm",
+    "pbs",
+    "lsf",
+    "ssh-remote",
+}
+
+
 class TestInitCommand:
     """Test the init subcommand functionality."""
 
@@ -33,7 +71,9 @@ class TestInitCommand:
         
         assert "templates" in output
         templates = output["templates"]
-        assert len(templates) == 13  # 12 param + 1 machine
+        keys = {t["key"] for t in templates}
+        assert EXPANDED_PARAM_TEMPLATES <= keys
+        assert EXPANDED_MACHINE_TEMPLATES <= keys
         
         # Check template structure
         for template in templates:
@@ -54,7 +94,8 @@ class TestInitCommand:
         output = json.loads(captured.out)
         
         templates = output["templates"]
-        assert len(templates) == 12  # Only param templates
+        keys = {t["key"] for t in templates}
+        assert EXPANDED_PARAM_TEMPLATES <= keys
         assert all(t["kind"] == "param" for t in templates)
 
     def test_init_list_machine_templates(self, capsys):
@@ -68,9 +109,9 @@ class TestInitCommand:
         output = json.loads(captured.out)
         
         templates = output["templates"]
-        assert len(templates) == 1  # Only machine template
+        keys = {t["key"] for t in templates}
+        assert EXPANDED_MACHINE_TEMPLATES <= keys
         assert all(t["kind"] == "machine" for t in templates)
-        assert templates[0]["key"] == "lebesgue-v2"
 
     def test_init_create_param_file(self):
         """Test creating a param.json file from template."""
@@ -158,15 +199,11 @@ class TestInitCommand:
         assert "not found" in output["error"].lower()
 
     def test_init_all_param_templates_readable(self):
-        """Verify all 12 param templates can be read and are valid JSON."""
+        """Verify all param templates can be read and are valid JSON."""
         from dpgen_lsp import tool
+        from dpgen_lsp import templates as template_library
 
-        templates = [
-            "lammps-vasp", "lammps-pwscf", "lammps-cp2k", "lammps-gaussian",
-            "lammps-abacus-pw", "lammps-abacus-lcao", "lammps-abacus-lcao-dpks",
-            "gromacs-gaussian", "calypso-vasp", "amber-dprc",
-            "lammps-vasp-plumed", "lammps-vasp-electron-temp"
-        ]
+        templates = [t["key"] for t in template_library.list_templates(kind="param")]
         
         for template_name in templates:
             with tempfile.TemporaryDirectory() as tmp:
@@ -232,7 +269,9 @@ class TestTemplateLibrary:
         from dpgen_lsp import templates
 
         result = templates.list_templates()
-        assert len(result) == 13
+        keys = {t["key"] for t in result}
+        assert EXPANDED_PARAM_TEMPLATES <= keys
+        assert EXPANDED_MACHINE_TEMPLATES <= keys
         assert all("key" in t for t in result)
         assert all("kind" in t for t in result)
         assert all("resource" in t for t in result)
@@ -242,11 +281,13 @@ class TestTemplateLibrary:
         from dpgen_lsp import templates
 
         param_templates = templates.list_templates(kind="param")
-        assert len(param_templates) == 12
+        param_keys = {t["key"] for t in param_templates}
+        assert EXPANDED_PARAM_TEMPLATES <= param_keys
         assert all(t["kind"] == "param" for t in param_templates)
 
         machine_templates = templates.list_templates(kind="machine")
-        assert len(machine_templates) == 1
+        machine_keys = {t["key"] for t in machine_templates}
+        assert EXPANDED_MACHINE_TEMPLATES <= machine_keys
         assert all(t["kind"] == "machine" for t in machine_templates)
 
     def test_get_template(self):

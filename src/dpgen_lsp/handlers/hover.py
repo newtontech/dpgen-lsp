@@ -5,11 +5,12 @@ from typing import Any
 from lsprotocol.types import Hover, HoverParams, MarkupContent, MarkupKind
 
 from ..features.hover import hover_contents
+from .json_utils import get_document_text
 
 
 def hover(ls: Any, params: HoverParams) -> Hover | None:
     uri = params.text_document.uri
-    text = _get_text(ls, uri)
+    text = get_document_text(ls, uri)
     if not text:
         return None
 
@@ -23,8 +24,3 @@ def hover(ls: Any, params: HoverParams) -> Hover | None:
     return Hover(
         contents=MarkupContent(kind=MarkupKind.Markdown, value=contents),
     )
-
-
-def _get_text(ls: Any, uri: str) -> str:
-    docs = getattr(ls, "documents", {})
-    return docs.get(uri, "")

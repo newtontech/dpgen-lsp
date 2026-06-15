@@ -1,0 +1,88 @@
+{
+  "type_map": [
+    "C",
+    "H",
+    "N",
+    "O",
+    "S"
+  ],
+  "mass_map": [
+    12.011,
+    1.008,
+    14.007,
+    15.999,
+    32.065
+  ],
+  "pick_data": "./dataset-to-simplify",
+  "init_data_prefix": "",
+  "init_data_sys": [],
+  "sys_configs": [],
+  "sys_batch_size": "auto",
+  "labeled": true,
+  "numb_models": 4,
+  "default_training_param": {
+    "model": {
+      "type_map": [
+        "C",
+        "H",
+        "N",
+        "O",
+        "S"
+      ],
+      "descriptor": {
+        "type": "se_a",
+        "sel": "auto",
+        "rcut_smth": 0.5,
+        "rcut": 6.0,
+        "neuron": [
+          120,
+          120,
+          120
+        ],
+        "resnet_dt": true,
+        "axis_neuron": 12
+      },
+      "fitting_net": {
+        "neuron": [
+          240,
+          240,
+          240
+        ],
+        "resnet_dt": true
+      }
+    },
+    "learning_rate": {
+      "type": "exp",
+      "start_lr": 0.001,
+      "decay_steps": 5000,
+      "stop_lr": 3.5e-8
+    },
+    "loss": {
+      "start_pref_e": 0.02,
+      "limit_pref_e": 1,
+      "start_pref_f": 1000,
+      "limit_pref_f": 1,
+      "start_pref_v": 0,
+      "limit_pref_v": 0
+    },
+    "training": {
+      "stop_batch": 100000,
+      "disp_file": "lcurve.out",
+      "disp_freq": 1000,
+      "save_freq": 10000,
+      "save_ckpt": "model.ckpt",
+      "training_data": {
+        "batch_size": "auto"
+      }
+    }
+  },
+  "init_pick_number": 1000,
+  "iter_pick_number": 500,
+  "model_devi_f_trust_lo": 0.05,
+  "model_devi_f_trust_hi": 0.15,
+  "model_devi_e_trust_lo": 10000000000.0,
+  "model_devi_e_trust_hi": 10000000000.0,
+  "fp_style": "none",
+  "fp_task_max": 0,
+  "fp_task_min": 0
+}

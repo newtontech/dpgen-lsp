@@ -1,0 +1,52 @@
+{
+  "stages": [
+    1,
+    2
+  ],
+  "cell_type": "fcc",
+  "latt": 4.05,
+  "super_cell": [
+    2,
+    2,
+    2
+  ],
+  "elements": [
+    "Al"
+  ],
+  "potcars": [
+    "./POTCAR_Al"
+  ],
+  "from_poscar": false,
+  "from_poscar_path": "",
+  "layer_numb": 6,
+  "z_min": 10,
+  "vacuum_max": 12.0,
+  "vacuum_min": 6.0,
+  "vacuum_resol": [
+    1.0
+  ],
+  "millers": [
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      1
+    ]
+  ],
+  "relax_incar": "./INCAR_relax",
+  "scale": [
+    1.0
+  ],
+  "skip_relax": true,
+  "pert_numb": 2,
+  "pert_box": 0.03,
+  "pert_atom": 0.01,
+  "coll_ndata": 5000,
+  "type_map": [
+    "Al"
+  ]
+}

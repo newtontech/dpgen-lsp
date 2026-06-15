@@ -1,0 +1,41 @@
+{
+  "stages": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "cell_type": "fcc",
+  "latt": 4.05,
+  "super_cell": [
+    2,
+    2,
+    2
+  ],
+  "elements": [
+    "Al"
+  ],
+  "potcars": [
+    "./Al_ONCV_PBE.upf"
+  ],
+  "relax_incar": "./INPUT_relax",
+  "md_incar": "./INPUT_md",
+  "relax_kpt": "./KPT_relax",
+  "md_kpt": "./KPT_md",
+  "atom_masses": [
+    26.9815385
+  ],
+  "scale": [
+    1.0
+  ],
+  "skip_relax": false,
+  "pert_numb": 2,
+  "md_nstep": 5,
+  "pert_box": 0.03,
+  "pert_atom": 0.01,
+  "coll_ndata": 5000,
+  "type_map": [
+    "Al"
+  ],
+  "init_fp_style": "ABACUS"
+}

@@ -1,6 +1,8 @@
 """dpgen Language Server Protocol server wiring."""
 
 from importlib import import_module
+from pathlib import Path
+from urllib.parse import unquote, urlparse
 from typing import Any, Type, cast
 
 from lsprotocol.types import (
@@ -63,6 +65,13 @@ def _to_lsp_diagnostics(raw_diags: list[dict]) -> list[LspDiagnostic]:
     return result
 
 
+def _base_dir_from_uri(uri: str) -> Path | None:
+    parsed = urlparse(uri)
+    if parsed.scheme != "file":
+        return None
+    return Path(unquote(parsed.path)).parent
+
+
 def create_server(name: str = SERVER_NAME, version: str = __version__) -> Any:
     lsp_server = LanguageServer(name, version)
     register_handlers(lsp_server)
@@ -85,7 +94,7 @@ def create_server(name: str = SERVER_NAME, version: str = __version__) -> Any:
         text = params.text_document.text
         lsp_server.documents[uri] = text  # type: ignore[attr-defined]
         raw = lsp_server.diagnostic_provider.get_diagnostics(text, uri)  # type: ignore[attr-defined]
-        raw.extend(lsp_server.lint_provider.lint(text))  # type: ignore[attr-defined]
+        raw.extend(lsp_server.lint_provider.lint(text, uri, _base_dir_from_uri(uri)))  # type: ignore[attr-defined]
         raw.extend(lsp_server.typecheck_provider.typecheck(text))  # type: ignore[attr-defined]
         lsp_server.publish_diagnostics(uri, _to_lsp_diagnostics(raw))
 
@@ -96,7 +105,7 @@ def create_server(name: str = SERVER_NAME, version: str = __version__) -> Any:
             text = params.content_changes[-1].text
             lsp_server.documents[uri] = text  # type: ignore[attr-defined]
             raw = lsp_server.diagnostic_provider.get_diagnostics(text, uri)  # type: ignore[attr-defined]
-            raw.extend(lsp_server.lint_provider.lint(text))  # type: ignore[attr-defined]
+            raw.extend(lsp_server.lint_provider.lint(text, uri, _base_dir_from_uri(uri)))  # type: ignore[attr-defined]
             raw.extend(lsp_server.typecheck_provider.typecheck(text))  # type: ignore[attr-defined]
             lsp_server.publish_diagnostics(uri, _to_lsp_diagnostics(raw))
 

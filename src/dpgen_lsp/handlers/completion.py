@@ -10,11 +10,12 @@ from lsprotocol.types import (
 )
 
 from ..features.completion import completion_items
+from .json_utils import get_document_text
 
 
 def completion(ls: Any, params: CompletionParams) -> CompletionList | list[CompletionItem] | None:
     uri = params.text_document.uri
-    text = _get_document_text(ls, uri)
+    text = get_document_text(ls, uri)
     if not text:
         return None
 
@@ -37,8 +38,3 @@ def completion(ls: Any, params: CompletionParams) -> CompletionList | list[Compl
         result.append(ci)
 
     return result if result else None
-
-
-def _get_document_text(ls: Any, uri: str) -> str:
-    docs = getattr(ls, "documents", {})
-    return docs.get(uri, "")
