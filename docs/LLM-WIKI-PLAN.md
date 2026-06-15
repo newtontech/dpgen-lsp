@@ -8,4 +8,7 @@ This repo keeps a repeatable pipeline for agent-facing DP-GEN input validation:
 4. Verify provenance and runtime behavior with `PYTHONPATH=src python3 -m pytest`.
 5. Expose the results through `dpgen-lsp-tool check/context/complete/hover/symbols/fix`.
 
+See [Versioned DP-GEN LSP Pipeline](VERSIONED_PIPELINE.md) for the release-tag
+sync, standard LSP runtime contract, and OpenQC verification checklist.
+
 The runtime is offline-safe: it reads the checked-in structured rule index and does not fetch network content during diagnostics.
