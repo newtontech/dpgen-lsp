@@ -98,6 +98,10 @@ def test_docstring_records_match_summary_and_use_repo_relative_paths(report: dic
     assert len(records) == summary["docstringsTotal"]
     assert sum(1 for item in records if item["linked"]) == summary["docstringsLinked"]
     for item in records:
+        assert item["path"] == item["file"]
+        assert item["wikiPath"].startswith("wiki/"), item
+        assert item["symbol"], item
+        assert not item["path"].startswith("/"), item
         assert not item["file"].startswith("/"), item
         for ref in item["wikiRefs"]:
             assert not ref.startswith("/"), ref
@@ -108,9 +112,12 @@ def test_docstring_records_match_summary_and_use_repo_relative_paths(report: dic
 def test_wiki_sources_match_summary_and_use_repo_relative_paths(report: dict) -> None:
     summary = report["summary"]
     records = report["wikiSources"]
-    assert len(records) == summary["wikiPagesTotal"]
-    assert sum(1 for item in records if item["rawRefs"]) == summary["wikiPagesWithRaw"]
+    assert len(records) >= summary["wikiPagesTotal"]
+    assert len({item["wikiPath"] for item in records}) == summary["wikiPagesWithRaw"]
     for item in records:
+        assert item["wikiPath"].startswith("wiki/"), item
+        assert item["rawPath"].startswith("raw/"), item
+        assert item["sourceUrl"], item
         assert item["file"].startswith("wiki/"), item
         for ref in item["rawRefs"]:
             assert ref.startswith("raw/"), item
@@ -129,6 +136,7 @@ def test_rule_ids_follow_openqc_v1_format(report: dict) -> None:
         # the original rule index identifier.
         assert item["legacyCode"], item
         assert item["source"].startswith("src/"), item
+        assert item["sourcePath"] == item["source"], item
         for ref in item["wikiRefs"]:
             assert ref.startswith("wiki/"), item
         for ref in item["rawRefs"]:
@@ -169,13 +177,15 @@ def test_rule_ids_cover_expected_legacy_codes(report: dict) -> None:
 def test_source_urls_are_absolute_http_urls(report: dict) -> None:
     urls = report["sourceUrls"]
     assert urls, "sourceUrls should not be empty"
-    for url in urls:
-        assert url.startswith(("http://", "https://")), url
+    for item in urls:
+        assert item["url"].startswith(("http://", "https://")), item
+        assert item["rawPath"].startswith("raw/"), item
 
 
 def test_raw_manifest_has_entries_and_no_errors(report: dict) -> None:
     manifest = report["rawManifest"]
     assert manifest["exists"] is True
+    assert manifest["ok"] is True
     assert manifest["path"] == "raw/assets/manifest.json"
     assert manifest["errors"] == []
     assert manifest["entries"], "raw manifest entries should not be empty"

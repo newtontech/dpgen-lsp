@@ -3,7 +3,7 @@
   "serverId": "dpgen-lsp",
   "repository": "newtontech/dpgen-lsp",
   "languageId": "dpgen",
-  "generatedAt": "2026-06-15T18:33:07+00:00",
+  "generatedAt": "2026-06-15T19:03:26+00:00",
   "summary": {
     "docstringsTotal": 77,
     "docstringsLinked": 77,
@@ -22,27 +22,36 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "scripts/check_docstring_traceability.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:scripts/check_docstring_traceability.py:2"
     },
     {
       "file": "scripts/check_docstring_traceability.py",
-      "line": 576,
+      "line": 584,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "scripts/check_docstring_traceability.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:scripts/check_docstring_traceability.py:584"
     },
     {
       "file": "scripts/check_docstring_traceability.py",
-      "line": 658,
+      "line": 666,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "scripts/check_docstring_traceability.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:scripts/check_docstring_traceability.py:666"
     },
     {
       "file": "scripts/download_templates.py",
@@ -52,7 +61,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "scripts/download_templates.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:scripts/download_templates.py:2"
     },
     {
       "file": "scripts/update_official_pipeline.py",
@@ -62,7 +74,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "scripts/update_official_pipeline.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:scripts/update_official_pipeline.py:2"
     },
     {
       "file": "src/dpgen_lsp/__init__.py",
@@ -72,7 +87,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/__init__.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/__init__.py:1"
     },
     {
       "file": "src/dpgen_lsp/agent_lsp.py",
@@ -82,7 +100,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/agent_lsp.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/agent_lsp.py:1"
     },
     {
       "file": "src/dpgen_lsp/agent_lsp.py",
@@ -92,7 +113,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/agent_lsp.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/agent_lsp.py:18"
     },
     {
       "file": "src/dpgen_lsp/agent_operations.py",
@@ -102,7 +126,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/agent_operations.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/agent_operations.py:1"
     },
     {
       "file": "src/dpgen_lsp/features/code_actions.py",
@@ -112,7 +139,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/code_actions.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/code_actions.py:1"
     },
     {
       "file": "src/dpgen_lsp/features/code_actions.py",
@@ -122,7 +152,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/code_actions.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/code_actions.py:20"
     },
     {
       "file": "src/dpgen_lsp/features/code_actions.py",
@@ -132,7 +165,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/code_actions.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/code_actions.py:77"
     },
     {
       "file": "src/dpgen_lsp/features/completion.py",
@@ -142,7 +178,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/completion.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/completion.py:1"
     },
     {
       "file": "src/dpgen_lsp/features/cross_artifact.py",
@@ -152,7 +191,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/cross_artifact.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/cross_artifact.py:1"
     },
     {
       "file": "src/dpgen_lsp/features/cross_artifact.py",
@@ -162,7 +204,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/cross_artifact.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/cross_artifact.py:74"
     },
     {
       "file": "src/dpgen_lsp/features/diagnostic.py",
@@ -172,7 +217,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/diagnostic.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/diagnostic.py:1"
     },
     {
       "file": "src/dpgen_lsp/features/diagnostic.py",
@@ -182,7 +230,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/diagnostic.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/diagnostic.py:190"
     },
     {
       "file": "src/dpgen_lsp/features/diagnostic.py",
@@ -192,7 +243,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/diagnostic.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/diagnostic.py:258"
     },
     {
       "file": "src/dpgen_lsp/features/diagnostic.py",
@@ -202,7 +256,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/diagnostic.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/diagnostic.py:325"
     },
     {
       "file": "src/dpgen_lsp/features/diagnostic.py",
@@ -212,7 +269,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/diagnostic.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/diagnostic.py:399"
     },
     {
       "file": "src/dpgen_lsp/features/diagnostic.py",
@@ -222,7 +282,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/diagnostic.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/diagnostic.py:606"
     },
     {
       "file": "src/dpgen_lsp/features/diagnostic.py",
@@ -232,7 +295,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/diagnostic.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/diagnostic.py:618"
     },
     {
       "file": "src/dpgen_lsp/features/diagnostic.py",
@@ -242,7 +308,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/diagnostic.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/diagnostic.py:630"
     },
     {
       "file": "src/dpgen_lsp/features/formatting.py",
@@ -252,7 +321,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/formatting.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/formatting.py:1"
     },
     {
       "file": "src/dpgen_lsp/features/hover.py",
@@ -262,7 +334,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/hover.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/hover.py:1"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
@@ -272,7 +347,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/lint.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:1"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
@@ -282,7 +360,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/lint.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:48"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
@@ -292,7 +373,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/lint.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:69"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
@@ -302,7 +386,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/lint.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:81"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
@@ -312,7 +399,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/lint.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:100"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
@@ -322,7 +412,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/lint.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:122"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
@@ -332,7 +425,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/lint.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:212"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
@@ -342,7 +438,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/lint.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:258"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
@@ -352,7 +451,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/lint.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:292"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
@@ -362,7 +464,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/lint.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:349"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
@@ -372,7 +477,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/lint.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:411"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
@@ -382,7 +490,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/lint.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:466"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
@@ -392,7 +503,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/lint.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:523"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
@@ -402,7 +516,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/lint.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:567"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
@@ -412,7 +529,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/lint.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:573"
     },
     {
       "file": "src/dpgen_lsp/features/log_parser.py",
@@ -422,7 +542,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/log_parser.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/log_parser.py:1"
     },
     {
       "file": "src/dpgen_lsp/features/log_parser.py",
@@ -432,7 +555,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/log_parser.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/log_parser.py:87"
     },
     {
       "file": "src/dpgen_lsp/features/output_logs.py",
@@ -442,7 +568,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/output_logs.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/output_logs.py:1"
     },
     {
       "file": "src/dpgen_lsp/features/output_logs.py",
@@ -452,7 +581,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/output_logs.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/output_logs.py:53"
     },
     {
       "file": "src/dpgen_lsp/features/typecheck.py",
@@ -462,7 +594,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/features/typecheck.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/features/typecheck.py:1"
     },
     {
       "file": "src/dpgen_lsp/handlers/code_action.py",
@@ -472,7 +607,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/handlers/code_action.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/handlers/code_action.py:1"
     },
     {
       "file": "src/dpgen_lsp/handlers/completion.py",
@@ -482,7 +620,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/handlers/completion.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/handlers/completion.py:1"
     },
     {
       "file": "src/dpgen_lsp/handlers/definition.py",
@@ -492,7 +633,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/handlers/definition.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/handlers/definition.py:1"
     },
     {
       "file": "src/dpgen_lsp/handlers/diagnostic.py",
@@ -502,7 +646,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/handlers/diagnostic.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/handlers/diagnostic.py:1"
     },
     {
       "file": "src/dpgen_lsp/handlers/document_symbol.py",
@@ -512,7 +659,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/handlers/document_symbol.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/handlers/document_symbol.py:1"
     },
     {
       "file": "src/dpgen_lsp/handlers/hover.py",
@@ -522,7 +672,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/handlers/hover.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/handlers/hover.py:1"
     },
     {
       "file": "src/dpgen_lsp/handlers/json_utils.py",
@@ -532,7 +685,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/handlers/json_utils.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/handlers/json_utils.py:1"
     },
     {
       "file": "src/dpgen_lsp/handlers/json_utils.py",
@@ -542,7 +698,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/handlers/json_utils.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/handlers/json_utils.py:15"
     },
     {
       "file": "src/dpgen_lsp/handlers/json_utils.py",
@@ -552,7 +711,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/handlers/json_utils.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/handlers/json_utils.py:32"
     },
     {
       "file": "src/dpgen_lsp/handlers/json_utils.py",
@@ -562,7 +724,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/handlers/json_utils.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/handlers/json_utils.py:41"
     },
     {
       "file": "src/dpgen_lsp/handlers/json_utils.py",
@@ -572,7 +737,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/handlers/json_utils.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/handlers/json_utils.py:82"
     },
     {
       "file": "src/dpgen_lsp/handlers/references.py",
@@ -582,7 +750,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/handlers/references.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/handlers/references.py:1"
     },
     {
       "file": "src/dpgen_lsp/handlers/rename.py",
@@ -592,7 +763,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/handlers/rename.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/handlers/rename.py:1"
     },
     {
       "file": "src/dpgen_lsp/handlers/text_utils.py",
@@ -602,7 +776,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/handlers/text_utils.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/handlers/text_utils.py:1"
     },
     {
       "file": "src/dpgen_lsp/registry.py",
@@ -612,7 +789,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/registry.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/registry.py:1"
     },
     {
       "file": "src/dpgen_lsp/rich_diagnostics.py",
@@ -622,7 +802,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/rich_diagnostics.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/rich_diagnostics.py:1"
     },
     {
       "file": "src/dpgen_lsp/schema/json_path.py",
@@ -632,7 +815,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/schema/json_path.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/schema/json_path.py:1"
     },
     {
       "file": "src/dpgen_lsp/schema/loader.py",
@@ -642,7 +828,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/schema/loader.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/schema/loader.py:1"
     },
     {
       "file": "src/dpgen_lsp/schema/loader.py",
@@ -652,7 +841,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/schema/loader.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/schema/loader.py:353"
     },
     {
       "file": "src/dpgen_lsp/schema/loader.py",
@@ -662,7 +854,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/schema/loader.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/schema/loader.py:515"
     },
     {
       "file": "src/dpgen_lsp/schema/loader.py",
@@ -672,7 +867,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/schema/loader.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/schema/loader.py:260"
     },
     {
       "file": "src/dpgen_lsp/schema/loader.py",
@@ -682,7 +880,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/schema/loader.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/schema/loader.py:277"
     },
     {
       "file": "src/dpgen_lsp/schema/official_rules.py",
@@ -692,7 +893,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/schema/official_rules.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/schema/official_rules.py:1"
     },
     {
       "file": "src/dpgen_lsp/schema/versioning.py",
@@ -702,7 +906,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/schema/versioning.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/schema/versioning.py:1"
     },
     {
       "file": "src/dpgen_lsp/server.py",
@@ -712,7 +919,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/server.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/server.py:1"
     },
     {
       "file": "src/dpgen_lsp/templates/__init__.py",
@@ -722,7 +932,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/templates/__init__.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/templates/__init__.py:1"
     },
     {
       "file": "src/dpgen_lsp/templates/__init__.py",
@@ -732,7 +945,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/templates/__init__.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/templates/__init__.py:17"
     },
     {
       "file": "src/dpgen_lsp/templates/__init__.py",
@@ -742,7 +958,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/templates/__init__.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/templates/__init__.py:27"
     },
     {
       "file": "src/dpgen_lsp/templates/__init__.py",
@@ -752,7 +971,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/templates/__init__.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/templates/__init__.py:48"
     },
     {
       "file": "src/dpgen_lsp/templates/__init__.py",
@@ -762,7 +984,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/templates/__init__.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/templates/__init__.py:70"
     },
     {
       "file": "src/dpgen_lsp/templates/__init__.py",
@@ -772,7 +997,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/templates/__init__.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/templates/__init__.py:100"
     },
     {
       "file": "src/dpgen_lsp/tool.py",
@@ -782,7 +1010,10 @@
       "wikiRefs": [
         "wiki/synthesis/openqc-agent-context.md"
       ],
-      "brokenWikiRefs": []
+      "brokenWikiRefs": [],
+      "path": "src/dpgen_lsp/tool.py",
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "symbol": "python-docstring:src/dpgen_lsp/tool.py:1"
     }
   ],
   "wikiSources": [
@@ -792,7 +1023,10 @@
         "raw/assets/source-provenance.json"
       ],
       "missingRawRefs": [],
-      "refsMissingFromManifest": []
+      "refsMissingFromManifest": [],
+      "wikiPath": "wiki/concepts/official-docs-pipeline.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html"
     },
     {
       "file": "wiki/entities/machine-json.md",
@@ -800,7 +1034,10 @@
         "raw/assets/source-provenance.json"
       ],
       "missingRawRefs": [],
-      "refsMissingFromManifest": []
+      "refsMissingFromManifest": [],
+      "wikiPath": "wiki/entities/machine-json.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html"
     },
     {
       "file": "wiki/entities/param-json.md",
@@ -808,7 +1045,10 @@
         "raw/assets/source-provenance.json"
       ],
       "missingRawRefs": [],
-      "refsMissingFromManifest": []
+      "refsMissingFromManifest": [],
+      "wikiPath": "wiki/entities/param-json.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html"
     },
     {
       "file": "wiki/synthesis/openqc-agent-context.md",
@@ -816,7 +1056,10 @@
         "raw/assets/source-provenance.json"
       ],
       "missingRawRefs": [],
-      "refsMissingFromManifest": []
+      "refsMissingFromManifest": [],
+      "wikiPath": "wiki/synthesis/openqc-agent-context.md",
+      "rawPath": "raw/assets/source-provenance.json",
+      "sourceUrl": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html"
     }
   ],
   "ruleIds": [
@@ -830,7 +1073,8 @@
       "manualRef": "https://github.com/deepmodeling/dpgen/tree/master/examples/run",
       "sourceId": "dpgen-upstream-examples",
       "wikiRefs": [],
-      "rawRefs": []
+      "rawRefs": [],
+      "sourcePath": "src/dpgen_lsp/schema/dpgen_rules.json"
     },
     {
       "code": "DPGEN-PARAM-LINT-002",
@@ -842,7 +1086,8 @@
       "manualRef": "https://github.com/deepmodeling/dpgen/tree/master/examples/run",
       "sourceId": "dpgen-upstream-examples",
       "wikiRefs": [],
-      "rawRefs": []
+      "rawRefs": [],
+      "sourcePath": "src/dpgen_lsp/schema/dpgen_rules.json"
     },
     {
       "code": "DPGEN-PARAM-LINT-003",
@@ -854,7 +1099,8 @@
       "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
       "sourceId": "dpgen-run-example-param",
       "wikiRefs": [],
-      "rawRefs": []
+      "rawRefs": [],
+      "sourcePath": "src/dpgen_lsp/schema/dpgen_rules.json"
     },
     {
       "code": "DPGEN-PARAM-LINT-004",
@@ -866,7 +1112,8 @@
       "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
       "sourceId": "dpgen-run-example-param",
       "wikiRefs": [],
-      "rawRefs": []
+      "rawRefs": [],
+      "sourcePath": "src/dpgen_lsp/schema/dpgen_rules.json"
     },
     {
       "code": "DPGEN-PARAM-LINT-005",
@@ -878,7 +1125,8 @@
       "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
       "sourceId": "dpgen-run-example-param",
       "wikiRefs": [],
-      "rawRefs": []
+      "rawRefs": [],
+      "sourcePath": "src/dpgen_lsp/schema/dpgen_rules.json"
     },
     {
       "code": "DPGEN-PARAM-LINT-006",
@@ -890,7 +1138,8 @@
       "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
       "sourceId": "dpgen-run-example-param",
       "wikiRefs": [],
-      "rawRefs": []
+      "rawRefs": [],
+      "sourcePath": "src/dpgen_lsp/schema/dpgen_rules.json"
     },
     {
       "code": "DPGEN-PARAM-LINT-007",
@@ -902,7 +1151,8 @@
       "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
       "sourceId": "dpgen-run-example-param",
       "wikiRefs": [],
-      "rawRefs": []
+      "rawRefs": [],
+      "sourcePath": "src/dpgen_lsp/schema/dpgen_rules.json"
     },
     {
       "code": "DPGEN-PARAM-PATH-001",
@@ -914,7 +1164,8 @@
       "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
       "sourceId": "dpgen-run-example-param",
       "wikiRefs": [],
-      "rawRefs": []
+      "rawRefs": [],
+      "sourcePath": "src/dpgen_lsp/schema/dpgen_rules.json"
     },
     {
       "code": "DPGEN-PARAM-PATH-002",
@@ -926,7 +1177,8 @@
       "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
       "sourceId": "dpgen-run-example-param",
       "wikiRefs": [],
-      "rawRefs": []
+      "rawRefs": [],
+      "sourcePath": "src/dpgen_lsp/schema/dpgen_rules.json"
     },
     {
       "code": "DPGEN-MACHINE-SCASS-001",
@@ -938,7 +1190,8 @@
       "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
       "sourceId": "dpgen-run-example-machine",
       "wikiRefs": [],
-      "rawRefs": []
+      "rawRefs": [],
+      "sourcePath": "src/dpgen_lsp/schema/dpgen_rules.json"
     },
     {
       "code": "DPGEN-MACHINE-SCASS-002",
@@ -950,7 +1203,8 @@
       "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
       "sourceId": "dpgen-run-example-machine",
       "wikiRefs": [],
-      "rawRefs": []
+      "rawRefs": [],
+      "sourcePath": "src/dpgen_lsp/schema/dpgen_rules.json"
     },
     {
       "code": "DPGEN-MACHINE-SCHEMA-001",
@@ -962,7 +1216,8 @@
       "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
       "sourceId": "dpgen-run-example-machine",
       "wikiRefs": [],
-      "rawRefs": []
+      "rawRefs": [],
+      "sourcePath": "src/dpgen_lsp/schema/dpgen_rules.json"
     },
     {
       "code": "DPGEN-MACHINE-SCHEMA-002",
@@ -974,7 +1229,8 @@
       "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
       "sourceId": "dpgen-run-example-machine",
       "wikiRefs": [],
-      "rawRefs": []
+      "rawRefs": [],
+      "sourcePath": "src/dpgen_lsp/schema/dpgen_rules.json"
     },
     {
       "code": "DPGEN-MACHINE-SCASS-003",
@@ -986,7 +1242,8 @@
       "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
       "sourceId": "dpgen-run-example-machine",
       "wikiRefs": [],
-      "rawRefs": []
+      "rawRefs": [],
+      "sourcePath": "src/dpgen_lsp/schema/dpgen_rules.json"
     },
     {
       "code": "DPGEN-CROSS-STAGE-001",
@@ -998,7 +1255,8 @@
       "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
       "sourceId": "dpgen-run-example-machine",
       "wikiRefs": [],
-      "rawRefs": []
+      "rawRefs": [],
+      "sourcePath": "src/dpgen_lsp/schema/dpgen_rules.json"
     },
     {
       "code": "DPGEN-CROSS-STAGE-002",
@@ -1010,7 +1268,8 @@
       "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
       "sourceId": "dpgen-run-example-machine",
       "wikiRefs": [],
-      "rawRefs": []
+      "rawRefs": [],
+      "sourcePath": "src/dpgen_lsp/schema/dpgen_rules.json"
     },
     {
       "code": "DPGEN-CROSS-STAGE-003",
@@ -1022,44 +1281,139 @@
       "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
       "sourceId": "dpgen-run-example-machine",
       "wikiRefs": [],
-      "rawRefs": []
+      "rawRefs": [],
+      "sourcePath": "src/dpgen_lsp/schema/dpgen_rules.json"
     }
   ],
   "sourceUrls": [
-    "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/param.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/mdata.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/latest/simplify/simplify-jdata.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/latest/simplify/simplify-mdata.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/example-of-param.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/param.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/example-of-machine.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/mdata.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/stable/simplify/simplify-jdata.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/stable/simplify/simplify-mdata.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/example-of-param.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/param.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/example-of-machine.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/mdata.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/devel/simplify/simplify-jdata.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/devel/simplify/simplify-mdata.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/example-of-param.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/param.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/example-of-machine.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/mdata.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/simplify/simplify-jdata.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/simplify/simplify-mdata.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/example-of-param.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/param.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/example-of-machine.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/mdata.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/simplify/simplify-jdata.html",
-    "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/simplify/simplify-mdata.html",
-    "https://github.com/deepmodeling/dpgen/tree/master/examples/run"
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/param.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/mdata.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/simplify/simplify-jdata.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/simplify/simplify-mdata.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/example-of-param.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/param.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/example-of-machine.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/mdata.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/simplify/simplify-jdata.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/simplify/simplify-mdata.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/example-of-param.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/param.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/example-of-machine.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/mdata.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/simplify/simplify-jdata.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/simplify/simplify-mdata.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/example-of-param.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/param.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/example-of-machine.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/mdata.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/simplify/simplify-jdata.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/simplify/simplify-mdata.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/example-of-param.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/param.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/example-of-machine.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/mdata.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/simplify/simplify-jdata.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/simplify/simplify-mdata.html",
+      "rawPath": "raw/assets/source-provenance.json"
+    },
+    {
+      "url": "https://github.com/deepmodeling/dpgen/tree/master/examples/run",
+      "rawPath": "raw/assets/source-provenance.json"
+    }
   ],
   "rawManifest": {
     "path": "raw/assets/manifest.json",
+    "ok": true,
     "exists": true,
     "schemaVersion": "provenance-manifest-v1",
     "createdAt": "2026-06-15T13:24:30+00:00",

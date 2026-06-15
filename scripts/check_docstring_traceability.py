@@ -565,6 +565,14 @@ def _raw_refs_for_path(root: Path, path: Path) -> list[str]:
     return sorted(set(extract_raw_refs(text)))
 
 
+def _first_or_empty(values: list[str]) -> str:
+    return values[0] if values else ""
+
+
+def _docstring_symbol(item: DocstringRecord) -> str:
+    return f"{item.kind}:{item.file}:{item.line}"
+
+
 def _rule_index_path(root: Path) -> str:
     candidate = root / "src" / "dpgen_lsp" / "schema" / "dpgen_rules.json"
     if candidate.is_file():
@@ -654,15 +662,16 @@ def build_rule_ids(root: Path) -> list[RuleIdRecord]:
     return records
 
 
-def build_source_urls(root: Path) -> list[str]:
+def build_source_urls(root: Path) -> list[dict[str, str]]:
     """Collect repository-relative source URLs from raw provenance.
 
     LLM Wiki: wiki/synthesis/openqc-agent-context.md
     """
-    urls: list[str] = []
+    urls: list[dict[str, str]] = []
     seen: set[str] = set()
 
     provenance = root / "raw" / "assets" / "source-provenance.json"
+    provenance_raw_path = "raw/assets/source-provenance.json"
     if provenance.is_file():
         try:
             payload = json.loads(provenance.read_text(encoding="utf-8"))
@@ -675,7 +684,7 @@ def build_source_urls(root: Path) -> list[str]:
                     continue
                 url = entry.get("final_url") or entry.get("url")
                 if isinstance(url, str) and url not in seen:
-                    urls.append(url)
+                    urls.append({"url": url, "rawPath": provenance_raw_path})
                     seen.add(url)
 
     rules_path = root / "src" / "dpgen_lsp" / "schema" / "dpgen_rules.json"
@@ -691,7 +700,7 @@ def build_source_urls(root: Path) -> list[str]:
                     continue
                 url = entry.get("url")
                 if isinstance(url, str) and url not in seen:
-                    urls.append(url)
+                    urls.append({"url": url, "rawPath": provenance_raw_path})
                     seen.add(url)
     return urls
 
@@ -706,6 +715,7 @@ def build_raw_manifest_summary(root: Path) -> dict[str, Any]:
     if not manifest_path.is_file():
         return {
             "path": rel,
+            "ok": False,
             "exists": False,
             "schemaVersion": None,
             "entries": [],
@@ -716,6 +726,7 @@ def build_raw_manifest_summary(root: Path) -> dict[str, Any]:
     except json.JSONDecodeError as exc:
         return {
             "path": rel,
+            "ok": False,
             "exists": True,
             "schemaVersion": None,
             "entries": [],
@@ -738,6 +749,7 @@ def build_raw_manifest_summary(root: Path) -> dict[str, Any]:
         )
     return {
         "path": rel,
+        "ok": True,
         "exists": True,
         "schemaVersion": str(data.get("schema_version") or data.get("manifest_version") or ""),
         "createdAt": str(data.get("created_at") or ""),
@@ -746,6 +758,13 @@ def build_raw_manifest_summary(root: Path) -> dict[str, Any]:
         "entries": cleaned_entries,
         "errors": [],
     }
+
+
+def _source_url_for_raw_ref(raw_ref: str, source_urls: list[dict[str, str]]) -> str:
+    for entry in source_urls:
+        if entry["rawPath"] == raw_ref:
+            return entry["url"]
+    return raw_ref
 
 
 def build_report(root: Path) -> dict[str, Any]:
@@ -779,9 +798,26 @@ def build_report(root: Path) -> dict[str, Any]:
         "languageId": _capabilities_language_id(capabilities),
         "generatedAt": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
         "summary": summary,
-        "docstrings": [asdict(item) for item in docstrings],
-        "wikiSources": [asdict(item) for item in wiki_pages],
-        "ruleIds": [asdict(item) for item in rule_ids],
+        "docstrings": [
+            asdict(item)
+            | {
+                "path": item.file,
+                "wikiPath": _first_or_empty(item.wikiRefs),
+                "symbol": _docstring_symbol(item),
+            }
+            for item in docstrings
+        ],
+        "wikiSources": [
+            asdict(item)
+            | {
+                "wikiPath": item.file,
+                "rawPath": raw_ref,
+                "sourceUrl": _source_url_for_raw_ref(raw_ref, source_urls),
+            }
+            for item in wiki_pages
+            for raw_ref in item.rawRefs
+        ],
+        "ruleIds": [asdict(item) | {"sourcePath": item.source} for item in rule_ids],
         "sourceUrls": source_urls,
         "rawManifest": raw_manifest,
     }
