@@ -1,0 +1,3 @@
+LOG INIT:dpdispatcher log direct to dpdispatcher.log
+submission failed: queue partition not found on cluster
+resource mismatch in machine.json train section

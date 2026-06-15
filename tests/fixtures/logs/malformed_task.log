@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "dpgen/run.py", line 10, in <module>
+    jobs = jdata["model_devi_jobs"]
+KeyError: 'model_devi_jobs'
+malformed task dict in generated workflow

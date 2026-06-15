@@ -1,0 +1,2 @@
+iter.000/00.train/000/lcurve.out: training failed with non-zero exit code
+dp train failed: loss diverged
