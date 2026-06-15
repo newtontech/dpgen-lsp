@@ -26,4 +26,3 @@ deterministically from the legacy rule code in
 - Raw evidence: `raw/assets/source-provenance.json`
 - Rule index: `src/dpgen_lsp/schema/dpgen_rules.json`
 - Capability manifest: `lsp-capabilities.json`
-
