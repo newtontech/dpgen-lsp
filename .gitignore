@@ -15,3 +15,7 @@ venv/
 *.swp
 *.swo
 *~
+.coverage
+.coverage.*
+htmlcov/
+

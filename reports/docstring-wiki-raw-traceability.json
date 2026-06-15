@@ -1,17 +1,1090 @@
 {
-  "schemaVersion": "docstring-wiki-raw-traceability-v1",
-  "generatedAt": "2026-06-15T13:25:07+00:00",
-  "repository": "dpgen-lsp",
+  "schemaVersion": "openqc.lsp.traceability.v1",
+  "serverId": "dpgen-lsp",
+  "repository": "newtontech/dpgen-lsp",
+  "languageId": "dpgen",
+  "generatedAt": "2026-06-15T18:24:43+00:00",
   "summary": {
-    "docstringsTotal": 75,
-    "docstringsLinked": 75,
+    "docstringsTotal": 77,
+    "docstringsLinked": 77,
     "brokenWikiLinks": 0,
     "wikiPagesTotal": 4,
     "wikiPagesWithRaw": 4,
     "wikiSourcesWithoutRaw": 0,
     "rawManifestFailures": 0
   },
-  "manifestErrors": [],
-  "docstringViolations": [],
-  "wikiViolations": []
+  "docstrings": [
+    {
+      "file": "scripts/check_docstring_traceability.py",
+      "line": 2,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "scripts/check_docstring_traceability.py",
+      "line": 576,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "scripts/check_docstring_traceability.py",
+      "line": 658,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "scripts/download_templates.py",
+      "line": 2,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "scripts/update_official_pipeline.py",
+      "line": 2,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/__init__.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/agent_lsp.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/agent_lsp.py",
+      "line": 18,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/agent_operations.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/code_actions.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/code_actions.py",
+      "line": 20,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/code_actions.py",
+      "line": 77,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/completion.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/cross_artifact.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/cross_artifact.py",
+      "line": 74,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/diagnostic.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/diagnostic.py",
+      "line": 190,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/diagnostic.py",
+      "line": 258,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/diagnostic.py",
+      "line": 325,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/diagnostic.py",
+      "line": 399,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/diagnostic.py",
+      "line": 606,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/diagnostic.py",
+      "line": 618,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/diagnostic.py",
+      "line": 630,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/formatting.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/hover.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/lint.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/lint.py",
+      "line": 48,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/lint.py",
+      "line": 69,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/lint.py",
+      "line": 81,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/lint.py",
+      "line": 100,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/lint.py",
+      "line": 122,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/lint.py",
+      "line": 212,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/lint.py",
+      "line": 258,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/lint.py",
+      "line": 292,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/lint.py",
+      "line": 349,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/lint.py",
+      "line": 411,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/lint.py",
+      "line": 466,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/lint.py",
+      "line": 523,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/lint.py",
+      "line": 567,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/lint.py",
+      "line": 573,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/log_parser.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/log_parser.py",
+      "line": 87,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/output_logs.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/output_logs.py",
+      "line": 53,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/features/typecheck.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/handlers/code_action.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/handlers/completion.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/handlers/definition.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/handlers/diagnostic.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/handlers/document_symbol.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/handlers/hover.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/handlers/json_utils.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/handlers/json_utils.py",
+      "line": 15,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/handlers/json_utils.py",
+      "line": 32,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/handlers/json_utils.py",
+      "line": 41,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/handlers/json_utils.py",
+      "line": 82,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/handlers/references.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/handlers/rename.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/handlers/text_utils.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/registry.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/rich_diagnostics.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/schema/json_path.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/schema/loader.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/schema/loader.py",
+      "line": 353,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/schema/loader.py",
+      "line": 515,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/schema/loader.py",
+      "line": 260,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/schema/loader.py",
+      "line": 277,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/schema/official_rules.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/schema/versioning.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/server.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/templates/__init__.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/templates/__init__.py",
+      "line": 17,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/templates/__init__.py",
+      "line": 27,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/templates/__init__.py",
+      "line": 48,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/templates/__init__.py",
+      "line": 70,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/templates/__init__.py",
+      "line": 100,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    },
+    {
+      "file": "src/dpgen_lsp/tool.py",
+      "line": 1,
+      "kind": "python-docstring",
+      "linked": true,
+      "wikiRefs": [
+        "wiki/synthesis/openqc-agent-context.md"
+      ],
+      "brokenWikiRefs": []
+    }
+  ],
+  "wikiSources": [
+    {
+      "file": "wiki/concepts/official-docs-pipeline.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "file": "wiki/entities/machine-json.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "file": "wiki/entities/param-json.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    },
+    {
+      "file": "wiki/synthesis/openqc-agent-context.md",
+      "rawRefs": [
+        "raw/assets/source-provenance.json"
+      ],
+      "missingRawRefs": [],
+      "refsMissingFromManifest": []
+    }
+  ],
+  "ruleIds": [
+    {
+      "code": "DPGEN-PARAM-LINT-001",
+      "legacyCode": "PRINT_LEVEL.lint",
+      "fileRole": "PARAM",
+      "category": "LINT",
+      "field": "fp_params.GLOBAL.PRINT_LEVEL",
+      "source": "src/dpgen_lsp/schema/dpgen_rules.json",
+      "manualRef": "https://github.com/deepmodeling/dpgen/tree/master/examples/run",
+      "sourceId": "dpgen-upstream-examples",
+      "wikiRefs": [],
+      "rawRefs": []
+    },
+    {
+      "code": "DPGEN-PARAM-LINT-002",
+      "legacyCode": "STRESS_TENSOR.lint",
+      "fileRole": "PARAM",
+      "category": "LINT",
+      "field": "fp_params.MOTION.PRINT.STRESS_TENSOR",
+      "source": "src/dpgen_lsp/schema/dpgen_rules.json",
+      "manualRef": "https://github.com/deepmodeling/dpgen/tree/master/examples/run",
+      "sourceId": "dpgen-upstream-examples",
+      "wikiRefs": [],
+      "rawRefs": []
+    },
+    {
+      "code": "DPGEN-PARAM-LINT-003",
+      "legacyCode": "fp_pp_files.lint",
+      "fileRole": "PARAM",
+      "category": "LINT",
+      "field": "fp_pp_files",
+      "source": "src/dpgen_lsp/schema/dpgen_rules.json",
+      "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
+      "sourceId": "dpgen-run-example-param",
+      "wikiRefs": [],
+      "rawRefs": []
+    },
+    {
+      "code": "DPGEN-PARAM-LINT-004",
+      "legacyCode": "fp_task_max.lint",
+      "fileRole": "PARAM",
+      "category": "LINT",
+      "field": "fp_task_max",
+      "source": "src/dpgen_lsp/schema/dpgen_rules.json",
+      "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
+      "sourceId": "dpgen-run-example-param",
+      "wikiRefs": [],
+      "rawRefs": []
+    },
+    {
+      "code": "DPGEN-PARAM-LINT-005",
+      "legacyCode": "mass_map.lint",
+      "fileRole": "PARAM",
+      "category": "LINT",
+      "field": "mass_map",
+      "source": "src/dpgen_lsp/schema/dpgen_rules.json",
+      "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
+      "sourceId": "dpgen-run-example-param",
+      "wikiRefs": [],
+      "rawRefs": []
+    },
+    {
+      "code": "DPGEN-PARAM-LINT-006",
+      "legacyCode": "model_devi_f_trust_lo.lint",
+      "fileRole": "PARAM",
+      "category": "LINT",
+      "field": "model_devi_f_trust_lo",
+      "source": "src/dpgen_lsp/schema/dpgen_rules.json",
+      "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
+      "sourceId": "dpgen-run-example-param",
+      "wikiRefs": [],
+      "rawRefs": []
+    },
+    {
+      "code": "DPGEN-PARAM-LINT-007",
+      "legacyCode": "numb_models.lint",
+      "fileRole": "PARAM",
+      "category": "LINT",
+      "field": "numb_models",
+      "source": "src/dpgen_lsp/schema/dpgen_rules.json",
+      "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
+      "sourceId": "dpgen-run-example-param",
+      "wikiRefs": [],
+      "rawRefs": []
+    },
+    {
+      "code": "DPGEN-PARAM-PATH-001",
+      "legacyCode": "path.init_data_sys",
+      "fileRole": "PARAM",
+      "category": "PATH",
+      "field": "init_data_sys",
+      "source": "src/dpgen_lsp/schema/dpgen_rules.json",
+      "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
+      "sourceId": "dpgen-run-example-param",
+      "wikiRefs": [],
+      "rawRefs": []
+    },
+    {
+      "code": "DPGEN-PARAM-PATH-002",
+      "legacyCode": "path.sys_configs",
+      "fileRole": "PARAM",
+      "category": "PATH",
+      "field": "sys_configs",
+      "source": "src/dpgen_lsp/schema/dpgen_rules.json",
+      "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
+      "sourceId": "dpgen-run-example-param",
+      "wikiRefs": [],
+      "rawRefs": []
+    },
+    {
+      "code": "DPGEN-MACHINE-SCASS-001",
+      "legacyCode": "machine.fp.scass_type",
+      "fileRole": "MACHINE",
+      "category": "SCASS",
+      "field": "remote_profile.input_data.scass_type",
+      "source": "src/dpgen_lsp/schema/dpgen_rules.json",
+      "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
+      "sourceId": "dpgen-run-example-machine",
+      "wikiRefs": [],
+      "rawRefs": []
+    },
+    {
+      "code": "DPGEN-MACHINE-SCASS-002",
+      "legacyCode": "machine.model_devi.scass_type",
+      "fileRole": "MACHINE",
+      "category": "SCASS",
+      "field": "remote_profile.input_data.scass_type",
+      "source": "src/dpgen_lsp/schema/dpgen_rules.json",
+      "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
+      "sourceId": "dpgen-run-example-machine",
+      "wikiRefs": [],
+      "rawRefs": []
+    },
+    {
+      "code": "DPGEN-MACHINE-SCHEMA-001",
+      "legacyCode": "machine.section.missing",
+      "fileRole": "MACHINE",
+      "category": "SCHEMA",
+      "field": "train/model_devi/fp",
+      "source": "src/dpgen_lsp/schema/dpgen_rules.json",
+      "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
+      "sourceId": "dpgen-run-example-machine",
+      "wikiRefs": [],
+      "rawRefs": []
+    },
+    {
+      "code": "DPGEN-MACHINE-SCHEMA-002",
+      "legacyCode": "machine.section.type",
+      "fileRole": "MACHINE",
+      "category": "SCHEMA",
+      "field": "train/model_devi/fp",
+      "source": "src/dpgen_lsp/schema/dpgen_rules.json",
+      "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
+      "sourceId": "dpgen-run-example-machine",
+      "wikiRefs": [],
+      "rawRefs": []
+    },
+    {
+      "code": "DPGEN-MACHINE-SCASS-003",
+      "legacyCode": "machine.train.scass_type",
+      "fileRole": "MACHINE",
+      "category": "SCASS",
+      "field": "remote_profile.input_data.scass_type",
+      "source": "src/dpgen_lsp/schema/dpgen_rules.json",
+      "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
+      "sourceId": "dpgen-run-example-machine",
+      "wikiRefs": [],
+      "rawRefs": []
+    },
+    {
+      "code": "DPGEN-CROSS-STAGE-001",
+      "legacyCode": "cross.stage.fp.missing",
+      "fileRole": "CROSS",
+      "category": "STAGE",
+      "field": "fp",
+      "source": "src/dpgen_lsp/schema/dpgen_rules.json",
+      "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
+      "sourceId": "dpgen-run-example-machine",
+      "wikiRefs": [],
+      "rawRefs": []
+    },
+    {
+      "code": "DPGEN-CROSS-STAGE-002",
+      "legacyCode": "cross.stage.model_devi.missing",
+      "fileRole": "CROSS",
+      "category": "STAGE",
+      "field": "model_devi",
+      "source": "src/dpgen_lsp/schema/dpgen_rules.json",
+      "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
+      "sourceId": "dpgen-run-example-machine",
+      "wikiRefs": [],
+      "rawRefs": []
+    },
+    {
+      "code": "DPGEN-CROSS-STAGE-003",
+      "legacyCode": "cross.stage.train.missing",
+      "fileRole": "CROSS",
+      "category": "STAGE",
+      "field": "train",
+      "source": "src/dpgen_lsp/schema/dpgen_rules.json",
+      "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
+      "sourceId": "dpgen-run-example-machine",
+      "wikiRefs": [],
+      "rawRefs": []
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/param.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/mdata.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/latest/simplify/simplify-jdata.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/latest/simplify/simplify-mdata.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/example-of-param.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/param.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/example-of-machine.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/mdata.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/stable/simplify/simplify-jdata.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/stable/simplify/simplify-mdata.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/example-of-param.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/param.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/example-of-machine.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/mdata.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/devel/simplify/simplify-jdata.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/devel/simplify/simplify-mdata.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/example-of-param.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/param.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/example-of-machine.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/mdata.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/simplify/simplify-jdata.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/simplify/simplify-mdata.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/example-of-param.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/param.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/example-of-machine.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/mdata.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/simplify/simplify-jdata.html",
+    "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/simplify/simplify-mdata.html",
+    "https://github.com/deepmodeling/dpgen/tree/master/examples/run"
+  ],
+  "rawManifest": {
+    "path": "raw/assets/manifest.json",
+    "exists": true,
+    "schemaVersion": "provenance-manifest-v1",
+    "createdAt": "2026-06-15T13:24:30+00:00",
+    "repository": "dpgen-lsp",
+    "pipeline": "official-docs -> raw/assets -> wiki -> docstrings -> LSP runtime",
+    "entries": [
+      {
+        "path": "dpgen-official-docs.json",
+        "raw_path": "raw/assets/dpgen-official-docs.json",
+        "bytes": 507431,
+        "checksum_sha256": "39eb1bf83ed8daed7bd427bc659d123d5bcf29bf788c3d81984fe3b428a1c747"
+      },
+      {
+        "path": "dpgen-version-index.json",
+        "raw_path": "raw/assets/dpgen-version-index.json",
+        "bytes": 14443,
+        "checksum_sha256": "a33f8d3dbb54c6603a187427b6aec6f15cef851f5a1493af76ef9abd178b32da"
+      },
+      {
+        "path": "source-provenance.json",
+        "raw_path": "raw/assets/source-provenance.json",
+        "bytes": 14687,
+        "checksum_sha256": "1d0562ddca2c4cb1ae0a4f0f7b0597c2ebf03eff7375c668682abdcd88d7fd61"
+      }
+    ],
+    "errors": []
+  }
 }
