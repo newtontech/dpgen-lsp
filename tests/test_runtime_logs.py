@@ -71,6 +71,9 @@ def test_fix_operation_exposes_log_fix_hints(capsys, tmp_path: Path):
     rc = tool_main(["fix", str(log_path)])
     assert rc == 0
     payload = json.loads(capsys.readouterr().out)
+    assert payload["operation"] == "fix"
+    assert payload["diagnostic_engine"] == "1.0"
+    assert payload["capabilities"]["status"] == "unavailable"
     # fix on a log without position context may be unavailable; parse-log still gives hints
     parse_rc = tool_main(["parse-log", str(log_path)])
     assert parse_rc == 0
