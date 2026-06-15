@@ -1,0 +1,24 @@
+{
+  "type_map": ["H", "O"],
+  "mass_map": [1.008, 15.999],
+  "init_data_sys": ["data/water"],
+  "sys_configs": [["systems/water/POSCAR"]],
+  "numb_models": 4,
+  "default_training_param": {
+    "model": {
+      "type_map": ["H", "O"]
+    },
+    "training": {
+      "numb_steps": 1000
+    }
+  },
+  "model_devi_jobs": [
+    {
+      "sys_idx": [0],
+      "temps": [300],
+      "press": [1],
+      "nsteps": 100
+    }
+  ],
+  "fp_style": "vasp"
+}
