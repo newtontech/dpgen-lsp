@@ -19,7 +19,26 @@ def _capabilities_payload() -> dict[str, Any]:
     return {
         "schema": "OpenQCLspCapabilities",
         "version": 1,
+        "id": "dpgen-lsp",
         "software": SOFTWARE,
+        "displayName": "DP-GEN",
+        "languageId": "dpgen",
+        "repository": "newtontech/dpgen-lsp",
+        "defaultBranch": "main",
+        "filePatterns": [
+            "param.json",
+            "machine.json",
+            "*param*.json",
+            "*machine*.json",
+        ],
+        "maturity": "stable",
+        "blockingPolicy": {
+            "mode": "blocking",
+            "description": (
+                "Blocking diagnostics indicate JSON syntax, schema, path, or semantic issues "
+                "that can prevent DP-GEN from launching or collecting usable data."
+            ),
+        },
         "capabilities": [
             "diagnostics",
             "rich-diagnostics",
@@ -29,8 +48,10 @@ def _capabilities_payload() -> dict[str, Any]:
             "fix-preview",
             "llm-wiki",
             "openqc-context",
+            "source-provenance",
         ],
         "agentCli": {
+            "command": "dpgen-lsp-tool",
             "operations": [
                 "capabilities",
                 "init",
@@ -44,6 +65,55 @@ def _capabilities_payload() -> dict[str, Any]:
             "jsonFormat": True,
             "failOnBlocking": True,
         },
+        "diagnosticSchema": "diagnostics/diagnostic-engine-v1.schema.json",
+        "wikiPaths": {
+            "plan": "docs/LLM-WIKI-PLAN.md",
+            "rawAssets": "raw/assets",
+            "index": "index.md",
+            "log": "log.md",
+        },
+        "fixturePaths": {
+            "valid": ["tests/fixtures/valid"],
+            "invalid": ["tests/fixtures/invalid"],
+        },
+        "openqc": {
+            "registryId": "dpgen-lsp",
+            "repoName": "dpgen-lsp",
+            "contextContract": "DSLAuthoringContext",
+            "diagnosticEnvelope": "DiagnosticEnvelope/v1",
+        },
+        "sourceProvenance": [
+            {
+                "id": "dpgen-run-example-param",
+                "kind": "official_docs",
+                "label": "DP-GEN example param.json documentation",
+                "url": (
+                    "https://docs.deepmodeling.com/projects/dpgen/en/latest/"
+                    "run/example-of-param.html"
+                ),
+            },
+            {
+                "id": "dpgen-run-param",
+                "kind": "official_docs",
+                "label": "DP-GEN run param parameter documentation",
+                "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/param.html",
+            },
+            {
+                "id": "dpgen-run-example-machine",
+                "kind": "official_docs",
+                "label": "DP-GEN example machine.json documentation",
+                "url": (
+                    "https://docs.deepmodeling.com/projects/dpgen/en/latest/"
+                    "run/example-of-machine.html"
+                ),
+            },
+            {
+                "id": "dpgen-run-machine",
+                "kind": "official_docs",
+                "label": "DP-GEN run machine parameter documentation",
+                "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/mdata.html",
+            },
+        ],
     }
 
 

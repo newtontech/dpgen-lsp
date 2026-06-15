@@ -1,0 +1,42 @@
+{
+  "api_version": "1.0",
+  "train": [
+    {
+      "command": "dp",
+      "machine": {
+        "batch_type": "local"
+      },
+      "resources": {
+        "number_node": 1,
+        "cpu_per_node": 4,
+        "gpu_per_node": 0
+      }
+    }
+  ],
+  "model_devi": [
+    {
+      "command": "lmp",
+      "machine": {
+        "batch_type": "local"
+      },
+      "resources": {
+        "number_node": 1,
+        "cpu_per_node": 4,
+        "gpu_per_node": 0
+      }
+    }
+  ],
+  "fp": [
+    {
+      "command": "vasp_std",
+      "machine": {
+        "batch_type": "local"
+      },
+      "resources": {
+        "number_node": 1,
+        "cpu_per_node": 8,
+        "gpu_per_node": 0
+      }
+    }
+  ]
+}
