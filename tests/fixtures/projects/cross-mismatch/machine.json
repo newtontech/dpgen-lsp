@@ -1,0 +1,6 @@
+{
+  "api_version": "1.0",
+  "train": [{"command": "dp", "machine": {}, "resources": {}}],
+  "model_devi": [],
+  "fp": [{"command": "vasp", "machine": {}, "resources": {}}]
+}

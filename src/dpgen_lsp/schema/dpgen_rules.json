@@ -396,5 +396,28 @@
         "source_id": "dpgen-run-example-machine"
       }
     }
+  },
+  "crossArtifact": {
+    "manualRef": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
+    "rules": {
+      "cross.stage.train.missing": {
+        "field": "train",
+        "manual_ref": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
+        "source_id": "dpgen-run-example-machine",
+        "doc": "param.json training configuration requires a matching machine.json train section."
+      },
+      "cross.stage.model_devi.missing": {
+        "field": "model_devi",
+        "manual_ref": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
+        "source_id": "dpgen-run-example-machine",
+        "doc": "param.json model_devi_jobs require a matching machine.json model_devi section."
+      },
+      "cross.stage.fp.missing": {
+        "field": "fp",
+        "manual_ref": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
+        "source_id": "dpgen-run-example-machine",
+        "doc": "param.json fp_style requires a matching machine.json fp section."
+      }
+    }
   }
 }

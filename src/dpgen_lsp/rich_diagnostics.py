@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict, is_dataclass
+from pathlib import Path
 from typing import Any, Iterable
 
 DIAGNOSTIC_ENGINE_VERSION = "1.0"
@@ -189,6 +190,87 @@ def serialize_diagnostics(
             item["message"],
         ),
     )
+
+
+def agent_project_check_payload(
+    *,
+    software: str,
+    project_dir: Path | str,
+    operation: str = "check",
+    version: str = DIAGNOSTIC_ENGINE_VERSION,
+    files: Iterable[dict[str, Any]] = (),
+    cross_artifact_diagnostics: Iterable[Any] = (),
+) -> dict[str, Any]:
+    root = Path(project_dir).resolve()
+    file_payloads: list[dict[str, Any]] = []
+    all_diagnostics: list[dict[str, Any]] = []
+
+    for entry in files:
+        path = str(entry["path"])
+        file_type = str(entry.get("file_type", ""))
+        diagnostics = entry.get("diagnostics", [])
+        items = serialize_diagnostics(
+            diagnostics,
+            software=software,
+            path=path,
+            file_type=file_type,
+        )
+        blocking_count = sum(1 for item in items if item["blocking"])
+        file_payloads.append(
+            {
+                "path": path,
+                "uri": entry.get("uri", Path(path).resolve().as_uri()),
+                "file_type": file_type,
+                "ok": blocking_count == 0,
+                "diagnostics": items,
+                "summary": {
+                    "count": len(items),
+                    "blocking": blocking_count,
+                    "errors": sum(1 for item in items if item["severity"] == "error"),
+                    "warnings": sum(1 for item in items if item["severity"] == "warning"),
+                },
+            }
+        )
+        all_diagnostics.extend(items)
+
+    cross_items = serialize_diagnostics(
+        cross_artifact_diagnostics,
+        software=software,
+        path=str(root),
+        file_type="project",
+    )
+    all_diagnostics.extend(cross_items)
+    blocking_count = sum(1 for item in all_diagnostics if item["blocking"])
+
+    return {
+        "uri": root.as_uri(),
+        "operation": operation,
+        "ok": blocking_count == 0,
+        "version": version,
+        "software": software,
+        "diagnostic_engine": version,
+        "project_dir": str(root),
+        "files": file_payloads,
+        "cross_artifact_diagnostics": cross_items,
+        "diagnostics": sorted(
+            all_diagnostics,
+            key=lambda item: (
+                item.get("path", ""),
+                item["range"]["start"]["line"],
+                item["range"]["start"]["character"],
+                item["code"],
+                item["message"],
+            ),
+        ),
+        "summary": {
+            "count": len(all_diagnostics),
+            "blocking": blocking_count,
+            "errors": sum(1 for item in all_diagnostics if item["severity"] == "error"),
+            "warnings": sum(1 for item in all_diagnostics if item["severity"] == "warning"),
+            "files": len(file_payloads),
+            "cross_artifact": len(cross_items),
+        },
+    }
 
 
 def agent_check_payload(

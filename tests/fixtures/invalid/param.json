@@ -3,5 +3,8 @@
   "mass_map": [1.008],
   "numb_models": 0,
   "model_devi_jobs": [],
-  "fp_style": "unknown-engine"
+  "fp_style": "vasp",
+  "fp_pp_files": ["POTCAR_H"],
+  "model_devi_f_trust_lo": 0.2,
+  "model_devi_f_trust_hi": 0.1
 }

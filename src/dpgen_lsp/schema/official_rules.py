@@ -34,6 +34,10 @@ def machine_index() -> dict[str, Any]:
     return dict(load_rule_index().get("machine", {}))
 
 
+def cross_artifact_index() -> dict[str, Any]:
+    return dict(load_rule_index().get("crossArtifact", {}))
+
+
 def field_metadata(workflow: str, field: str) -> dict[str, Any] | None:
     index = machine_index() if workflow == "machine" else workflow_index(workflow)
     fields = index.get("fields", {})
@@ -46,7 +50,12 @@ def field_metadata(workflow: str, field: str) -> dict[str, Any] | None:
 
 
 def manual_ref_for(workflow: str, *, field: str = "", code: str = "") -> str | None:
-    index = machine_index() if workflow == "machine" else workflow_index(workflow)
+    if workflow == "cross":
+        index = cross_artifact_index()
+    elif workflow == "machine":
+        index = machine_index()
+    else:
+        index = workflow_index(workflow)
     rules = index.get("rules", {})
     if code and code in rules:
         return rules[code].get("manual_ref")
