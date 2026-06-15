@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Upgraded `reports/docstring-wiki-raw-traceability.json` to the OpenQC `openqc.lsp.traceability.v1` contract with `serverId`, `languageId`, `docstrings`, `wikiSources`, `ruleIds`, `sourceUrls`, and `rawManifest` sections. Rule identifiers now follow `DPGEN-<FILE_ROLE>-<CATEGORY>-NNN`.
+
 ## 0.1.0 - 2026-06-15
 
 - Added the repeatable official-docs pipeline from DP-GEN documentation capture to structured schema/rules, provenance assets, tests, and LSP runtime capabilities.

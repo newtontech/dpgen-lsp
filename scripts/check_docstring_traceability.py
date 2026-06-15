@@ -1,6 +1,16 @@
 #!/usr/bin/env python3
 """Check code docstrings, LLM Wiki pages, and raw evidence traceability.
 
+Emits the OpenQC v1 traceability contract used by the family gate:
+
+- schemaVersion: ``openqc.lsp.traceability.v1``
+- Top-level fields ``serverId``, ``repository``, ``languageId``, ``generatedAt``,
+  ``summary``, ``docstrings``, ``wikiSources``, ``ruleIds``, ``sourceUrls`` and
+  ``rawManifest``.
+- ``ruleIds[].code`` follows ``DPGEN-<FILE_ROLE>-<CATEGORY>-NNN`` and is derived
+  deterministically from ``src/dpgen_lsp/schema/dpgen_rules.json``.
+- Every code, wiki and raw path is repository-relative.
+
 LLM Wiki: wiki/synthesis/openqc-agent-context.md
 """
 
@@ -17,6 +27,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
+SCHEMA_VERSION = "openqc.lsp.traceability.v1"
+SERVER_ID = "dpgen-lsp"
+LANGUAGE_ID = "dpgen"
 
 EXCLUDED_DIRS = {
     ".git",
@@ -39,8 +52,29 @@ EXCLUDED_DIRS = {
 }
 
 WIKI_RE = re.compile(r"(?<![A-Za-z0-9_./-])(wiki/[A-Za-z0-9_./%+@:#=-]+?\.md)(?:#[A-Za-z0-9_.-]+)?")
-RAW_RE = re.compile(
-    r"(?<![A-Za-z0-9_./-])(raw/[A-Za-z0-9_./%+@:#=-]+\.[A-Za-z0-9][A-Za-z0-9_-]*)"
+RAW_RE = re.compile(r"(?<![A-Za-z0-9_./-])(raw/[A-Za-z0-9_./%+@:#=-]+\.[A-Za-z0-9][A-Za-z0-9_-]*)")
+
+RULE_ID_PATTERN = re.compile(r"^DPGEN-[A-Z]+-[A-Z]+-\d{3}$")
+
+# Mapping from a rule's home section in ``dpgen_rules.json`` to the OpenQC
+# ``FILE_ROLE`` component of ``DPGEN-<FILE_ROLE>-<CATEGORY>-NNN``.  Workflows
+# describe ``param.json`` regardless of the workflow name (run/simplify), so we
+# normalise them onto ``PARAM``.
+SECTION_FILE_ROLE = {
+    "workflows": "PARAM",
+    "machine": "MACHINE",
+    "crossArtifact": "CROSS",
+}
+
+# Mapping from the legacy rule code prefix/suffix to the OpenQC ``CATEGORY``
+# component.  Order matters: more specific patterns first.
+CATEGORY_RULES: tuple[tuple[str, str], ...] = (
+    ("cross.stage.", "STAGE"),
+    ("machine.section.", "SCHEMA"),
+    ("machine.section.missing", "SCHEMA"),
+    ("path.", "PATH"),
+    (".scass_type", "SCASS"),
+    (".lint", "LINT"),
 )
 
 
@@ -50,16 +84,30 @@ class DocstringRecord:
     line: int
     kind: str
     linked: bool
-    wiki_refs: list[str]
-    broken_wiki_refs: list[str]
+    wikiRefs: list[str]
+    brokenWikiRefs: list[str]
 
 
 @dataclass
 class WikiRecord:
     file: str
-    raw_refs: list[str]
-    missing_raw_refs: list[str]
-    refs_missing_from_manifest: list[str]
+    rawRefs: list[str]
+    missingRawRefs: list[str]
+    refsMissingFromManifest: list[str]
+
+
+@dataclass
+class RuleIdRecord:
+    code: str
+    legacyCode: str
+    fileRole: str
+    category: str
+    field: str
+    source: str
+    manualRef: str
+    sourceId: str
+    wikiRefs: list[str]
+    rawRefs: list[str]
 
 
 def relpath(path: Path, root: Path) -> str:
@@ -136,8 +184,8 @@ def scan_docstrings(root: Path) -> list[DocstringRecord]:
                     line=line,
                     kind="python-docstring",
                     linked=bool(refs),
-                    wiki_refs=refs,
-                    broken_wiki_refs=resolve_existing_wiki_refs(root, refs),
+                    wikiRefs=refs,
+                    brokenWikiRefs=resolve_existing_wiki_refs(root, refs),
                 )
             )
 
@@ -158,8 +206,8 @@ def scan_docstrings(root: Path) -> list[DocstringRecord]:
                     line=line,
                     kind="jsdoc",
                     linked=bool(refs),
-                    wiki_refs=refs,
-                    broken_wiki_refs=resolve_existing_wiki_refs(root, refs),
+                    wikiRefs=refs,
+                    brokenWikiRefs=resolve_existing_wiki_refs(root, refs),
                 )
             )
 
@@ -183,8 +231,8 @@ def scan_docstrings(root: Path) -> list[DocstringRecord]:
                     line=block[0][0],
                     kind="rustdoc",
                     linked=bool(refs),
-                    wiki_refs=refs,
-                    broken_wiki_refs=resolve_existing_wiki_refs(root, refs),
+                    wikiRefs=refs,
+                    brokenWikiRefs=resolve_existing_wiki_refs(root, refs),
                 )
             )
             block = []
@@ -241,14 +289,16 @@ def scan_wiki(root: Path, manifest_paths: set[str]) -> list[WikiRecord]:
         refs = extract_raw_refs(text)
         missing_refs = [ref for ref in refs if not (root / ref).is_file()]
         not_manifested = [
-            ref for ref in refs if manifest_paths and ref not in manifest_paths and ref[11:] not in manifest_paths
+            ref
+            for ref in refs
+            if manifest_paths and ref not in manifest_paths and ref[11:] not in manifest_paths
         ]
         records.append(
             WikiRecord(
                 file=relpath(path, root),
-                raw_refs=refs,
-                missing_raw_refs=missing_refs,
-                refs_missing_from_manifest=not_manifested,
+                rawRefs=refs,
+                missingRawRefs=missing_refs,
+                refsMissingFromManifest=not_manifested,
             )
         )
     return records
@@ -353,10 +403,14 @@ def fix_jsdoc_blocks(root: Path, wiki_ref: str) -> int:
             block = match.group(0)
             if extract_wiki_refs(block):
                 return block
-            indent = re.match(r"[ \t]*", text[text.rfind("\n", 0, match.start()) + 1 : match.start()])
+            indent = re.match(
+                r"[ \t]*", text[text.rfind("\n", 0, match.start()) + 1 : match.start()]
+            )
             prefix = indent.group(0) if indent else ""
             changed += 1
-            return block[:-2].rstrip() + f"\n{prefix} *\n{prefix} * LLM Wiki: {wiki_ref}\n{prefix} */"
+            return (
+                block[:-2].rstrip() + f"\n{prefix} *\n{prefix} * LLM Wiki: {wiki_ref}\n{prefix} */"
+            )
 
         updated = re.sub(r"/\*\*([\s\S]*?)\*/", replace, text)
         if updated != text:
@@ -406,12 +460,7 @@ def fix_wiki_raw_links(root: Path, raw_ref: str) -> int:
         if extract_raw_refs(text):
             continue
         suffix = "\n" if text.endswith("\n") else "\n\n"
-        text = (
-            text
-            + suffix
-            + "## Traceability Sources\n\n"
-            + f"- Raw evidence: `{raw_ref}`\n"
-        )
+        text = text + suffix + "## Traceability Sources\n\n" + f"- Raw evidence: `{raw_ref}`\n"
         path.write_text(text, encoding="utf-8")
         changed += 1
     return changed
@@ -441,40 +490,300 @@ def write_manifest(root: Path) -> None:
         "pipeline": "official-docs -> raw/assets -> wiki -> docstrings -> LSP runtime",
         "entries": entries,
     }
-    (assets_root / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    (assets_root / "manifest.json").write_text(
+        json.dumps(manifest, indent=2) + "\n", encoding="utf-8"
+    )
+
+
+def _load_capabilities(root: Path) -> dict[str, Any]:
+    candidates = [root / "lsp-capabilities.json"]
+    for path in candidates:
+        if not path.is_file():
+            continue
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            return {}
+        if isinstance(payload, dict):
+            return payload
+        return {}
+    return {}
+
+
+def _capabilities_server_id(capabilities: dict[str, Any]) -> str:
+    value = capabilities.get("id") or capabilities.get("serverId") or SERVER_ID
+    if isinstance(value, str) and value:
+        return value
+    return SERVER_ID
+
+
+def _capabilities_language_id(capabilities: dict[str, Any]) -> str:
+    value = capabilities.get("languageId") or LANGUAGE_ID
+    if isinstance(value, str) and value:
+        return value
+    return LANGUAGE_ID
+
+
+def _capabilities_repository(capabilities: dict[str, Any], root: Path) -> str:
+    value = capabilities.get("repository") or capabilities.get("repoName")
+    if isinstance(value, str) and "/" in value:
+        return value
+    owner_block = capabilities.get("openqc") or {}
+    registry = owner_block.get("registryId") if isinstance(owner_block, dict) else None
+    if isinstance(registry, str) and "/" in registry:
+        return registry
+    repo_value = capabilities.get("repoName")
+    if isinstance(repo_value, str) and "/" in repo_value:
+        return repo_value
+    return root.name
+
+
+def _category_for_legacy_code(legacy_code: str) -> str:
+    for needle, category in CATEGORY_RULES:
+        if needle in legacy_code:
+            return category
+    return "SCHEMA"
+
+
+def _wiki_refs_for_path(root: Path, path: Path) -> list[str]:
+    if not path.is_file():
+        return []
+    try:
+        text = path.read_text(encoding="utf-8", errors="ignore")
+    except OSError:
+        return []
+    return sorted(set(extract_wiki_refs(text)))
+
+
+def _raw_refs_for_path(root: Path, path: Path) -> list[str]:
+    if not path.is_file():
+        return []
+    try:
+        text = path.read_text(encoding="utf-8", errors="ignore")
+    except OSError:
+        return []
+    return sorted(set(extract_raw_refs(text)))
+
+
+def _rule_index_path(root: Path) -> str:
+    candidate = root / "src" / "dpgen_lsp" / "schema" / "dpgen_rules.json"
+    if candidate.is_file():
+        return candidate.relative_to(root).as_posix()
+    return "src/dpgen_lsp/schema/dpgen_rules.json"
+
+
+def build_rule_ids(root: Path) -> list[RuleIdRecord]:
+    """Produce a deterministic list of ``DPGEN-<FILE_ROLE>-<CATEGORY>-NNN`` ids.
+
+    Rules are pulled from ``src/dpgen_lsp/schema/dpgen_rules.json``. The legacy
+    codes are grouped by ``(file_role, category)`` and numbered with stable,
+    zero-padded sequence values so the same input always yields the same codes.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
+    rules_path = root / "src" / "dpgen_lsp" / "schema" / "dpgen_rules.json"
+    if not rules_path.is_file():
+        return []
+    try:
+        data = json.loads(rules_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return []
+
+    source_rel = _rule_index_path(root)
+    counters: dict[tuple[str, str], int] = {}
+    flat: list[tuple[str, str, str, str, dict[str, Any]]] = []
+
+    workflows = data.get("workflows", {})
+    if isinstance(workflows, dict):
+        for workflow_name in sorted(workflows):
+            workflow = workflows.get(workflow_name) or {}
+            rules = workflow.get("rules", {}) if isinstance(workflow, dict) else {}
+            if not isinstance(rules, dict):
+                continue
+            for legacy_code in sorted(rules):
+                rule = rules[legacy_code]
+                if not isinstance(rule, dict):
+                    continue
+                flat.append(("workflows", workflow_name, legacy_code, source_rel, rule))
+
+    for section_name in ("machine", "crossArtifact"):
+        section = data.get(section_name, {})
+        rules = section.get("rules", {}) if isinstance(section, dict) else {}
+        if not isinstance(rules, dict):
+            continue
+        for legacy_code in sorted(rules):
+            rule = rules[legacy_code]
+            if not isinstance(rule, dict):
+                continue
+            flat.append((section_name, "", legacy_code, source_rel, rule))
+
+    records: list[RuleIdRecord] = []
+    for section_name, _workflow, legacy_code, source_rel, rule in flat:
+        file_role = SECTION_FILE_ROLE.get(section_name, "MISC")
+        category = _category_for_legacy_code(legacy_code)
+        key = (file_role, category)
+        counters[key] = counters.get(key, 0) + 1
+        sequence = counters[key]
+        code = f"DPGEN-{file_role}-{category}-{sequence:03d}"
+
+        manual_ref = str(rule.get("manual_ref", ""))
+        source_id = str(rule.get("source_id", ""))
+        field = str(rule.get("field", ""))
+
+        # Walk the rule index for wiki/raw refs deterministically. The
+        # rule index itself only references upstream URLs, so we anchor each
+        # rule to the LSP wiki/raw evidence that documents the overall
+        # pipeline rather than per-rule inventing connections.
+        wiki_refs = _wiki_refs_for_path(root, root / source_rel)
+        raw_refs = _raw_refs_for_path(root, root / source_rel)
+
+        records.append(
+            RuleIdRecord(
+                code=code,
+                legacyCode=legacy_code,
+                fileRole=file_role,
+                category=category,
+                field=field,
+                source=source_rel,
+                manualRef=manual_ref,
+                sourceId=source_id,
+                wikiRefs=wiki_refs,
+                rawRefs=raw_refs,
+            )
+        )
+    return records
+
+
+def build_source_urls(root: Path) -> list[str]:
+    """Collect repository-relative source URLs from raw provenance.
+
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
+    urls: list[str] = []
+    seen: set[str] = set()
+
+    provenance = root / "raw" / "assets" / "source-provenance.json"
+    if provenance.is_file():
+        try:
+            payload = json.loads(provenance.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            payload = {}
+        sources = payload.get("sources") if isinstance(payload, dict) else None
+        if isinstance(sources, list):
+            for entry in sources:
+                if not isinstance(entry, dict):
+                    continue
+                url = entry.get("final_url") or entry.get("url")
+                if isinstance(url, str) and url not in seen:
+                    urls.append(url)
+                    seen.add(url)
+
+    rules_path = root / "src" / "dpgen_lsp" / "schema" / "dpgen_rules.json"
+    if rules_path.is_file():
+        try:
+            payload = json.loads(rules_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            payload = {}
+        provenance_block = payload.get("sourceProvenance")
+        if isinstance(provenance_block, list):
+            for entry in provenance_block:
+                if not isinstance(entry, dict):
+                    continue
+                url = entry.get("url")
+                if isinstance(url, str) and url not in seen:
+                    urls.append(url)
+                    seen.add(url)
+    return urls
+
+
+def build_raw_manifest_summary(root: Path) -> dict[str, Any]:
+    manifest_path = root / "raw" / "assets" / "manifest.json"
+    rel = (
+        manifest_path.relative_to(root).as_posix()
+        if manifest_path.is_file()
+        else "raw/assets/manifest.json"
+    )
+    if not manifest_path.is_file():
+        return {
+            "path": rel,
+            "exists": False,
+            "schemaVersion": None,
+            "entries": [],
+            "errors": ["raw/assets/manifest.json is missing"],
+        }
+    try:
+        data = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return {
+            "path": rel,
+            "exists": True,
+            "schemaVersion": None,
+            "entries": [],
+            "errors": [f"raw/assets/manifest.json is invalid JSON: {exc}"],
+        }
+    entries = data.get("entries") if isinstance(data, dict) else None
+    if not isinstance(entries, list):
+        entries = []
+    cleaned_entries = []
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        cleaned_entries.append(
+            {
+                "path": str(entry.get("path", "")),
+                "raw_path": str(entry.get("raw_path", "")),
+                "bytes": int(entry.get("bytes", 0)) if isinstance(entry.get("bytes"), int) else 0,
+                "checksum_sha256": str(entry.get("checksum_sha256", "")),
+            }
+        )
+    return {
+        "path": rel,
+        "exists": True,
+        "schemaVersion": str(data.get("schema_version") or data.get("manifest_version") or ""),
+        "createdAt": str(data.get("created_at") or ""),
+        "repository": str(data.get("repository") or ""),
+        "pipeline": str(data.get("pipeline") or ""),
+        "entries": cleaned_entries,
+        "errors": [],
+    }
 
 
 def build_report(root: Path) -> dict[str, Any]:
+    capabilities = _load_capabilities(root)
     manifest_paths, manifest_errors = load_manifest(root)
     docstrings = scan_docstrings(root)
     wiki_pages = scan_wiki(root, manifest_paths)
-    broken_wiki = sum(len(item.broken_wiki_refs) for item in docstrings)
+    rule_ids = build_rule_ids(root)
+    source_urls = build_source_urls(root)
+    raw_manifest = build_raw_manifest_summary(root)
+
+    broken_wiki = sum(len(item.brokenWikiRefs) for item in docstrings)
     wiki_source_failures = sum(
         1
         for item in wiki_pages
-        if not item.raw_refs or item.missing_raw_refs or item.refs_missing_from_manifest
+        if not item.rawRefs or item.missingRawRefs or item.refsMissingFromManifest
     )
     summary = {
         "docstringsTotal": len(docstrings),
         "docstringsLinked": sum(1 for item in docstrings if item.linked),
         "brokenWikiLinks": broken_wiki,
         "wikiPagesTotal": len(wiki_pages),
-        "wikiPagesWithRaw": sum(1 for item in wiki_pages if item.raw_refs),
+        "wikiPagesWithRaw": sum(1 for item in wiki_pages if item.rawRefs),
         "wikiSourcesWithoutRaw": wiki_source_failures,
         "rawManifestFailures": len(manifest_errors),
     }
     return {
-        "schemaVersion": "docstring-wiki-raw-traceability-v1",
+        "schemaVersion": SCHEMA_VERSION,
+        "serverId": _capabilities_server_id(capabilities),
+        "repository": _capabilities_repository(capabilities, root),
+        "languageId": _capabilities_language_id(capabilities),
         "generatedAt": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
-        "repository": root.name,
         "summary": summary,
-        "manifestErrors": manifest_errors,
-        "docstringViolations": [asdict(item) for item in docstrings if not item.linked or item.broken_wiki_refs],
-        "wikiViolations": [
-            asdict(item)
-            for item in wiki_pages
-            if not item.raw_refs or item.missing_raw_refs or item.refs_missing_from_manifest
-        ],
+        "docstrings": [asdict(item) for item in docstrings],
+        "wikiSources": [asdict(item) for item in wiki_pages],
+        "ruleIds": [asdict(item) for item in rule_ids],
+        "sourceUrls": source_urls,
+        "rawManifest": raw_manifest,
     }
 
 
@@ -493,11 +802,19 @@ def report_has_failures(report: dict[str, Any]) -> bool:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path.cwd(), help="Repository root")
-    parser.add_argument("--report", type=Path, default=Path("reports/docstring-wiki-raw-traceability.json"))
+    parser.add_argument(
+        "--report", type=Path, default=Path("reports/docstring-wiki-raw-traceability.json")
+    )
     parser.add_argument("--write-report", action="store_true", help="Write the JSON report")
-    parser.add_argument("--strict", action="store_true", help="Exit non-zero when traceability is incomplete")
-    parser.add_argument("--fix", action="store_true", help="Add missing docstring and wiki source links")
-    parser.add_argument("--refresh-manifest", action="store_true", help="Regenerate raw/assets/manifest.json")
+    parser.add_argument(
+        "--strict", action="store_true", help="Exit non-zero when traceability is incomplete"
+    )
+    parser.add_argument(
+        "--fix", action="store_true", help="Add missing docstring and wiki source links"
+    )
+    parser.add_argument(
+        "--refresh-manifest", action="store_true", help="Regenerate raw/assets/manifest.json"
+    )
     args = parser.parse_args()
 
     root = args.root.resolve()
