@@ -20,6 +20,7 @@ OPERATIONS = ("check", "context", "complete", "hover", "symbols", "fix")
 _WORD_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_.$%+-]*")
 _SECTION_RE = re.compile(r"^\s*(?:&(?P<section>[A-Za-z][A-Za-z0-9_.$-]*)|\[(?P<bracket>[^\]]+)\])")
 _ASSIGNMENT_RE = re.compile(r"^\s*(?P<key>[A-Za-z_][A-Za-z0-9_.$%-]*)\s*(?:=|:|\s+)")
+_JSON_KEY_RE = re.compile(r'"(?P<key>[A-Za-z_][A-Za-z0-9_.$%+-]*)"\s*:')
 
 
 def with_capabilities(
@@ -82,7 +83,7 @@ def operation_path(
         return with_capabilities(payload, operation)
 
     if operation == "complete":
-        items = _completion_items(path, text, file_type)
+        items = _completion_items(path, text, file_type, line, character)
         if not items:
             items = _generic_completion_items(text, payload["diagnostics"])
         payload["items"] = items
@@ -94,7 +95,14 @@ def operation_path(
 
     if operation == "hover":
         context = _context_for(text, position)
-        contents = _hover_contents(path, text, context.get("token", ""), file_type)
+        contents = _hover_contents(
+            path,
+            text,
+            context.get("token", ""),
+            file_type,
+            line=line,
+            character=character,
+        )
         if contents is None:
             contents = _diagnostic_hover(payload["diagnostics"], line, character)
         payload["context"] = context
@@ -204,7 +212,13 @@ def _diagnostics_at_position(
     return selected
 
 
-def _completion_items(path: Path, text: str, file_type: str) -> list[dict[str, Any]]:
+def _completion_items(
+    path: Path,
+    text: str,
+    file_type: str,
+    line: int,
+    character: int,
+) -> list[dict[str, Any]]:
     items: list[dict[str, Any]] = []
     package = __name__.rsplit(".", 1)[0]
     module_names = (
@@ -226,13 +240,23 @@ def _completion_items(path: Path, text: str, file_type: str) -> list[dict[str, A
             fn = getattr(module, function_name, None)
             if not callable(fn):
                 continue
-            value = _call_provider(fn, path, text, file_type)
+            value = _call_position_provider(fn, text, line, character)
+            if value is None:
+                value = _call_provider(fn, path, text, file_type)
             if isinstance(value, list):
                 items.extend(_normalize_completion_item(item) for item in value)
     return _dedupe_items(items, "label")[:200]
 
 
-def _hover_contents(path: Path, text: str, token: str, file_type: str) -> Any:
+def _hover_contents(
+    path: Path,
+    text: str,
+    token: str,
+    file_type: str,
+    *,
+    line: int,
+    character: int,
+) -> Any:
     if not token:
         return None
     package = __name__.rsplit(".", 1)[0]
@@ -254,7 +278,9 @@ def _hover_contents(path: Path, text: str, token: str, file_type: str) -> Any:
             fn = getattr(module, function_name, None)
             if not callable(fn):
                 continue
-            value = _call_provider(fn, token, path, text, file_type)
+            value = _call_position_provider(fn, text, line, character)
+            if value is None:
+                value = _call_provider(fn, token, path, text, file_type)
             if value:
                 return value
     return None
@@ -267,7 +293,7 @@ def _symbols_for(path: Path, text: str) -> list[dict[str, Any]]:
         f"{package}.features.symbols",
         f"{package}.handlers.document_symbol",
     )
-    function_names = ("document_symbols", "get_document_symbols", "symbols")
+    function_names = ("document_symbols", "document_symbol", "get_document_symbols", "symbols")
     for module_name in module_names:
         module = _import_optional(module_name)
         if module is None:
@@ -307,6 +333,10 @@ def _generic_symbols(text: str) -> list[dict[str, Any]]:
     for line_no, raw in enumerate(text.splitlines()):
         stripped = raw.strip()
         if not stripped or stripped.startswith(("#", "!", ";")):
+            continue
+        for key_match in _JSON_KEY_RE.finditer(raw):
+            name = key_match.group("key")
+            symbols.append(_symbol(name, "property", line_no, key_match.start("key")))
             continue
         section = _SECTION_RE.match(raw)
         if section:
@@ -417,6 +447,13 @@ def _call_provider(fn: Callable[..., Any], *values: Any) -> Any:
     return None
 
 
+def _call_position_provider(fn: Callable[..., Any], text: str, line: int, character: int) -> Any:
+    try:
+        return fn(text, line, character)
+    except Exception:
+        return None
+
+
 def _normalize_completion_item(item: Any) -> dict[str, Any]:
     if isinstance(item, dict):
         label = str(item.get("label") or item.get("name") or item.get("insertText") or "")
@@ -431,7 +468,16 @@ def _normalize_completion_item(item: Any) -> dict[str, Any]:
 
 def _normalize_symbol(item: Any) -> dict[str, Any]:
     if not isinstance(item, dict):
-        data = {"name": str(getattr(item, "name", item)), "kind": getattr(item, "kind", "symbol")}
+        data = {
+            "name": str(getattr(item, "name", item)),
+            "kind": getattr(item, "kind", "symbol"),
+        }
+        item_range = getattr(item, "range", None)
+        selection_range = getattr(item, "selection_range", None)
+        if item_range is not None:
+            data["range"] = _range_to_dict(item_range)
+        if selection_range is not None:
+            data["selectionRange"] = _range_to_dict(selection_range)
     else:
         data = dict(item)
     name = str(data.get("name") or data.get("label") or "symbol")
@@ -443,6 +489,21 @@ def _normalize_symbol(item: Any) -> dict[str, Any]:
     if "detail" in data:
         result["detail"] = data["detail"]
     return result
+
+
+def _range_to_dict(value: Any) -> dict[str, dict[str, int]]:
+    start = getattr(value, "start", None)
+    end = getattr(value, "end", None)
+    return {
+        "start": {
+            "line": int(getattr(start, "line", 0) or 0),
+            "character": int(getattr(start, "character", 0) or 0),
+        },
+        "end": {
+            "line": int(getattr(end, "line", 0) or 0),
+            "character": int(getattr(end, "character", 0) or 0),
+        },
+    }
 
 
 def _dedupe_items(items: list[dict[str, Any]], key: str) -> list[dict[str, Any]]:

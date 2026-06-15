@@ -14,11 +14,15 @@ import html.parser
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 RULE_INDEX = ROOT / "src" / "dpgen_lsp" / "schema" / "dpgen_rules.json"
 RAW_ASSETS = ROOT / "raw" / "assets"
+VERSION_INDEX = RAW_ASSETS / "dpgen-version-index.json"
+READTHEDOCS_VERSIONS_API = "https://readthedocs.org/api/v3/projects/dpgen/versions/"
+GITHUB_TAGS_API = "https://api.github.com/repos/deepmodeling/dpgen/tags?per_page=100"
 
 
 class TextExtractor(html.parser.HTMLParser):
@@ -51,13 +55,99 @@ class TextExtractor(html.parser.HTMLParser):
         return "\n".join(line for line in lines if line)
 
 
+def load_rule_index() -> dict[str, Any]:
+    return json.loads(RULE_INDEX.read_text(encoding="utf-8"))
+
+
 def load_sources() -> list[dict[str, str]]:
-    rules = json.loads(RULE_INDEX.read_text(encoding="utf-8"))
-    return [
+    rules = load_rule_index()
+    direct_sources = [
         source
         for source in rules.get("sourceProvenance", [])
         if source.get("kind") == "official_docs" and source.get("url")
     ]
+    version_support = rules.get("versionSupport", {})
+    doc_versions = version_support.get("documentedVersions", [])
+    doc_pages = version_support.get("docPages", [])
+    versioned_sources = []
+    for version in doc_versions:
+        for page in doc_pages:
+            page_id = page.replace("/", "-").replace(".html", "")
+            versioned_sources.append(
+                {
+                    "id": f"dpgen-docs-{version}-{page_id}",
+                    "kind": "official_docs",
+                    "label": f"DP-GEN {version} {page}",
+                    "url": f"https://docs.deepmodeling.com/projects/dpgen/en/{version}/{page}",
+                    "version": version,
+                    "path": page,
+                }
+            )
+    seen: set[str] = set()
+    sources = []
+    for source in [*direct_sources, *versioned_sources]:
+        if source["url"] in seen:
+            continue
+        seen.add(source["url"])
+        sources.append(source)
+    return sources
+
+
+def fetch_json(url: str, timeout: int) -> Any:
+    req = Request(url, headers={"User-Agent": "dpgen-lsp-provenance/0.1"})
+    with urlopen(req, timeout=timeout) as response:
+        return json.loads(response.read().decode("utf-8"))
+
+
+def collect_readthedocs_versions(timeout: int) -> list[dict[str, str | bool]]:
+    versions: list[dict[str, str | bool]] = []
+    url: str | None = READTHEDOCS_VERSIONS_API
+    while url:
+        payload = fetch_json(url, timeout)
+        for item in payload.get("results", []):
+            versions.append(
+                {
+                    "slug": item.get("slug", ""),
+                    "type": item.get("type", ""),
+                    "active": bool(item.get("active", False)),
+                    "built": bool(item.get("built", False)),
+                    "documentation": item.get("urls", {}).get("documentation", ""),
+                    "vcs": item.get("urls", {}).get("vcs", ""),
+                }
+            )
+        url = payload.get("next")
+    return versions
+
+
+def collect_release_tags(timeout: int) -> list[str]:
+    payload = fetch_json(GITHUB_TAGS_API, timeout)
+    if not isinstance(payload, list):
+        return []
+    return [str(item.get("name", "")) for item in payload if item.get("name")]
+
+
+def write_version_index(timeout: int, fetched_at: str) -> dict[str, Any]:
+    rules = load_rule_index()
+    versions = collect_readthedocs_versions(timeout)
+    tags = collect_release_tags(timeout)
+    payload = {
+        "schema": "DpgenVersionIndex/v1",
+        "fetched_at": fetched_at,
+        "sources": {
+            "readthedocs": READTHEDOCS_VERSIONS_API,
+            "github_tags": GITHUB_TAGS_API,
+        },
+        "policy": rules.get("versionSupport", {}),
+        "readthedocsVersions": versions,
+        "releaseTags": tags,
+        "summary": {
+            "readthedocsVersionCount": len(versions),
+            "releaseTagCount": len(tags),
+            "latestReleaseTag": tags[0] if tags else None,
+        },
+    }
+    VERSION_INDEX.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    return payload
 
 
 def fetch_source(source: dict[str, str], timeout: int) -> dict[str, str | int]:
@@ -75,6 +165,8 @@ def fetch_source(source: dict[str, str], timeout: int) -> dict[str, str | int]:
         "id": source["id"],
         "label": source["label"],
         "url": url,
+        "version": source.get("version", ""),
+        "path": source.get("path", ""),
         "final_url": final_url,
         "status": status,
         "content_type": content_type,
@@ -95,10 +187,13 @@ def main(argv: list[str] | None = None) -> int:
     if args.offline:
         if not sources:
             raise SystemExit("no official sources in rule index")
+        if not VERSION_INDEX.exists():
+            raise SystemExit("missing version index")
         return 0
 
-    fetched = [fetch_source(source, args.timeout) for source in sources]
     fetched_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    version_index = write_version_index(args.timeout, fetched_at)
+    fetched = [fetch_source(source, args.timeout) for source in sources]
     payload = {
         "schema": "DpgenOfficialDocsSnapshot/v1",
         "fetched_at": fetched_at,
@@ -109,6 +204,7 @@ def main(argv: list[str] | None = None) -> int:
             "tests",
             "lsp-runtime",
         ],
+        "versionSummary": version_index["summary"],
         "sources": fetched,
     }
     (RAW_ASSETS / "dpgen-official-docs.json").write_text(
@@ -119,8 +215,21 @@ def main(argv: list[str] | None = None) -> int:
         "schema": "SourceProvenance/v1",
         "fetched_at": fetched_at,
         "rule_index": str(RULE_INDEX.relative_to(ROOT)),
+        "version_index": str(VERSION_INDEX.relative_to(ROOT)),
         "sources": [
-            {key: item[key] for key in ("id", "label", "url", "final_url", "status", "sha256")}
+            {
+                key: item[key]
+                for key in (
+                    "id",
+                    "label",
+                    "url",
+                    "version",
+                    "path",
+                    "final_url",
+                    "status",
+                    "sha256",
+                )
+            }
             for item in fetched
         ],
     }

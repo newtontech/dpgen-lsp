@@ -1,32 +1,25 @@
 """LSP references handler."""
 
+from __future__ import annotations
+
 from typing import Any
 
-from lsprotocol.types import Location, Position, Range
+from lsprotocol.types import Location
 
-from .json_utils import get_document_text, iter_json_key_occurrences, key_at_position
+from .text_utils import find_token_ranges, get_document_text, word_at
 
 
-def references(ls: Any, params: Any) -> list | None:
+def references(ls: Any, params: Any) -> list[Location] | None:
     uri = params.text_document.uri
     text = get_document_text(ls, uri)
     if not text:
         return None
 
-    current = key_at_position(text, params.position.line, params.position.character)
-    if current is None:
+    selected = word_at(text, params.position.line, params.position.character)
+    if selected is None:
         return None
-
-    locations: list[Location] = []
-    for occ in iter_json_key_occurrences(text):
-        if occ.key != current.key:
-            continue
-        locations.append(Location(
-            uri=uri,
-            range=Range(
-                start=Position(line=occ.line, character=occ.character),
-                end=Position(line=occ.line, character=occ.end_character),
-            ),
-        ))
-
+    token, _ = selected
+    locations = [
+        Location(uri=uri, range=token_range) for token_range in find_token_ranges(text, token)
+    ]
     return locations or None

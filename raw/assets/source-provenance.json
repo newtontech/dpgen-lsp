@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-06-15T07:09:13+00:00",
+  "fetched_at": "2026-06-15T07:34:56+00:00",
   "rule_index": "src/dpgen_lsp/schema/dpgen_rules.json",
   "schema": "SourceProvenance/v1",
   "sources": [
@@ -7,25 +7,302 @@
       "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
       "id": "dpgen-run-example-param",
       "label": "DP-GEN Example-of-param.json",
+      "path": "",
       "sha256": "a2fb952e38b47873ac07cbd2710e0a1a61057c9b14637824726c12e17cff9218",
       "status": 200,
-      "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html"
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-param.html",
+      "version": ""
     },
     {
       "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/param.html",
       "id": "dpgen-run-param",
       "label": "dpgen run param parameters",
+      "path": "",
       "sha256": "a83c0dd9eac8659863eb04e0d83658b2055975b086cfd63627f539a071590aee",
       "status": 200,
-      "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/param.html"
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/param.html",
+      "version": ""
     },
     {
       "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
       "id": "dpgen-run-example-machine",
       "label": "DP-GEN Example of machine.json",
+      "path": "",
       "sha256": "1f9043639a52569ba7799044e531500caa0f1942418322a5136a426cc49932e5",
       "status": 200,
-      "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html"
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/example-of-machine.html",
+      "version": ""
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/mdata.html",
+      "id": "dpgen-run-machine",
+      "label": "dpgen run machine parameters",
+      "path": "",
+      "sha256": "69621bcf9c645cfba429a6586daa43218f4e9f6dddc1521ffa68098ef78c85d2",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/mdata.html",
+      "version": ""
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/simplify/simplify-jdata.html",
+      "id": "dpgen-docs-latest-simplify-simplify-jdata",
+      "label": "DP-GEN latest simplify/simplify-jdata.html",
+      "path": "simplify/simplify-jdata.html",
+      "sha256": "0f335769f5b64c08ddd98d42d76a08b19e30a494f044742046552e516e8ebb09",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/simplify/simplify-jdata.html",
+      "version": "latest"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/simplify/simplify-mdata.html",
+      "id": "dpgen-docs-latest-simplify-simplify-mdata",
+      "label": "DP-GEN latest simplify/simplify-mdata.html",
+      "path": "simplify/simplify-mdata.html",
+      "sha256": "f5100e9aa35c2368476b18e960295cc0cc810818dd85ce08ec04829a0925a244",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/simplify/simplify-mdata.html",
+      "version": "latest"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/example-of-param.html",
+      "id": "dpgen-docs-stable-run-example-of-param",
+      "label": "DP-GEN stable run/example-of-param.html",
+      "path": "run/example-of-param.html",
+      "sha256": "d528dee02a79be11b17ddf8ed8d67df6d9ceef6be9d471d292971685acbc5afc",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/example-of-param.html",
+      "version": "stable"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/param.html",
+      "id": "dpgen-docs-stable-run-param",
+      "label": "DP-GEN stable run/param.html",
+      "path": "run/param.html",
+      "sha256": "92c66eab8d71778592041993a311b58afd35ecaa66209577fa6181e078c93b19",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/param.html",
+      "version": "stable"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/example-of-machine.html",
+      "id": "dpgen-docs-stable-run-example-of-machine",
+      "label": "DP-GEN stable run/example-of-machine.html",
+      "path": "run/example-of-machine.html",
+      "sha256": "592d44088fb5ff52cca3f24c74a3a60c9987ba668d07068dfff9a2eb814c138c",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/example-of-machine.html",
+      "version": "stable"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/mdata.html",
+      "id": "dpgen-docs-stable-run-mdata",
+      "label": "DP-GEN stable run/mdata.html",
+      "path": "run/mdata.html",
+      "sha256": "38c5c08a6eeb6878e3afa1b40ff41ed9fa51ffbe97709031eeaa995ac7ef3df4",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/run/mdata.html",
+      "version": "stable"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/simplify/simplify-jdata.html",
+      "id": "dpgen-docs-stable-simplify-simplify-jdata",
+      "label": "DP-GEN stable simplify/simplify-jdata.html",
+      "path": "simplify/simplify-jdata.html",
+      "sha256": "6589ba5740bdf98e4a3eba01ee4b1a55a029ed8c7785cd8a8b0803216551918d",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/simplify/simplify-jdata.html",
+      "version": "stable"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/simplify/simplify-mdata.html",
+      "id": "dpgen-docs-stable-simplify-simplify-mdata",
+      "label": "DP-GEN stable simplify/simplify-mdata.html",
+      "path": "simplify/simplify-mdata.html",
+      "sha256": "185f657d80db5aab5fd8a58f9b3c6bce5fc4c42b3e74c942a9212ae5413ca134",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/stable/simplify/simplify-mdata.html",
+      "version": "stable"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/example-of-param.html",
+      "id": "dpgen-docs-devel-run-example-of-param",
+      "label": "DP-GEN devel run/example-of-param.html",
+      "path": "run/example-of-param.html",
+      "sha256": "e7aaadc0a028ef17bf9ae7981f5ad7882a0692785f3d91a38a388fe9b35c3816",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/example-of-param.html",
+      "version": "devel"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/param.html",
+      "id": "dpgen-docs-devel-run-param",
+      "label": "DP-GEN devel run/param.html",
+      "path": "run/param.html",
+      "sha256": "5df2f549642048297c053e3661c4da71e82fc84a191d1d05600170e4464eaeb4",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/param.html",
+      "version": "devel"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/example-of-machine.html",
+      "id": "dpgen-docs-devel-run-example-of-machine",
+      "label": "DP-GEN devel run/example-of-machine.html",
+      "path": "run/example-of-machine.html",
+      "sha256": "53f2ef0942e4d0efb7de8085a20225ed26c5218308620f966756b84ab77f9492",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/example-of-machine.html",
+      "version": "devel"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/mdata.html",
+      "id": "dpgen-docs-devel-run-mdata",
+      "label": "DP-GEN devel run/mdata.html",
+      "path": "run/mdata.html",
+      "sha256": "f7696d21243f39a4f1a140b651999ceb34e126a4fa4ae059178c4b8830d4b34d",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/run/mdata.html",
+      "version": "devel"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/simplify/simplify-jdata.html",
+      "id": "dpgen-docs-devel-simplify-simplify-jdata",
+      "label": "DP-GEN devel simplify/simplify-jdata.html",
+      "path": "simplify/simplify-jdata.html",
+      "sha256": "ecdaf01d9e2a41ac47adccfd968800ed45955fb55b87b04804e51b224054ad0d",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/simplify/simplify-jdata.html",
+      "version": "devel"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/simplify/simplify-mdata.html",
+      "id": "dpgen-docs-devel-simplify-simplify-mdata",
+      "label": "DP-GEN devel simplify/simplify-mdata.html",
+      "path": "simplify/simplify-mdata.html",
+      "sha256": "744008e520efd1f33bed497cfbc703fef2fba8b7071d1564cfcdfd5d1fe3123a",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/devel/simplify/simplify-mdata.html",
+      "version": "devel"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/example-of-param.html",
+      "id": "dpgen-docs-v0.13.3-run-example-of-param",
+      "label": "DP-GEN v0.13.3 run/example-of-param.html",
+      "path": "run/example-of-param.html",
+      "sha256": "897264addb4fe1e2fb4e7306fb7c271ce45583b96bba3ecc4f167d7e1df26cd2",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/example-of-param.html",
+      "version": "v0.13.3"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/param.html",
+      "id": "dpgen-docs-v0.13.3-run-param",
+      "label": "DP-GEN v0.13.3 run/param.html",
+      "path": "run/param.html",
+      "sha256": "533640f0c8016eec5384d7f1f7406dec08a5eafdf32639e83b67eb8c106a46e8",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/param.html",
+      "version": "v0.13.3"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/example-of-machine.html",
+      "id": "dpgen-docs-v0.13.3-run-example-of-machine",
+      "label": "DP-GEN v0.13.3 run/example-of-machine.html",
+      "path": "run/example-of-machine.html",
+      "sha256": "be812f27a39191be563a80cd58a39016df9f33709a8e1e94dbb25068841d530a",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/example-of-machine.html",
+      "version": "v0.13.3"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/mdata.html",
+      "id": "dpgen-docs-v0.13.3-run-mdata",
+      "label": "DP-GEN v0.13.3 run/mdata.html",
+      "path": "run/mdata.html",
+      "sha256": "3a443f9dc984f82133525f0fe8bd8c69e4e61422c3133a42e46cb6e81910e93e",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/run/mdata.html",
+      "version": "v0.13.3"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/simplify/simplify-jdata.html",
+      "id": "dpgen-docs-v0.13.3-simplify-simplify-jdata",
+      "label": "DP-GEN v0.13.3 simplify/simplify-jdata.html",
+      "path": "simplify/simplify-jdata.html",
+      "sha256": "61cbc59ecbe71a64a4a841353844e71c31ec615e127086330be70b180b127e3e",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/simplify/simplify-jdata.html",
+      "version": "v0.13.3"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/simplify/simplify-mdata.html",
+      "id": "dpgen-docs-v0.13.3-simplify-simplify-mdata",
+      "label": "DP-GEN v0.13.3 simplify/simplify-mdata.html",
+      "path": "simplify/simplify-mdata.html",
+      "sha256": "9f9217cd07450cbebdc77d0ba35fa77668081aa5eaae0fc3e3b5a635dfee6ae3",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/simplify/simplify-mdata.html",
+      "version": "v0.13.3"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/example-of-param.html",
+      "id": "dpgen-docs-v0.12.1-run-example-of-param",
+      "label": "DP-GEN v0.12.1 run/example-of-param.html",
+      "path": "run/example-of-param.html",
+      "sha256": "11d326aa5ee063a9d642a5b8c6530dfe52b43044570443719edcb9acfcd65c3b",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/example-of-param.html",
+      "version": "v0.12.1"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/param.html",
+      "id": "dpgen-docs-v0.12.1-run-param",
+      "label": "DP-GEN v0.12.1 run/param.html",
+      "path": "run/param.html",
+      "sha256": "a85dd28391b8887b43b60717f88b7d00eea8f0db2eceff48972531fed695773a",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/param.html",
+      "version": "v0.12.1"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/example-of-machine.html",
+      "id": "dpgen-docs-v0.12.1-run-example-of-machine",
+      "label": "DP-GEN v0.12.1 run/example-of-machine.html",
+      "path": "run/example-of-machine.html",
+      "sha256": "06277d6df3a1dc41da9cd8816cab0df105d6f8028903cc5d28f3b03370e5985d",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/example-of-machine.html",
+      "version": "v0.12.1"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/mdata.html",
+      "id": "dpgen-docs-v0.12.1-run-mdata",
+      "label": "DP-GEN v0.12.1 run/mdata.html",
+      "path": "run/mdata.html",
+      "sha256": "c8df3d6a8d8943bae14766525700144cbffdae4f496d612d19224619e685e1f0",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/run/mdata.html",
+      "version": "v0.12.1"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/simplify/simplify-jdata.html",
+      "id": "dpgen-docs-v0.12.1-simplify-simplify-jdata",
+      "label": "DP-GEN v0.12.1 simplify/simplify-jdata.html",
+      "path": "simplify/simplify-jdata.html",
+      "sha256": "609b04bb17b0f3639d6f7a9e5856cf4e4c16170c8e4d7f62550dafd0a136b872",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/simplify/simplify-jdata.html",
+      "version": "v0.12.1"
+    },
+    {
+      "final_url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/simplify/simplify-mdata.html",
+      "id": "dpgen-docs-v0.12.1-simplify-simplify-mdata",
+      "label": "DP-GEN v0.12.1 simplify/simplify-mdata.html",
+      "path": "simplify/simplify-mdata.html",
+      "sha256": "3118167630fb9c538ef86b5acd6c2449e62b8284b1adfd650c7b48d1b09d2537",
+      "status": 200,
+      "url": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/simplify/simplify-mdata.html",
+      "version": "v0.12.1"
     }
-  ]
+  ],
+  "version_index": "raw/assets/dpgen-version-index.json"
 }

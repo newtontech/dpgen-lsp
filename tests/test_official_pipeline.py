@@ -34,6 +34,10 @@ def test_capabilities_include_pipeline_and_provenance(capsys):
     assert any(
         source["id"] == "dpgen-run-example-machine" for source in payload["sourceProvenance"]
     )
+    assert "standard-lsp" in payload["capabilities"]
+    assert "definition" in payload["standardLsp"]["textDocument"]
+    assert "v0.13.3" in payload["dpgenVersionSupport"]["knownReleaseTags"]
+    assert "run/mdata.html" in payload["dpgenVersionSupport"]["docPages"]
 
 
 def test_docs_backed_diagnostics_include_manual_ref(tmp_path: Path):
@@ -77,6 +81,31 @@ def test_machine_sections_are_validated_without_dpdispatcher():
     assert by_code["machine.section.type"]["manual_ref"].endswith("example-of-machine.html")
 
 
+def test_known_release_version_is_not_warned():
+    from dpgen_lsp.features.diagnostic import DiagnosticProvider
+
+    text = json.dumps(
+        {
+            "dpgen_version": "v0.13.3",
+            "type_map": ["H"],
+            "model_devi_jobs": [],
+        }
+    )
+    diagnostics = DiagnosticProvider().get_diagnostics(text)
+
+    assert "version.unverified" not in {item["code"] for item in diagnostics}
+
+
+def test_unknown_declared_version_gets_nonblocking_warning():
+    from dpgen_lsp.features.diagnostic import DiagnosticProvider
+
+    diagnostics = DiagnosticProvider().get_diagnostics(json.dumps({"dpgen_version": "v9.9.9"}))
+    by_code = {item["code"]: item for item in diagnostics}
+
+    assert by_code["version.unverified"]["blocking"] is False
+    assert by_code["version.unverified"]["actual"] == "v9.9.9"
+
+
 def test_raw_official_docs_snapshot_matches_rule_sources():
     from dpgen_lsp.schema.official_rules import source_provenance
 
@@ -89,3 +118,12 @@ def test_raw_official_docs_snapshot_matches_rule_sources():
 
     assert official_ids <= raw_ids
     assert raw["pipeline"][-1] == "lsp-runtime"
+
+
+def test_version_index_covers_release_tags_and_docs_versions():
+    root = Path(__file__).resolve().parents[1]
+    version_index = json.loads((root / "raw" / "assets" / "dpgen-version-index.json").read_text())
+
+    assert version_index["summary"]["releaseTagCount"] >= 30
+    assert "v0.13.3" in version_index["releaseTags"]
+    assert any(item["slug"] == "v0.12.1" for item in version_index["readthedocsVersions"])

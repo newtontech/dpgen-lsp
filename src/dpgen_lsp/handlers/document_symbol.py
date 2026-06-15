@@ -1,29 +1,26 @@
 """LSP document symbol handler."""
 
+from __future__ import annotations
+
 from typing import Any
 
-from lsprotocol.types import DocumentSymbol, Position, Range, SymbolKind
+from lsprotocol.types import DocumentSymbol, SymbolKind
 
-from .json_utils import get_document_text, iter_json_key_occurrences
+from .text_utils import find_json_key_ranges, get_document_text
 
 
-def document_symbol(ls: Any, params: Any) -> list | None:
+def document_symbol(ls: Any, params: Any) -> list[DocumentSymbol] | None:
     text = get_document_text(ls, params.text_document.uri)
     if not text:
         return None
 
-    symbols: list[DocumentSymbol] = []
-    for occ in iter_json_key_occurrences(text):
-        rng = Range(
-            start=Position(line=occ.line, character=occ.character),
-            end=Position(line=occ.line, character=occ.end_character),
-        )
-        symbols.append(DocumentSymbol(
-            name=occ.key,
-            detail=occ.path,
+    symbols = [
+        DocumentSymbol(
+            name=name,
             kind=SymbolKind.Property,
-            range=rng,
-            selection_range=rng,
-        ))
-
+            range=key_range,
+            selection_range=key_range,
+        )
+        for name, key_range in find_json_key_ranges(text)
+    ]
     return symbols or None

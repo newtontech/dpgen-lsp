@@ -4,122 +4,42 @@ from __future__ import annotations
 
 import argparse
 import json
+from importlib.resources import files
 from pathlib import Path
 from typing import Any
 
 from .agent_operations import operation_path, with_capabilities
-from .rich_diagnostics import agent_check_payload
+from .features.cross_artifact import get_cross_artifact_diagnostics
+from .features.log_parser import parse_log_path
+from .rich_diagnostics import agent_check_payload, agent_project_check_payload
 from .schema.official_rules import pipeline_steps, source_provenance
+from .schema.versioning import dpgen_version_support_payload
 from . import templates as templates_lib
 
 SOFTWARE = "dpgen"
 
 
+def _load_capability_manifest() -> dict[str, Any]:
+    root_manifest = Path(__file__).resolve().parents[2] / "lsp-capabilities.json"
+    if root_manifest.exists():
+        return json.loads(root_manifest.read_text(encoding="utf-8"))
+    resource = files("dpgen_lsp").joinpath("lsp-capabilities.json")
+    return json.loads(resource.read_text(encoding="utf-8"))
+
+
 def _capabilities_payload() -> dict[str, Any]:
-    return {
-        "schema": "OpenQCLspCapabilities",
-        "version": 1,
-        "id": "dpgen-lsp",
-        "software": SOFTWARE,
-        "displayName": "DP-GEN",
-        "languageId": "dpgen",
-        "repository": "newtontech/dpgen-lsp",
-        "defaultBranch": "main",
-        "filePatterns": [
-            "param.json",
-            "machine.json",
-            "*param*.json",
-            "*machine*.json",
-        ],
-        "maturity": "stable",
-        "blockingPolicy": {
-            "mode": "blocking",
-            "description": (
-                "Blocking diagnostics indicate JSON syntax, schema, path, or semantic issues "
-                "that can prevent DP-GEN from launching or collecting usable data."
-            ),
-        },
-        "capabilities": [
-            "diagnostics",
-            "rich-diagnostics",
-            "completion",
-            "hover",
-            "symbols",
-            "fix-preview",
-            "llm-wiki",
-            "openqc-context",
-            "source-provenance",
-        ],
-        "pipeline": pipeline_steps(),
-        "sourceProvenance": source_provenance(),
-        "agentCli": {
-            "command": "dpgen-lsp-tool",
-            "operations": [
-                "capabilities",
-                "init",
-                "check",
-                "context",
-                "complete",
-                "hover",
-                "symbols",
-                "fix",
-            ],
-            "jsonFormat": True,
-            "failOnBlocking": True,
-        },
-        "diagnosticSchema": "diagnostics/diagnostic-engine-v1.schema.json",
-        "wikiPaths": {
-            "plan": "docs/LLM-WIKI-PLAN.md",
-            "rawAssets": "raw/assets",
-            "index": "index.md",
-            "log": "log.md",
-        },
-        "fixturePaths": {
-            "valid": ["tests/fixtures/valid"],
-            "invalid": ["tests/fixtures/invalid"],
-        },
-        "openqc": {
-            "registryId": "dpgen-lsp",
-            "repoName": "dpgen-lsp",
-            "contextContract": "DSLAuthoringContext",
-            "diagnosticEnvelope": "DiagnosticEnvelope/v1",
-        },
-        "sourceProvenance": [
-            {
-                "id": "dpgen-run-example-param",
-                "kind": "official_docs",
-                "label": "DP-GEN example param.json documentation",
-                "url": (
-                    "https://docs.deepmodeling.com/projects/dpgen/en/latest/"
-                    "run/example-of-param.html"
-                ),
-            },
-            {
-                "id": "dpgen-run-param",
-                "kind": "official_docs",
-                "label": "DP-GEN run param parameter documentation",
-                "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/param.html",
-            },
-            {
-                "id": "dpgen-run-example-machine",
-                "kind": "official_docs",
-                "label": "DP-GEN example machine.json documentation",
-                "url": (
-                    "https://docs.deepmodeling.com/projects/dpgen/en/latest/"
-                    "run/example-of-machine.html"
-                ),
-            },
-            {
-                "id": "dpgen-run-machine",
-                "kind": "official_docs",
-                "label": "DP-GEN run machine parameter documentation",
-                "url": "https://docs.deepmodeling.com/projects/dpgen/en/latest/run/mdata.html",
-            },
-        ],
-    }
+    payload = _load_capability_manifest()
+    payload["pipeline"] = pipeline_steps()
+    payload.setdefault("sourceProvenance", source_provenance())
+    payload["dpgenVersionSupport"] = dpgen_version_support_payload()
+    return payload
 
 
 def _file_type(path: Path) -> str:
+    from .features.output_logs import is_output_log_path
+
+    if is_output_log_path(path):
+        return "log"
     name = path.name.upper()
     if "PARAM" in name or "MACHINE" in name:
         return "json"
@@ -130,13 +50,33 @@ def _file_type(path: Path) -> str:
 
 def _collect_diagnostics(path: Path) -> list[Any]:
     from .features.diagnostic import DiagnosticProvider
+    from .features.output_logs import LogDiagnosticProvider, is_output_log_path
 
     text = path.read_text(encoding="utf-8")
+    if is_output_log_path(path):
+        return LogDiagnosticProvider().get_diagnostics(text, path.resolve().as_uri())
     base_dir = path.parent.resolve()
     return DiagnosticProvider().get_diagnostics(text, path.resolve().as_uri(), base_dir=base_dir)
 
 
+def _find_project_configs(project_dir: Path) -> tuple[Path | None, Path | None]:
+    param_path = None
+    machine_path = None
+    for candidate in sorted(project_dir.iterdir()):
+        if not candidate.is_file() or candidate.suffix.lower() != ".json":
+            continue
+        name = candidate.name.lower()
+        if name == "param.json" or ("param" in name and param_path is None):
+            param_path = candidate
+        elif name == "machine.json" or ("machine" in name and machine_path is None):
+            machine_path = candidate
+    return param_path, machine_path
+
+
 def check_path(path: Path) -> dict[str, Any]:
+    if path.is_dir():
+        return check_project(path)
+
     uri = path.resolve().as_uri()
     diagnostics = _collect_diagnostics(path)
     return agent_check_payload(
@@ -146,6 +86,59 @@ def check_path(path: Path) -> dict[str, Any]:
         diagnostics=diagnostics,
         path=str(path),
         file_type=_file_type(path),
+    )
+
+
+def check_project(project_dir: Path) -> dict[str, Any]:
+    project_dir = project_dir.resolve()
+    param_path, machine_path = _find_project_configs(project_dir)
+    file_entries: list[dict[str, Any]] = []
+    param_data: dict[str, Any] | None = None
+    machine_data: dict[str, Any] | None = None
+
+    for config_path in (param_path, machine_path):
+        if config_path is None:
+            continue
+        diagnostics = _collect_diagnostics(config_path)
+        file_entries.append(
+            {
+                "path": str(config_path),
+                "uri": config_path.resolve().as_uri(),
+                "file_type": _file_type(config_path),
+                "diagnostics": diagnostics,
+            }
+        )
+        try:
+            parsed = json.loads(config_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            parsed = None
+        if config_path == param_path and isinstance(parsed, dict):
+            param_data = parsed
+        if config_path == machine_path and isinstance(parsed, dict):
+            machine_data = parsed
+
+    cross_diagnostics: list[Any] = []
+    if param_data is not None and machine_data is not None:
+        cross_diagnostics = get_cross_artifact_diagnostics(param_data, machine_data)
+
+    return agent_project_check_payload(
+        software=SOFTWARE,
+        project_dir=project_dir,
+        operation="check",
+        files=file_entries,
+        cross_artifact_diagnostics=cross_diagnostics,
+    )
+
+
+def parse_log_file(path: Path) -> dict[str, Any]:
+    diagnostics = parse_log_path(path)
+    return agent_check_payload(
+        software=SOFTWARE,
+        uri=path.resolve().as_uri(),
+        operation="parse_log",
+        diagnostics=diagnostics,
+        path=str(path.resolve()),
+        file_type="log",
     )
 
 
@@ -172,7 +165,6 @@ def main(argv: list[str] | None = None) -> int:
     capabilities = subparsers.add_parser("capabilities")
     capabilities.add_argument("--format", choices=["json"], default="json")
 
-    # init subcommand
     init = subparsers.add_parser("init", help="Initialize dpgen input file from template")
     init.add_argument("path", type=Path, nargs="?", help="Output file path")
     init.add_argument("--template", type=str, help="Template key name or file path")
@@ -182,7 +174,7 @@ def main(argv: list[str] | None = None) -> int:
     init.add_argument("--stdout", action="store_true", help="Print template content to stdout")
     init.add_argument("--format", choices=["json"], default="json")
 
-    for operation in ("check", "context", "complete", "hover", "symbols", "fix"):
+    for operation in ("check", "context", "complete", "hover", "symbols", "fix", "parse-log"):
         sub = subparsers.add_parser(operation)
         sub.add_argument("path", type=Path)
         sub.add_argument("--format", choices=["json"], default="json")
@@ -206,17 +198,14 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(_capabilities_payload(), indent=2, sort_keys=True))
         return 0
 
-    # Handle init operation
     if args.operation == "init":
         import sys as _sys
 
-        # List templates
         if args.list:
             templates = templates_lib.list_templates(args.kind)
             print(json.dumps({"templates": templates}, indent=2, ensure_ascii=False))
             return 0
 
-        # Write template to stdout
         if args.stdout:
             if not args.template:
                 print("Error: --template is required when using --stdout", file=_sys.stderr)
@@ -228,7 +217,6 @@ def main(argv: list[str] | None = None) -> int:
             print(content)
             return 0
 
-        # Write template to file
         if not args.path:
             print("Error: path is required (or use --list or --stdout)", file=_sys.stderr)
             return 1
@@ -242,11 +230,14 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(result, indent=2, ensure_ascii=False))
         return 0 if result.get("success") else 1
 
-    # Handle other operations
     if args.operation == "check":
         payload = with_capabilities(check_path(args.path), "check")
         print(json.dumps(payload, indent=2, sort_keys=True))
         return 1 if getattr(args, "fail_on_blocking", False) and not payload["ok"] else 0
+    if args.operation == "parse-log":
+        payload = with_capabilities(parse_log_file(args.path), "parse-log")
+        print(json.dumps(payload, indent=2, sort_keys=True))
+        return 0
     payload = _operation_payload(args.path, args.operation, args.line, args.character)
     print(json.dumps(payload, indent=2, sort_keys=True))
     return 0

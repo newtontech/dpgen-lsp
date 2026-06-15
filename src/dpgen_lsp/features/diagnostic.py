@@ -15,6 +15,7 @@ from ..schema.loader import (
     DPGEN_IMPORT_MAP,
 )
 from ..schema.official_rules import manual_ref_for
+from ..schema.versioning import declared_dpgen_version, is_documented_version
 
 # PR4: Bohrium machine type whitelist
 KNOWN_BOHRIUM_MACHINES = {
@@ -109,6 +110,24 @@ class DiagnosticProvider:
             data = json.loads(text)
         except Exception:
             return diagnostics
+
+        declared_version = declared_dpgen_version(data)
+        if declared_version and not is_documented_version(declared_version):
+            diagnostics.append(
+                _diagnostic(
+                    0,
+                    0,
+                    f"Declared DP-GEN version {declared_version!r} is not in the "
+                    "checked-in versioned documentation set.",
+                    severity="warning",
+                    code="version.unverified",
+                    category="version",
+                    blocking=False,
+                    manual_ref="https://readthedocs.org/api/v3/projects/dpgen/versions/",
+                    expected="A DP-GEN version present in the versioned provenance index",
+                    actual=declared_version,
+                )
+            )
 
         file_type = detect_file_type(text)
 

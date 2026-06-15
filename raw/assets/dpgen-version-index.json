@@ -1,0 +1,486 @@
+{
+  "fetched_at": "2026-06-15T07:34:56+00:00",
+  "policy": {
+    "compatibilityModes": [
+      "latest",
+      "stable",
+      "legacy-v0.12",
+      "release-tag"
+    ],
+    "docPages": [
+      "run/example-of-param.html",
+      "run/param.html",
+      "run/example-of-machine.html",
+      "run/mdata.html",
+      "simplify/simplify-jdata.html",
+      "simplify/simplify-mdata.html"
+    ],
+    "documentedVersions": [
+      "latest",
+      "stable",
+      "devel",
+      "v0.13.3",
+      "v0.12.1"
+    ],
+    "githubTagsApi": "https://api.github.com/repos/deepmodeling/dpgen/tags?per_page=100",
+    "knownReleaseTags": [
+      "v0.13.3",
+      "v0.13.2",
+      "v0.13.1",
+      "v0.13.0",
+      "v0.12.1",
+      "v0.12.0",
+      "v0.11.1",
+      "v0.11.0",
+      "v0.10.6",
+      "v0.10.5",
+      "v0.10.4",
+      "v0.10.3",
+      "v0.10.2",
+      "v0.10.1",
+      "v0.10.0",
+      "v0.9.2",
+      "v0.9.1",
+      "v0.9.0",
+      "v0.8.1",
+      "v0.8.0",
+      "0.7.0",
+      "v0.6.0",
+      "v0.5.0",
+      "v0.4.0",
+      "v0.3.1",
+      "v0.3.0",
+      "v0.2.0",
+      "v0.1.5",
+      "v0.1.4",
+      "v0.1.3",
+      "v0.1.2",
+      "v0.1.1",
+      "v0.1.0"
+    ],
+    "policy": "Release-tag-aware schema fallback for every published DP-GEN tag, with versioned documentation snapshots for active docs branches and representative release docs.",
+    "readthedocsApi": "https://readthedocs.org/api/v3/projects/dpgen/versions/",
+    "runtimeVersionFields": [
+      "dpgen_version",
+      "version",
+      "api_version",
+      "deepmd_version",
+      "train_backend"
+    ]
+  },
+  "readthedocsVersions": [
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.9.2/",
+      "slug": "v0.9.2",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.9.2/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.9.1/",
+      "slug": "v0.9.1",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.9.1/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.9.0/",
+      "slug": "v0.9.0",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.9.0/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.8.1/",
+      "slug": "v0.8.1",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.8.1/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.8.0/",
+      "slug": "v0.8.0",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.8.0/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.6.0/",
+      "slug": "v0.6.0",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.6.0/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.5.0/",
+      "slug": "v0.5.0",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.5.0/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.4.0/",
+      "slug": "v0.4.0",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.4.0/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.3.1/",
+      "slug": "v0.3.1",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.3.1/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.3.0/",
+      "slug": "v0.3.0",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.3.0/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.2.0/",
+      "slug": "v0.2.0",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.2.0/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.1.5/",
+      "slug": "v0.1.5",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.1.5/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.1.4/",
+      "slug": "v0.1.4",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.1.4/"
+    },
+    {
+      "active": true,
+      "built": true,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.3/",
+      "slug": "v0.13.3",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.13.3/"
+    },
+    {
+      "active": true,
+      "built": true,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.2/",
+      "slug": "v0.13.2",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.13.2/"
+    },
+    {
+      "active": true,
+      "built": true,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.1/",
+      "slug": "v0.13.1",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.13.1/"
+    },
+    {
+      "active": true,
+      "built": true,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.13.0/",
+      "slug": "v0.13.0",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.13.0/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.1.3/",
+      "slug": "v0.1.3",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.1.3/"
+    },
+    {
+      "active": true,
+      "built": true,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.1/",
+      "slug": "v0.12.1",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.12.1/"
+    },
+    {
+      "active": true,
+      "built": true,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.12.0/",
+      "slug": "v0.12.0",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.12.0/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.1.2/",
+      "slug": "v0.1.2",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.1.2/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.11.1/",
+      "slug": "v0.11.1",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.11.1/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.11.0/",
+      "slug": "v0.11.0",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.11.0/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.1.1/",
+      "slug": "v0.1.1",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.1.1/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.10.6/",
+      "slug": "v0.10.6",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.10.6/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.10.5/",
+      "slug": "v0.10.5",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.10.5/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.10.4/",
+      "slug": "v0.10.4",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.10.4/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.10.3/",
+      "slug": "v0.10.3",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.10.3/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.10.2/",
+      "slug": "v0.10.2",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.10.2/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.10.1/",
+      "slug": "v0.10.1",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.10.1/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.10.0/",
+      "slug": "v0.10.0",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.10.0/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/v0.1.0/",
+      "slug": "v0.1.0",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.1.0/"
+    },
+    {
+      "active": true,
+      "built": true,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/stable/",
+      "slug": "stable",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/v0.13.3/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/refactor/",
+      "slug": "refactor",
+      "type": "branch",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/refactor/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/master/",
+      "slug": "master",
+      "type": "branch",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/master/"
+    },
+    {
+      "active": true,
+      "built": true,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/latest/",
+      "slug": "latest",
+      "type": "branch",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/master/"
+    },
+    {
+      "active": true,
+      "built": true,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/devel/",
+      "slug": "devel",
+      "type": "branch",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/devel/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/dependabot-github_actions-codecov-codecov-action-7/",
+      "slug": "dependabot-github_actions-codecov-codecov-action-7",
+      "type": "branch",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/dependabot/github_actions/codecov/codecov-action-7/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/copilot-fix-assertion-error-siestafiles/",
+      "slug": "copilot-fix-assertion-error-siestafiles",
+      "type": "branch",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/copilot/fix-assertion-error-siestafiles/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/copilot-fix-774/",
+      "slug": "copilot-fix-774",
+      "type": "branch",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/copilot/fix-774/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/copilot-fix-773/",
+      "slug": "copilot-fix-773",
+      "type": "branch",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/copilot/fix-773/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/copilot-fix-771/",
+      "slug": "copilot-fix-771",
+      "type": "branch",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/copilot/fix-771/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/copilot-fix-500/",
+      "slug": "copilot-fix-500",
+      "type": "branch",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/copilot/fix-500/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/copilot-fix-1139/",
+      "slug": "copilot-fix-1139",
+      "type": "branch",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/copilot/fix-1139/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/atest-refact/",
+      "slug": "atest-refact",
+      "type": "branch",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/atest-refact/"
+    },
+    {
+      "active": false,
+      "built": false,
+      "documentation": "https://docs.deepmodeling.com/projects/dpgen/en/0.7.0/",
+      "slug": "0.7.0",
+      "type": "tag",
+      "vcs": "https://github.com/deepmodeling/dpgen/tree/0.7.0/"
+    }
+  ],
+  "releaseTags": [
+    "v0.13.3",
+    "v0.13.2",
+    "v0.13.1",
+    "v0.13.0",
+    "v0.12.1",
+    "v0.12.0",
+    "v0.11.1",
+    "v0.11.0",
+    "v0.10.6",
+    "v0.10.5",
+    "v0.10.4",
+    "v0.10.3",
+    "v0.10.2",
+    "v0.10.1",
+    "v0.10.0",
+    "v0.9.2",
+    "v0.9.1",
+    "v0.9.0",
+    "v0.8.1",
+    "v0.8.0",
+    "v0.6.0",
+    "v0.5.0",
+    "v0.4.0",
+    "v0.3.1",
+    "v0.3.0",
+    "v0.2.0",
+    "v0.1.5",
+    "v0.1.4",
+    "v0.1.3",
+    "v0.1.2",
+    "v0.1.1",
+    "v0.1.0",
+    "0.7.0"
+  ],
+  "schema": "DpgenVersionIndex/v1",
+  "sources": {
+    "github_tags": "https://api.github.com/repos/deepmodeling/dpgen/tags?per_page=100",
+    "readthedocs": "https://readthedocs.org/api/v3/projects/dpgen/versions/"
+  },
+  "summary": {
+    "latestReleaseTag": "v0.13.3",
+    "readthedocsVersionCount": 46,
+    "releaseTagCount": 33
+  }
+}

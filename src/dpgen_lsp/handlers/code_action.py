@@ -1,43 +1,39 @@
 """LSP code action handler."""
 
+from __future__ import annotations
+
 from typing import Any
 
-from lsprotocol.types import CodeAction, CodeActionKind, CodeActionParams, Command
+from lsprotocol.types import CodeAction, CodeActionKind, CodeActionParams
 
-from .json_utils import get_document_text
+from ..features.diagnostic import DiagnosticProvider
+from .text_utils import get_document_text
 
 
 def code_action(ls: Any, params: CodeActionParams) -> list[CodeAction] | None:
-    text = get_document_text(ls, params.text_document.uri)
+    uri = params.text_document.uri
+    text = get_document_text(ls, uri)
     if not text:
         return None
 
-    raw_diagnostics = []
-    for diagnostic in params.context.diagnostics or []:
-        raw_diagnostics.append({
-            "code": getattr(diagnostic, "code", ""),
-            "message": getattr(diagnostic, "message", ""),
-            "severity": str(getattr(diagnostic, "severity", "")),
-        })
-
-    provider = getattr(ls, "code_action_provider", None)
-    if provider is None:
-        return None
-
-    line = params.range.start.line
-    character = params.range.start.character
-    actions = provider.get_code_actions(text, line, character, raw_diagnostics)
-
-    result: list[CodeAction] = []
-    for action in actions:
-        result.append(CodeAction(
-            title=action.get("title", "DP-GEN action"),
-            kind=CodeActionKind.QuickFix,
-            command=Command(
-                title=action.get("title", "DP-GEN action"),
-                command=action.get("command", "dpgen-lsp.noop"),
-                arguments=action.get("arguments", []),
-            ),
-        ))
-
-    return result or None
+    diagnostics = DiagnosticProvider().get_diagnostics(text, uri)
+    actions: list[CodeAction] = []
+    for diagnostic in diagnostics:
+        hints = diagnostic.get("fix_hints") or [
+            "Review this DP-GEN diagnostic before launching the workflow."
+        ]
+        for index, hint in enumerate(hints[:3]):
+            actions.append(
+                CodeAction(
+                    title=str(hint),
+                    kind=CodeActionKind.QuickFix,
+                    data={
+                        "source": "dpgen-lsp",
+                        "diagnosticCode": diagnostic.get("code"),
+                        "hintIndex": index,
+                        "manualRef": diagnostic.get("manual_ref"),
+                        "safeToAutoApply": False,
+                    },
+                )
+            )
+    return actions or None

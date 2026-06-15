@@ -1,28 +1,27 @@
 """LSP go-to-definition handler."""
 
+from __future__ import annotations
+
 from typing import Any
 
-from lsprotocol.types import Location, Position, Range
+from lsprotocol.types import Location
 
-from .json_utils import get_document_text, key_at_position
+from ..schema.loader import detect_workflow
+from ..schema.official_rules import manual_ref_for
+from .text_utils import empty_range, get_document_text, word_at
 
 
-def definition(ls: Any, params: Any) -> list | None:
-    uri = params.text_document.uri
-    text = get_document_text(ls, uri)
+def definition(ls: Any, params: Any) -> list[Location] | None:
+    text = get_document_text(ls, params.text_document.uri)
     if not text:
         return None
 
-    occ = key_at_position(text, params.position.line, params.position.character)
-    if occ is None:
+    selected = word_at(text, params.position.line, params.position.character)
+    if selected is None:
         return None
-
-    # For JSON configuration keys, the key occurrence itself is the local
-    # definition.  This still enables LSP clients to reveal and select it.
-    return [Location(
-        uri=uri,
-        range=Range(
-            start=Position(line=occ.line, character=occ.character),
-            end=Position(line=occ.line, character=occ.end_character),
-        ),
-    )]
+    token, _ = selected
+    workflow = "machine" if "machine" in params.text_document.uri.lower() else detect_workflow(text)
+    manual_ref = manual_ref_for(workflow, field=token)
+    if not manual_ref:
+        return None
+    return [Location(uri=manual_ref, range=empty_range())]

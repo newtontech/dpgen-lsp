@@ -18,6 +18,14 @@ def source_provenance() -> list[dict[str, Any]]:
     return list(load_rule_index().get("sourceProvenance", []))
 
 
+def version_support() -> dict[str, Any]:
+    return dict(load_rule_index().get("versionSupport", {}))
+
+
+def documented_versions() -> list[str]:
+    return list(version_support().get("documentedVersions", []))
+
+
 def workflow_index(workflow: str) -> dict[str, Any]:
     return dict(load_rule_index().get("workflows", {}).get(workflow, {}))
 
