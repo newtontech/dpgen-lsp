@@ -14,7 +14,7 @@ from .handlers.hover import hover
 from .handlers.references import references
 from .handlers.rename import prepare_rename, rename
 
-Handler = Callable[[Any], Any]
+Handler = Callable[..., Any]
 
 
 def default_handlers() -> List[Tuple[str, Handler]]:

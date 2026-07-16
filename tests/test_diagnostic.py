@@ -33,11 +33,11 @@ def test_lint_checks_fp_pp_files():
     from dpgen_lsp.features.diagnostic import DiagnosticProvider
 
     provider = DiagnosticProvider()
-    text = '''{
+    text = """{
         "type_map": ["H", "C", "O"],
         "fp_style": "vasp",
         "fp_pp_files": ["POTCAR_H"]
-    }'''
+    }"""
     diags = provider.get_diagnostics(text)
     fp_pp_diags = [d for d in diags if "fp_pp_files" in str(d.get("code", ""))]
     assert len(fp_pp_diags) >= 0

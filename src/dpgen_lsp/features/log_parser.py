@@ -60,16 +60,26 @@ _FILE_NOT_FOUND_RE = re.compile(
     r"(FileNotFoundError|No such file or directory|cannot find file|does not exist)",
     re.IGNORECASE,
 )
-_TRAINING_FAILED_RE = re.compile(r"(train(?:ing)? failed|lcurve\.out.*error|dp train failed)", re.IGNORECASE)
-_MODEL_DEVI_FAILED_RE = re.compile(r"(model_devi failed|model deviation failed|devi job failed)", re.IGNORECASE)
-_LABELING_FAILED_RE = re.compile(r"(label(?:ing)? failed|fp task failed|first-principles failed)", re.IGNORECASE)
+_TRAINING_FAILED_RE = re.compile(
+    r"(train(?:ing)? failed|lcurve\.out.*error|dp train failed)", re.IGNORECASE
+)
+_MODEL_DEVI_FAILED_RE = re.compile(
+    r"(model_devi failed|model deviation failed|devi job failed)", re.IGNORECASE
+)
+_LABELING_FAILED_RE = re.compile(
+    r"(label(?:ing)? failed|fp task failed|first-principles failed)", re.IGNORECASE
+)
 _SCHEDULER_RE = re.compile(
     r"(submission failed|queue not found|resource mismatch|machine\.json|dpdispatcher)",
     re.IGNORECASE,
 )
 _KEY_ERROR_RE = re.compile(r"KeyError:\s*['\"](?P<key>[^'\"]+)['\"]")
-_JSON_ERROR_RE = re.compile(r"(JSONDecodeError|Expecting property name enclosed in quotes)", re.IGNORECASE)
-_TASK_MALFORMED_RE = re.compile(r"(malformed task|invalid task dict|bad task format)", re.IGNORECASE)
+_JSON_ERROR_RE = re.compile(
+    r"(JSONDecodeError|Expecting property name enclosed in quotes)", re.IGNORECASE
+)
+_TASK_MALFORMED_RE = re.compile(
+    r"(malformed task|invalid task dict|bad task format)", re.IGNORECASE
+)
 
 
 def _extract_config_path(line: str) -> str | None:
@@ -86,8 +96,8 @@ def _extract_config_path(line: str) -> str | None:
 def parse_log_content(content: str, file_path: str = "<log>") -> list[dict[str, Any]]:
     """Parse DP-GEN or dpdispatcher log content into DiagnosticEnvelope items.
 
-LLM Wiki: wiki/synthesis/openqc-agent-context.md
-"""
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     diagnostics: list[LogDiagnostic] = []
     seen: set[tuple[str, int, str]] = set()
 

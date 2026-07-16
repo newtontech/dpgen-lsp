@@ -4,7 +4,6 @@ import json
 import tempfile
 from pathlib import Path
 
-
 CORE_PARAM_TEMPLATES = {
     "lammps-vasp",
     "lammps-pwscf",

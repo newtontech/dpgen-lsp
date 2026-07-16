@@ -27,7 +27,7 @@ def hover_contents(text: str, line: int, character: int) -> str | None:
         return None
 
     parts = []
-    parts.append(f"```json\n\"{node.name}\": <{node.json_type}>\n```")
+    parts.append(f'```json\n"{node.name}": <{node.json_type}>\n```')
     parts.append("")
     if not node.optional:
         parts.append("**Required**")

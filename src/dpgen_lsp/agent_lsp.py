@@ -17,8 +17,8 @@ from .tool import SOFTWARE, _collect_diagnostics, _file_type, check_path
 class AgentLSP:
     """Agent-facing wrapper for non-editor LSP diagnostics.
 
-LLM Wiki: wiki/synthesis/openqc-agent-context.md
-"""
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
 
     def __init__(self, text: str | None = None, uri: str = "file:///input") -> None:
         self.text = text
