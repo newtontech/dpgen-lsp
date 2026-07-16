@@ -54,6 +54,16 @@ def test_release_workflow_uses_tag_only_oidc_trusted_publishing() -> None:
     assert "python -m twine check dist/*" in workflow
     assert "scripts/smoke_wheel.sh dist/*.whl" in workflow
     assert "Tag version does not match pyproject.toml" in workflow
+    github_release = workflow.split("  github-release:", 1)[1]
+    assert "needs: build-and-verify" in github_release
+    assert "Verify checkout matches the pushed tag" in github_release
+    assert 'test "$(git rev-parse HEAD)" = "$GITHUB_SHA"' in github_release
+    assert 'test "$(git rev-parse "$GITHUB_REF_NAME^{}")" = "$GITHUB_SHA"' in github_release
+    assert "actions/download-artifact@v4" in github_release
+    assert "name: python-distributions" in github_release
+    assert "GH_REPO: ${{ github.repository }}" in github_release
+    assert 'gh release view "$GITHUB_REF_NAME"' in github_release
+    assert "gh release create" in github_release
 
 
 def test_release_docs_and_fresh_wheel_smoke_cover_acceptance_surface() -> None:
