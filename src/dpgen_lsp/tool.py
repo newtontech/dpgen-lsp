@@ -9,7 +9,7 @@ import argparse
 import json
 from importlib.resources import files
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 from .agent_operations import operation_path, with_capabilities
 from .features.cross_artifact import get_cross_artifact_diagnostics
@@ -25,9 +25,9 @@ SOFTWARE = "dpgen"
 def _load_capability_manifest() -> dict[str, Any]:
     root_manifest = Path(__file__).resolve().parents[2] / "lsp-capabilities.json"
     if root_manifest.exists():
-        return json.loads(root_manifest.read_text(encoding="utf-8"))
+        return cast(dict[str, Any], json.loads(root_manifest.read_text(encoding="utf-8")))
     resource = files("dpgen_lsp").joinpath("lsp-capabilities.json")
-    return json.loads(resource.read_text(encoding="utf-8"))
+    return cast(dict[str, Any], json.loads(resource.read_text(encoding="utf-8")))
 
 
 def _capabilities_payload() -> dict[str, Any]:

@@ -3,7 +3,7 @@
   "serverId": "dpgen-lsp",
   "repository": "newtontech/dpgen-lsp",
   "languageId": "dpgen",
-  "generatedAt": "2026-06-15T19:03:26+00:00",
+  "generatedAt": "2026-07-16T09:23:25+00:00",
   "summary": {
     "docstringsTotal": 77,
     "docstringsLinked": 77,
@@ -159,7 +159,7 @@
     },
     {
       "file": "src/dpgen_lsp/features/code_actions.py",
-      "line": 77,
+      "line": 89,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
@@ -168,7 +168,7 @@
       "brokenWikiRefs": [],
       "path": "src/dpgen_lsp/features/code_actions.py",
       "wikiPath": "wiki/synthesis/openqc-agent-context.md",
-      "symbol": "python-docstring:src/dpgen_lsp/features/code_actions.py:77"
+      "symbol": "python-docstring:src/dpgen_lsp/features/code_actions.py:89"
     },
     {
       "file": "src/dpgen_lsp/features/completion.py",
@@ -354,7 +354,7 @@
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
-      "line": 48,
+      "line": 47,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
@@ -363,11 +363,11 @@
       "brokenWikiRefs": [],
       "path": "src/dpgen_lsp/features/lint.py",
       "wikiPath": "wiki/synthesis/openqc-agent-context.md",
-      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:48"
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:47"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
-      "line": 69,
+      "line": 68,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
@@ -376,11 +376,11 @@
       "brokenWikiRefs": [],
       "path": "src/dpgen_lsp/features/lint.py",
       "wikiPath": "wiki/synthesis/openqc-agent-context.md",
-      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:69"
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:68"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
-      "line": 81,
+      "line": 80,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
@@ -389,11 +389,11 @@
       "brokenWikiRefs": [],
       "path": "src/dpgen_lsp/features/lint.py",
       "wikiPath": "wiki/synthesis/openqc-agent-context.md",
-      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:81"
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:80"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
-      "line": 100,
+      "line": 99,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
@@ -402,11 +402,11 @@
       "brokenWikiRefs": [],
       "path": "src/dpgen_lsp/features/lint.py",
       "wikiPath": "wiki/synthesis/openqc-agent-context.md",
-      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:100"
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:99"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
-      "line": 122,
+      "line": 121,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
@@ -415,11 +415,11 @@
       "brokenWikiRefs": [],
       "path": "src/dpgen_lsp/features/lint.py",
       "wikiPath": "wiki/synthesis/openqc-agent-context.md",
-      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:122"
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:121"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
-      "line": 212,
+      "line": 233,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
@@ -428,11 +428,11 @@
       "brokenWikiRefs": [],
       "path": "src/dpgen_lsp/features/lint.py",
       "wikiPath": "wiki/synthesis/openqc-agent-context.md",
-      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:212"
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:233"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
-      "line": 258,
+      "line": 282,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
@@ -441,11 +441,11 @@
       "brokenWikiRefs": [],
       "path": "src/dpgen_lsp/features/lint.py",
       "wikiPath": "wiki/synthesis/openqc-agent-context.md",
-      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:258"
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:282"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
-      "line": 292,
+      "line": 320,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
@@ -454,11 +454,11 @@
       "brokenWikiRefs": [],
       "path": "src/dpgen_lsp/features/lint.py",
       "wikiPath": "wiki/synthesis/openqc-agent-context.md",
-      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:292"
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:320"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
-      "line": 349,
+      "line": 391,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
@@ -467,11 +467,11 @@
       "brokenWikiRefs": [],
       "path": "src/dpgen_lsp/features/lint.py",
       "wikiPath": "wiki/synthesis/openqc-agent-context.md",
-      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:349"
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:391"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
-      "line": 411,
+      "line": 454,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
@@ -480,11 +480,11 @@
       "brokenWikiRefs": [],
       "path": "src/dpgen_lsp/features/lint.py",
       "wikiPath": "wiki/synthesis/openqc-agent-context.md",
-      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:411"
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:454"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
-      "line": 466,
+      "line": 511,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
@@ -493,11 +493,11 @@
       "brokenWikiRefs": [],
       "path": "src/dpgen_lsp/features/lint.py",
       "wikiPath": "wiki/synthesis/openqc-agent-context.md",
-      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:466"
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:511"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
-      "line": 523,
+      "line": 571,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
@@ -506,11 +506,11 @@
       "brokenWikiRefs": [],
       "path": "src/dpgen_lsp/features/lint.py",
       "wikiPath": "wiki/synthesis/openqc-agent-context.md",
-      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:523"
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:571"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
-      "line": 567,
+      "line": 615,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
@@ -519,11 +519,11 @@
       "brokenWikiRefs": [],
       "path": "src/dpgen_lsp/features/lint.py",
       "wikiPath": "wiki/synthesis/openqc-agent-context.md",
-      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:567"
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:615"
     },
     {
       "file": "src/dpgen_lsp/features/lint.py",
-      "line": 573,
+      "line": 621,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
@@ -532,7 +532,7 @@
       "brokenWikiRefs": [],
       "path": "src/dpgen_lsp/features/lint.py",
       "wikiPath": "wiki/synthesis/openqc-agent-context.md",
-      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:573"
+      "symbol": "python-docstring:src/dpgen_lsp/features/lint.py:621"
     },
     {
       "file": "src/dpgen_lsp/features/log_parser.py",
@@ -549,7 +549,7 @@
     },
     {
       "file": "src/dpgen_lsp/features/log_parser.py",
-      "line": 87,
+      "line": 97,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
@@ -558,7 +558,7 @@
       "brokenWikiRefs": [],
       "path": "src/dpgen_lsp/features/log_parser.py",
       "wikiPath": "wiki/synthesis/openqc-agent-context.md",
-      "symbol": "python-docstring:src/dpgen_lsp/features/log_parser.py:87"
+      "symbol": "python-docstring:src/dpgen_lsp/features/log_parser.py:97"
     },
     {
       "file": "src/dpgen_lsp/features/output_logs.py",
@@ -848,7 +848,7 @@
     },
     {
       "file": "src/dpgen_lsp/schema/loader.py",
-      "line": 515,
+      "line": 552,
       "kind": "python-docstring",
       "linked": true,
       "wikiRefs": [
@@ -857,7 +857,7 @@
       "brokenWikiRefs": [],
       "path": "src/dpgen_lsp/schema/loader.py",
       "wikiPath": "wiki/synthesis/openqc-agent-context.md",
-      "symbol": "python-docstring:src/dpgen_lsp/schema/loader.py:515"
+      "symbol": "python-docstring:src/dpgen_lsp/schema/loader.py:552"
     },
     {
       "file": "src/dpgen_lsp/schema/loader.py",

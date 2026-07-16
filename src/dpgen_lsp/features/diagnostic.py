@@ -189,15 +189,15 @@ class DiagnosticProvider:
 def _validate_machine_config(data: dict, text: str) -> list[dict]:
     """Validate machine.json sections against dpdispatcher Machine.arginfo().
 
-    machine.json structure:
-    {
-      "train": [ { "machine": {...}, ... } ],
-      "model_devi": [ { "machine": {...}, ... } ],
-      "fp": [ { "machine": {...}, ... } ]
-    }
+        machine.json structure:
+        {
+          "train": [ { "machine": {...}, ... } ],
+          "model_devi": [ { "machine": {...}, ... } ],
+          "fp": [ { "machine": {...}, ... } ]
+        }
 
-LLM Wiki: wiki/synthesis/openqc-agent-context.md
-"""
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     diagnostics: list[dict] = []
 
     try:
@@ -257,8 +257,8 @@ LLM Wiki: wiki/synthesis/openqc-agent-context.md
 def _lint_cp2k_fp(data: dict, text: str) -> list[dict]:
     """Check CP2K-specific fp_params for common issues.
 
-LLM Wiki: wiki/synthesis/openqc-agent-context.md
-"""
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     diagnostics: list[dict] = []
 
     fp_style = data.get("fp_style")
@@ -324,8 +324,8 @@ LLM Wiki: wiki/synthesis/openqc-agent-context.md
 def _lint_path_existence(data: dict, text: str, base_dir: Path) -> list[dict]:
     """Check that referenced paths (init_data_sys, sys_configs) exist.
 
-LLM Wiki: wiki/synthesis/openqc-agent-context.md
-"""
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     diagnostics: list[dict] = []
 
     # init_data_sys — required for training
@@ -398,8 +398,8 @@ def _path_or_glob_exists(path: Path) -> bool:
 def _lint_machine_type_whitelist(data: dict, text: str) -> list[dict]:
     """Warn if scass_type doesn't match known Bohrium machine types.
 
-LLM Wiki: wiki/synthesis/openqc-agent-context.md
-"""
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     diagnostics: list[dict] = []
 
     all_known = set()
@@ -605,8 +605,8 @@ def _lint_simple(
 def _find_key_line(text: str, key: str) -> int:
     """Find the line number of a key in JSON text.
 
-LLM Wiki: wiki/synthesis/openqc-agent-context.md
-"""
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     lines = text.splitlines()
     for lno, raw in enumerate(lines):
         if f'"{key}"' in raw:
@@ -617,8 +617,8 @@ LLM Wiki: wiki/synthesis/openqc-agent-context.md
 def _find_next_key_line(text: str, key: str, used_lines: set[int]) -> int:
     """Find the next unused occurrence of a key in JSON text.
 
-LLM Wiki: wiki/synthesis/openqc-agent-context.md
-"""
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     lines = text.splitlines()
     for lno, raw in enumerate(lines):
         if f'"{key}"' in raw and lno not in used_lines:
@@ -629,8 +629,8 @@ LLM Wiki: wiki/synthesis/openqc-agent-context.md
 def _find_section_line(text: str, section_name: str) -> int:
     """Find the line number of a top-level section key.
 
-LLM Wiki: wiki/synthesis/openqc-agent-context.md
-"""
+    LLM Wiki: wiki/synthesis/openqc-agent-context.md
+    """
     lines = text.splitlines()
     for lno, raw in enumerate(lines):
         stripped = raw.strip()

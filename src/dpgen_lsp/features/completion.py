@@ -5,7 +5,7 @@ LLM Wiki: wiki/synthesis/openqc-agent-context.md
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, cast
 
 from ..schema.loader import load_schema_tree, detect_workflow
 from ..schema.json_path import JsonPathMapper
@@ -68,7 +68,7 @@ def completion_items(text: str, line: int, character: int) -> list[dict[str, Any
 def _short_doc(node) -> str:
     if not node.doc:
         return f"Type: {node.json_type}"
-    doc = node.doc.replace("\n", " ")[:100]
+    doc = cast(str, node.doc).replace("\n", " ")[:100]
     if not node.optional:
         doc = f"[required] {doc}"
     return doc

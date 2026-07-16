@@ -1,6 +1,8 @@
 {
   "schema": "OpenQCLspCapabilities",
   "version": 1,
+  "releaseVersion": "0.1.2",
+  "releaseTag": "v0.1.2",
   "id": "dpgen-lsp",
   "software": "dpgen",
   "displayName": "DP-GEN",

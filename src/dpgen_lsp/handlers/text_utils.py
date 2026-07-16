@@ -6,7 +6,7 @@ LLM Wiki: wiki/synthesis/openqc-agent-context.md
 from __future__ import annotations
 
 import re
-from typing import Any
+from typing import Any, cast
 
 from lsprotocol.types import Position, Range
 
@@ -16,7 +16,7 @@ JSON_KEY_RE = re.compile(r'"(?P<name>[A-Za-z_][A-Za-z0-9_.$%+-]*)"\s*:')
 
 def get_document_text(ls: Any, uri: str) -> str:
     docs = getattr(ls, "documents", {})
-    return docs.get(uri, "")
+    return cast(str, docs.get(uri, ""))
 
 
 def make_range(line: int, start: int, end: int) -> Range:

@@ -259,13 +259,13 @@ class SchemaTree:
     def find_node(self, json_path: str) -> SchemaNode | None:
         """Find an exact schema node for a JSON path.
 
-        This compatibility wrapper is used by feature providers.  Variant
-        fields are indexed as their argument names, so exact lookup is the
-        desired behavior for hover and references. Static rule indexes also
-        support a final-component fallback for nested JSON paths.
+                This compatibility wrapper is used by feature providers.  Variant
+                fields are indexed as their argument names, so exact lookup is the
+                desired behavior for hover and references. Static rule indexes also
+                support a final-component fallback for nested JSON paths.
 
-LLM Wiki: wiki/synthesis/openqc-agent-context.md
-"""
+        LLM Wiki: wiki/synthesis/openqc-agent-context.md
+        """
         if not json_path:
             return self.root
         node = self.lookup(json_path)
@@ -276,12 +276,12 @@ LLM Wiki: wiki/synthesis/openqc-agent-context.md
     def find_best_node(self, json_path: str) -> SchemaNode | None:
         """Find the best schema node for completion at a JSON path.
 
-        Completion normally needs children of the current object. If an exact
-        path is not indexed, walk upward through dotted path components and
-        finally fall back to the root node.
+                Completion normally needs children of the current object. If an exact
+                path is not indexed, walk upward through dotted path components and
+                finally fall back to the root node.
 
-LLM Wiki: wiki/synthesis/openqc-agent-context.md
-"""
+        LLM Wiki: wiki/synthesis/openqc-agent-context.md
+        """
         if not json_path:
             return self.root
         parts = json_path.split(".")
@@ -390,16 +390,31 @@ def _fallback_schema_root(workflow: str) -> SchemaNode:
 
     if workflow in {"init_bulk", "init_surf"}:
         add("stages", "array", f"Stages for dpgen {workflow}.", optional=False)
-        add("elements", "array", "Chemical elements used to generate initial structures.", optional=False)
+        add(
+            "elements",
+            "array",
+            "Chemical elements used to generate initial structures.",
+            optional=False,
+        )
         add("potcars", "array", "VASP POTCAR paths in element order.")
         add("cell_type", "string", "Prototype cell type: fcc, hcp, bcc, sc, or diamond.")
         add("super_cell", "array", "Supercell replication, e.g. [2, 2, 2].", optional=False)
-        add("from_poscar", "boolean", "Use an existing POSCAR/STRU instead of prototype cell generation.", default=False)
+        add(
+            "from_poscar",
+            "boolean",
+            "Use an existing POSCAR/STRU instead of prototype cell generation.",
+            default=False,
+        )
         add("from_poscar_path", "string", "Path to POSCAR or STRU when from_poscar is true.")
         add("relax_incar", "string", "Relaxation INCAR/INPUT path.")
         add("scale", "array", "Isotropic scaling factors.", optional=False)
         add("skip_relax", "boolean", "Skip the relaxation stage.", optional=False)
-        add("pert_numb", "integer", "Number of perturbations for each scaled structure.", optional=False)
+        add(
+            "pert_numb",
+            "integer",
+            "Number of perturbations for each scaled structure.",
+            optional=False,
+        )
         add("pert_box", "number", "Cell perturbation amplitude.", optional=False)
         add("pert_atom", "number", "Atomic coordinate perturbation amplitude.", optional=False)
         add("coll_ndata", "integer", "Maximum collected data frames.", optional=False)
@@ -407,7 +422,12 @@ def _fallback_schema_root(workflow: str) -> SchemaNode:
             add("type_map", "array", "Atom type names in DP-GEN order.")
             add("md_incar", "string", "AIMD INCAR/INPUT path.")
             add("md_nstep", "integer", "AIMD step count.", optional=False)
-            add("init_fp_style", "string", "Initial-data FP backend: VASP or ABACUS.", variant_tags=["VASP", "ABACUS"])
+            add(
+                "init_fp_style",
+                "string",
+                "Initial-data FP backend: VASP or ABACUS.",
+                variant_tags=["VASP", "ABACUS"],
+            )
         else:
             add("latt", "number", "Lattice constant for the unit cell.", optional=False)
             add("layer_numb", "integer", "Number of slab atom layers.")
@@ -436,7 +456,12 @@ def _fallback_schema_root(workflow: str) -> SchemaNode:
     add("sys_configs_prefix", "string", "Prefix for exploration structure paths.")
     add("sys_configs", "array", "2D list of structures used for exploration.", optional=False)
     add("numb_models", "integer", "Number of models to train. Four is recommended.", optional=False)
-    add("default_training_param", "object", "DeePMD-kit training parameter template.", optional=False)
+    add(
+        "default_training_param",
+        "object",
+        "DeePMD-kit training parameter template.",
+        optional=False,
+    )
     add("model_devi_jobs", "array", "Exploration job settings for each iteration.", optional=False)
     add("model_devi_f_trust_lo", "number", "Lower force model-deviation trust bound.")
     add("model_devi_f_trust_hi", "number", "Upper force model-deviation trust bound.")
@@ -465,9 +490,16 @@ def _fallback_schema_root(workflow: str) -> SchemaNode:
             "cpx",
             "custom",
         ]
-    add("fp_style", "string", "First-principles engine.", optional=False, variant_tags=fp_style_tags)
+    add(
+        "fp_style", "string", "First-principles engine.", optional=False, variant_tags=fp_style_tags
+    )
     add("fp_task_max", "integer", "Maximum FP tasks selected per iteration.", optional=False)
-    add("fp_task_min", "integer", "Minimum FP tasks required for next training iteration.", optional=False)
+    add(
+        "fp_task_min",
+        "integer",
+        "Minimum FP tasks required for next training iteration.",
+        optional=False,
+    )
     add("fp_pp_path", "string", "Directory containing pseudopotential or basis files.")
     add("fp_pp_files", "array", "Pseudopotential files in type_map order.")
     add("fp_params", "object", "FP-backend-specific parameters.")
@@ -475,7 +507,12 @@ def _fallback_schema_root(workflow: str) -> SchemaNode:
     if workflow == "simplify":
         add("pick_data", "array", "Dataset paths to simplify.", optional=False)
         add("init_pick_number", "integer", "Number of initially picked frames.", optional=False)
-        add("iter_pick_number", "integer", "Number of frames picked per simplify iteration.", optional=False)
+        add(
+            "iter_pick_number",
+            "integer",
+            "Number of frames picked per simplify iteration.",
+            optional=False,
+        )
         add("labeled", "boolean", "Whether pick_data is already labeled.", default=False)
 
     return root

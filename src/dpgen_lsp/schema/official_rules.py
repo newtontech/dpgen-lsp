@@ -8,13 +8,13 @@ from __future__ import annotations
 import json
 from functools import lru_cache
 from importlib.resources import files
-from typing import Any
+from typing import Any, cast
 
 
 @lru_cache(maxsize=1)
 def load_rule_index() -> dict[str, Any]:
     path = files("dpgen_lsp.schema").joinpath("dpgen_rules.json")
-    return json.loads(path.read_text(encoding="utf-8"))
+    return cast(dict[str, Any], json.loads(path.read_text(encoding="utf-8")))
 
 
 def source_provenance() -> list[dict[str, Any]]:
@@ -61,12 +61,12 @@ def manual_ref_for(workflow: str, *, field: str = "", code: str = "") -> str | N
         index = workflow_index(workflow)
     rules = index.get("rules", {})
     if code and code in rules:
-        return rules[code].get("manual_ref")
+        return cast(str | None, rules[code].get("manual_ref"))
     if field:
         meta = field_metadata(workflow, field)
         if meta:
-            return meta.get("manual_ref")
-    return index.get("manualRef")
+            return cast(str | None, meta.get("manual_ref"))
+    return cast(str | None, index.get("manualRef"))
 
 
 def pipeline_steps() -> list[str]:

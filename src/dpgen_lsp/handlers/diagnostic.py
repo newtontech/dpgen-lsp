@@ -3,7 +3,7 @@
 LLM Wiki: wiki/synthesis/openqc-agent-context.md
 """
 
-from typing import Any
+from typing import Any, cast
 
 from lsprotocol.types import (
     Diagnostic,
@@ -38,26 +38,28 @@ def diagnostic(ls: Any, params: Any) -> list[Diagnostic] | None:
             "hint": DiagnosticSeverity.Hint,
         }
 
-        result.append(Diagnostic(
-            range=Range(
-                start=Position(
-                    line=start.get("line", 0),
-                    character=start.get("character", 0),
+        result.append(
+            Diagnostic(
+                range=Range(
+                    start=Position(
+                        line=start.get("line", 0),
+                        character=start.get("character", 0),
+                    ),
+                    end=Position(
+                        line=end.get("line", 0),
+                        character=end.get("character", 0),
+                    ),
                 ),
-                end=Position(
-                    line=end.get("line", 0),
-                    character=end.get("character", 0),
-                ),
-            ),
-            severity=severity_map.get(raw.get("severity", "error"), DiagnosticSeverity.Error),
-            code=raw.get("code", "diagnostic"),
-            source=raw.get("source", "dpgen-lsp"),
-            message=raw.get("message", ""),
-        ))
+                severity=severity_map.get(raw.get("severity", "error"), DiagnosticSeverity.Error),
+                code=raw.get("code", "diagnostic"),
+                source=raw.get("source", "dpgen-lsp"),
+                message=raw.get("message", ""),
+            )
+        )
 
     return result if result else None
 
 
 def _get_text(ls: Any, uri: str) -> str:
     docs = getattr(ls, "documents", {})
-    return docs.get(uri, "")
+    return cast(str, docs.get(uri, ""))

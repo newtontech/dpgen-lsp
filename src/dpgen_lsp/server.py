@@ -3,6 +3,7 @@
 LLM Wiki: wiki/synthesis/openqc-agent-context.md
 """
 
+import argparse
 from importlib import import_module
 from pathlib import Path
 from urllib.parse import unquote, urlparse
@@ -55,16 +56,18 @@ def _to_lsp_diagnostics(raw_diags: list[dict]) -> list[LspDiagnostic]:
         rng = raw.get("range", {})
         start = rng.get("start", {})
         end = rng.get("end", {})
-        result.append(LspDiagnostic(
-            range=Range(
-                start=Position(line=start.get("line", 0), character=start.get("character", 0)),
-                end=Position(line=end.get("line", 0), character=end.get("character", 0)),
-            ),
-            severity=severity_map.get(raw.get("severity", "error"), DiagnosticSeverity.Error),
-            code=raw.get("code", "diagnostic"),
-            source=raw.get("source", "dpgen-lsp"),
-            message=raw.get("message", ""),
-        ))
+        result.append(
+            LspDiagnostic(
+                range=Range(
+                    start=Position(line=start.get("line", 0), character=start.get("character", 0)),
+                    end=Position(line=end.get("line", 0), character=end.get("character", 0)),
+                ),
+                severity=severity_map.get(raw.get("severity", "error"), DiagnosticSeverity.Error),
+                code=raw.get("code", "diagnostic"),
+                source=raw.get("source", "dpgen-lsp"),
+                message=raw.get("message", ""),
+            )
+        )
     return result
 
 
@@ -144,7 +147,12 @@ def _register(server: Any, feature_name: str) -> Any:
 server = create_server()
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(
+        prog="dpgen-lsp",
+        description="Language Server Protocol implementation for DP-GEN input files",
+    )
+    parser.parse_args(argv)
     server.start_io()
 
 

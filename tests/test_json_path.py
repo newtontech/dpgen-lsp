@@ -24,8 +24,9 @@ def test_cursor_context():
 
 def test_is_json():
     from dpgen_lsp.schema.json_path import is_json
+
     assert is_json('{"a": 1}')
-    assert not is_json('not json')
+    assert not is_json("not json")
 
 
 def test_extract_full_path():

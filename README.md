@@ -12,6 +12,11 @@ Language Server Protocol implementation for DP-GEN (Deep Potential GENerator) in
 
 ## Installation
 
+Current release: `0.1.2`
+
+Python 3.10 or newer is required; the package uses modern type syntax in its
+runtime modules.
+
 ```bash
 pip install dpgen-lsp
 ```
@@ -30,7 +35,23 @@ Agent-facing CLI:
 dpgen-lsp-tool check param.json
 dpgen-lsp-tool complete param.json --line 5 --character 10
 dpgen-lsp-tool hover param.json --line 5 --character 10
+dpgen-lsp-tool parse-log dpgen.log
 ```
+
+## Releases
+
+Releases use PyPI Trusted Publishing. A pushed `v*` tag starts the release
+workflow, which verifies that the tag matches `pyproject.toml`, builds and
+checks the wheel and source distribution, and installs the wheel into a fresh
+virtual environment for server, agent, and fixture smoke tests. Only the
+protected `pypi` environment receives `id-token: write`; no long-lived PyPI
+credential is stored.
+
+After this PR is merged and its release point is approved, create `v0.1.2` on
+the merge commit. Pull requests and ordinary branch pushes cannot publish.
+After PyPI publication, the OpenQC runtime ledger can be updated with the
+published version and immutable release commit; this PR does not claim that
+post-publication cutover has already occurred.
 
 ### Editor Integration
 

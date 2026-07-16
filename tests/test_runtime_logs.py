@@ -22,7 +22,9 @@ def test_missing_files_log_maps_to_config_paths():
     codes = {item["code"] for item in diagnostics}
     assert "dpgen.log.file_not_found" in codes
     assert any(item.get("config_path") for item in diagnostics)
-    assert all(item["manual_ref"].startswith("https://docs.deepmodeling.com/") for item in diagnostics)
+    assert all(
+        item["manual_ref"].startswith("https://docs.deepmodeling.com/") for item in diagnostics
+    )
 
 
 def test_training_failed_log():

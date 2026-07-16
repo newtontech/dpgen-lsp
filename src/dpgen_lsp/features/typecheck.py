@@ -3,6 +3,7 @@
 LLM Wiki: wiki/synthesis/openqc-agent-context.md
 """
 
+
 def typecheck(text: str) -> list[dict]:
     return []
 
